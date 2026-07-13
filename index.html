@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>North Finances — Encontre seu norte financeiro</title>
-<meta name="description" content="Controle financeiro pessoal de verdade: transações, investimentos, metas e reserva, tudo num só lugar. Grátis, com conta na nuvem e app para Windows.">
+<meta name="description" content="Controle financeiro pessoal de verdade: transações, investimentos, metas e reserva, tudo num só lugar. 31 dias grátis, depois R$ 9,90/mês. Conta na nuvem e app para Windows.">
 <meta name="theme-color" content="#0d0d0d">
 <link rel="icon" href="favicon.ico">
 <meta property="og:title" content="North Finances — Encontre seu norte financeiro">
-<meta property="og:description" content="Controle financeiro pessoal: transações, investimentos e metas num só lugar. Grátis.">
+<meta property="og:description" content="Controle financeiro pessoal: transações, investimentos e metas num só lugar. Comece com 31 dias grátis.">
 <meta property="og:image" content="https://northfinances.com.br/logo.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://northfinances.com.br">
@@ -29,6 +29,14 @@
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .gold{color:var(--gold)}
+  .metal-gold{
+    background:linear-gradient(100deg,#a06e22 0%,#e4bd70 18%,#fff2d4 32%,#e6bd6e 46%,#c8903a 60%,#fbe6b4 78%,#c8903a 100%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation:sheen 6s linear infinite;
+  }
+  @keyframes sheen{to{background-position:220% 0}}
+  @media(prefers-reduced-motion:reduce){.metal-gold{animation:none}}
 
   /* ---------- NAV ---------- */
   header{
@@ -39,7 +47,10 @@
   nav{display:flex;align-items:center;justify-content:space-between;height:68px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.16rem;letter-spacing:-.01em}
   .brand img{width:34px;height:34px;border-radius:8px}
-  .brand span{color:var(--gold)}
+  .brand span{
+    background:linear-gradient(177deg,#fde7bd 0%,#e6bd6e 22%,#c8903a 48%,#a06e22 60%,#e4bd70 82%,#fbe6b4 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  }
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a.link{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .2s}
   .nav-links a.link:hover{color:var(--paper)}
@@ -48,8 +59,14 @@
     transition:transform .15s ease, box-shadow .2s ease, background .2s;
     cursor:pointer;border:none;white-space:nowrap;
   }
-  .btn-gold{background:var(--gold);color:#1a1205;box-shadow:0 4px 20px rgba(200,144,58,.28)}
-  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,144,58,.42)}
+  .btn-gold{
+    background:linear-gradient(180deg,#f4d488 0%,#dcae54 44%,#c8903a 54%,#b17d2c 100%);
+    color:#2a1c05;
+    box-shadow:0 4px 20px rgba(200,144,58,.34), inset 0 1px 0 rgba(255,255,255,.5), inset 0 -1px 0 rgba(0,0,0,.18);
+  }
+  .btn-gold:hover{transform:translateY(-2px);
+    background:linear-gradient(180deg,#fbe3a2 0%,#e6b95f 44%,#d29a40 54%,#bd872f 100%);
+    box-shadow:0 10px 32px rgba(200,144,58,.52), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.18)}
   .btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
   @media(max-width:720px){.nav-links a.link{display:none}}
@@ -105,13 +122,23 @@
 
   /* ---------- PRICE / CTA ---------- */
   .price-card{
+    position:relative;
     max-width:520px;margin:0 auto;text-align:center;
     background:linear-gradient(180deg,var(--card),#121210);
-    border:1px solid var(--line);border-radius:24px;padding:48px 40px;
+    border:1px solid rgba(200,144,58,.38);border-radius:24px;padding:48px 40px;
+    box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
   }
-  .price-card .tag{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-  .price-card .amount{font-size:3.4rem;font-weight:800;letter-spacing:-.03em;margin:10px 0 4px}
+  .disc-badge{
+    position:absolute;top:-15px;right:26px;
+    background:linear-gradient(180deg,#f4d488,#c8903a);color:#2a1c05;font-weight:800;font-size:.85rem;
+    padding:7px 14px;border-radius:100px;box-shadow:0 6px 18px rgba(200,144,58,.45);letter-spacing:.02em;
+  }
+  .price-card .tag{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .price-card .price-old{font-size:1.35rem;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(155,149,142,.65);margin-top:8px}
+  .price-card .amount{font-size:3.6rem;font-weight:800;letter-spacing:-.03em;margin:2px 0 4px}
   .price-card .amount small{font-size:1rem;color:var(--muted);font-weight:500;letter-spacing:0}
+  .price-card .price-note{color:var(--muted);font-size:.95rem}
+  .price-card .fineprint{color:var(--muted);font-size:.8rem;margin-top:16px;opacity:.85}
   .price-card ul{list-style:none;text-align:left;max-width:300px;margin:26px auto 30px}
   .price-card li{padding:7px 0;color:var(--muted);display:flex;gap:10px}
   .price-card li::before{content:"✓";color:var(--gold);font-weight:700}
@@ -150,13 +177,13 @@
   <div class="wrap">
     <img class="hero-logo" src="logo.png" alt="North Finances">
     <span class="eyebrow">Controle financeiro pessoal</span>
-    <h1>Encontre seu <span class="gold">norte&nbsp;financeiro</span></h1>
-    <p class="sub">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Sem planilha bagunçada, sem mensalidade.</p>
+    <h1>Encontre seu <span class="metal-gold">norte&nbsp;financeiro</span></h1>
+    <p class="sub">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Chega de planilha bagunçada e de perder o controle do dinheiro.</p>
     <div class="cta-row">
-      <a class="btn btn-gold" href="https://app.northfinances.com.br">Criar conta grátis</a>
+      <a class="btn btn-gold" href="https://app.northfinances.com.br">Começar 31 dias grátis</a>
       <a class="btn btn-ghost" href="https://github.com/Barssottini/controle-financeiro/releases/latest">Baixar app para Windows</a>
     </div>
-    <div class="trust">Grátis para sempre · Seus dados protegidos · Funciona no navegador e no desktop</div>
+    <div class="trust">31 dias grátis · Depois R$ 9,90/mês · Cancele quando quiser</div>
   </div>
 </section>
 
@@ -234,12 +261,15 @@
 <section class="block" id="preco">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Simples assim: é de graça</h2>
-      <p>Sem cartão de crédito, sem período de teste, sem pegadinha.</p>
+      <h2>Comece com <span class="metal-gold">31 dias grátis</span></h2>
+      <p>Experimente tudo sem pagar nada. A cobrança só começa depois do teste — e você cancela quando quiser.</p>
     </div>
     <div class="price-card">
-      <div class="tag">Plano pessoal</div>
-      <div class="amount">R$ 0<small> / para sempre</small></div>
+      <div class="disc-badge">92% OFF</div>
+      <div class="tag">🚀 Oferta de lançamento</div>
+      <div class="price-old">De R$ 119,90</div>
+      <div class="amount"><span class="metal-gold">R$ 9,90</span><small>/mês</small></div>
+      <div class="price-note">após os <strong style="color:var(--paper)">31 dias grátis</strong> · cancele quando quiser</div>
       <ul>
         <li>Transações e dashboard ilimitados</li>
         <li>Carteira de investimentos completa</li>
@@ -247,7 +277,8 @@
         <li>Conta na nuvem + app de desktop</li>
         <li>Backup e exportação quando quiser</li>
       </ul>
-      <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar agora</a>
+      <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar teste grátis de 31 dias</a>
+      <div class="fineprint">Sem cobrança hoje. Você só paga se continuar depois do período de teste.</div>
     </div>
   </div>
 </section>

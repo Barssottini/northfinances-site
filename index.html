@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North Finances — Encontre seu norte financeiro</title>
+<meta name="description" content="Controle financeiro pessoal de verdade: transações, investimentos, metas e reserva, tudo num só lugar. Grátis, com conta na nuvem e app para Windows.">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="icon" href="favicon.ico">
+<meta property="og:title" content="North Finances — Encontre seu norte financeiro">
+<meta property="og:description" content="Controle financeiro pessoal: transações, investimentos e metas num só lugar. Grátis.">
+<meta property="og:image" content="https://northfinances.com.br/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://northfinances.com.br">
+<style>
+  :root{
+    --ink:#0d0d0d; --ink2:#141414; --card:#181816; --line:#2a2926;
+    --gold:#c8903a; --gold-soft:#e0b878; --paper:#faf9f7; --muted:#9b958e;
+    --radius:16px; --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .gold{color:var(--gold)}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,13,13,.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.16rem;letter-spacing:-.01em}
+  .brand img{width:34px;height:34px;border-radius:8px}
+  .brand span{color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a.link{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .2s}
+  .nav-links a.link:hover{color:var(--paper)}
+  .btn{
+    display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s;
+    cursor:pointer;border:none;white-space:nowrap;
+  }
+  .btn-gold{background:var(--gold);color:#1a1205;box-shadow:0 4px 20px rgba(200,144,58,.28)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,144,58,.42)}
+  .btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
+  @media(max-width:720px){.nav-links a.link{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:radial-gradient(650px 420px at 50% -10%, rgba(200,144,58,.18), transparent 70%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .hero-logo{width:96px;height:96px;border-radius:22px;margin:0 auto 28px;display:block;
+    box-shadow:0 12px 44px rgba(200,144,58,.22)}
+  .eyebrow{
+    display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);border:1px solid var(--line);border-radius:100px;padding:6px 16px;margin-bottom:26px;
+  }
+  h1{font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.08;letter-spacing:-.025em;font-weight:800;margin-bottom:22px}
+  .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.28rem);color:var(--muted);max-width:640px;margin:0 auto 38px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cta-row .btn{padding:15px 30px;font-size:1.02rem}
+  .trust{margin-top:26px;font-size:.86rem;color:var(--muted)}
+
+  /* ---------- SECTIONS ---------- */
+  section.block{padding:80px 0;border-top:1px solid var(--line)}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 52px}
+  .sec-head h2{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
+  .sec-head p{color:var(--muted);font-size:1.06rem}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .feat{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+    transition:transform .18s ease,border-color .2s;
+  }
+  .feat:hover{transform:translateY(-4px);border-color:rgba(200,144,58,.5)}
+  .feat .ic{
+    width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(200,144,58,.12);font-size:1.4rem;margin-bottom:16px;
+  }
+  .feat h3{font-size:1.14rem;margin-bottom:8px;letter-spacing:-.01em}
+  .feat p{color:var(--muted);font-size:.96rem}
+
+  /* ---------- SECURITY ---------- */
+  .sec-security{background:var(--ink2)}
+  .sec-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;max-width:820px;margin:0 auto}
+  @media(max-width:640px){.sec-list{grid-template-columns:1fr}}
+  .sec-item{display:flex;gap:14px;align-items:flex-start}
+  .sec-item .chk{color:var(--gold);font-size:1.15rem;line-height:1.5;flex-shrink:0}
+  .sec-item h4{font-size:1.02rem;margin-bottom:3px}
+  .sec-item p{color:var(--muted);font-size:.92rem}
+
+  /* ---------- PRICE / CTA ---------- */
+  .price-card{
+    max-width:520px;margin:0 auto;text-align:center;
+    background:linear-gradient(180deg,var(--card),#121210);
+    border:1px solid var(--line);border-radius:24px;padding:48px 40px;
+  }
+  .price-card .tag{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .price-card .amount{font-size:3.4rem;font-weight:800;letter-spacing:-.03em;margin:10px 0 4px}
+  .price-card .amount small{font-size:1rem;color:var(--muted);font-weight:500;letter-spacing:0}
+  .price-card ul{list-style:none;text-align:left;max-width:300px;margin:26px auto 30px}
+  .price-card li{padding:7px 0;color:var(--muted);display:flex;gap:10px}
+  .price-card li::before{content:"✓";color:var(--gold);font-weight:700}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:52px 0 40px;color:var(--muted)}
+  .foot-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:34px}
+  .foot-brand{max-width:300px}
+  .foot-brand .brand{margin-bottom:12px;color:var(--paper)}
+  .foot-brand p{font-size:.9rem}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap}
+  .foot-col h5{color:var(--paper);font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .foot-col a{display:block;font-size:.94rem;margin-bottom:9px;color:var(--muted);transition:color .2s}
+  .foot-col a:hover{color:var(--gold-soft)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;font-size:.84rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/"><img src="logo.png" alt="North Finances"> North<span>&nbsp;Finances</span></a>
+      <div class="nav-links">
+        <a class="link" href="#recursos">Recursos</a>
+        <a class="link" href="#seguranca">Segurança</a>
+        <a class="link" href="#preco">Preço</a>
+        <a class="btn btn-gold" href="https://app.northfinances.com.br">Acessar o app</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <img class="hero-logo" src="logo.png" alt="North Finances">
+    <span class="eyebrow">Controle financeiro pessoal</span>
+    <h1>Encontre seu <span class="gold">norte&nbsp;financeiro</span></h1>
+    <p class="sub">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Sem planilha bagunçada, sem mensalidade.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://app.northfinances.com.br">Criar conta grátis</a>
+      <a class="btn btn-ghost" href="https://github.com/Barssottini/controle-financeiro/releases/latest">Baixar app para Windows</a>
+    </div>
+    <div class="trust">Grátis para sempre · Seus dados protegidos · Funciona no navegador e no desktop</div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="block" id="recursos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Tudo que você precisa pra organizar o dinheiro</h2>
+      <p>Feito pra quem quer clareza de verdade — do gasto do dia a dia até a carteira de investimentos.</p>
+    </div>
+    <div class="grid">
+      <div class="feat">
+        <div class="ic">📊</div>
+        <h3>Dashboard claro</h3>
+        <p>Receitas × despesas em um gráfico, saldo do mês e pra onde seu dinheiro está indo, atualizado na hora.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">📈</div>
+        <h3>Investimentos</h3>
+        <p>Acompanhe caixinhas com rendimento CDI e ativos (ETFs, FIIs, cripto) com preço médio e cotação automática.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">🎯</div>
+        <h3>Metas & reserva</h3>
+        <p>Crie metas vinculadas ao seu patrimônio — elas se atualizam sozinhas conforme você guarda dinheiro.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">📥</div>
+        <h3>Importe seu extrato</h3>
+        <p>Suba o arquivo OFX ou CSV do seu banco e as transações entram organizadas, com o saldo conciliado.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">☁️</div>
+        <h3>Conta na nuvem</h3>
+        <p>Faça login e acesse os mesmos dados no navegador e no app de desktop. Tudo sincroniza automaticamente.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">💾</div>
+        <h3>Backup completo</h3>
+        <p>Exporte tudo em um arquivo quando quiser. Seus dados são seus — sem prisão, sem depender de ninguém.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGURANÇA -->
+<section class="block sec-security" id="seguranca">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Seus dados, protegidos e no controle</h2>
+      <p>Dinheiro é assunto sério. A North foi construída com privacidade desde a base.</p>
+    </div>
+    <div class="sec-list">
+      <div class="sec-item">
+        <span class="chk">◆</span>
+        <div><h4>Isolamento por usuário</h4><p>Cada conta só enxerga os próprios dados — garantido no nível do banco de dados, não só na tela.</p></div>
+      </div>
+      <div class="sec-item">
+        <span class="chk">◆</span>
+        <div><h4>Servidores no Brasil</h4><p>Sua informação fica hospedada em data center na região de São Paulo.</p></div>
+      </div>
+      <div class="sec-item">
+        <span class="chk">◆</span>
+        <div><h4>Conforme a LGPD</h4><p>Você pode exportar ou apagar seus dados a qualquer momento. Transparência total nos termos.</p></div>
+      </div>
+      <div class="sec-item">
+        <span class="chk">◆</span>
+        <div><h4>Funciona offline</h4><p>No app de desktop, seus dados ficam em cache e continuam acessíveis mesmo sem internet.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section class="block" id="preco">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Simples assim: é de graça</h2>
+      <p>Sem cartão de crédito, sem período de teste, sem pegadinha.</p>
+    </div>
+    <div class="price-card">
+      <div class="tag">Plano pessoal</div>
+      <div class="amount">R$ 0<small> / para sempre</small></div>
+      <ul>
+        <li>Transações e dashboard ilimitados</li>
+        <li>Carteira de investimentos completa</li>
+        <li>Metas, reserva e orçamento</li>
+        <li>Conta na nuvem + app de desktop</li>
+        <li>Backup e exportação quando quiser</li>
+      </ul>
+      <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="logo.png" alt="North Finances"> North<span>&nbsp;Finances</span></a>
+        <p>Controle financeiro pessoal para você encontrar seu norte. Feito no Brasil.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Produto</h5>
+          <a href="https://app.northfinances.com.br">Acessar o app</a>
+          <a href="https://github.com/Barssottini/controle-financeiro/releases/latest">Baixar para Windows</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#preco">Preço</a>
+        </div>
+        <div class="foot-col">
+          <h5>Empresa</h5>
+          <a href="https://app.northfinances.com.br/termos.html">Termos & Privacidade</a>
+          <a href="https://instagram.com/northfinances">Instagram</a>
+          <a href="https://facebook.com/northfinances">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 North Finances. Todos os direitos reservados.</span>
+      <span>northfinances.com.br</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

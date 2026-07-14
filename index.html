@@ -19,7 +19,8 @@
   :root{
     --ink:#0d0d0d; --ink2:#141414; --card:#181816; --line:#2a2926;
     --gold:#c8903a; --gold-soft:#e0b878; --paper:#faf9f7; --muted:#9b958e;
-    --radius:16px; --maxw:1080px;
+    --green:#7dc98f; --red:#e07d6d;
+    --radius:16px; --maxw:1120px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -29,6 +30,12 @@
     line-height:1.6; -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
+  /* granulado sutil por cima de tudo — dá textura de material, não de tela */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:120;pointer-events:none;opacity:.028;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection{background:rgba(200,144,58,.35);color:#fff}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .gold{color:var(--gold)}
@@ -39,14 +46,20 @@
     animation:sheen 6s linear infinite;
   }
   @keyframes sheen{to{background-position:220% 0}}
-  @media(prefers-reduced-motion:reduce){.metal-gold{animation:none}}
+
+  /* barra de progresso de leitura */
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:100;
+    background:linear-gradient(90deg,#a06e22,#e4bd70,#c8903a);
+    box-shadow:0 0 12px rgba(200,144,58,.6)}
 
   /* ---------- NAV ---------- */
   header{
     position:sticky;top:0;z-index:50;
-    background:rgba(13,13,13,.82);backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
+    background:rgba(13,13,13,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s,background .3s,box-shadow .3s;
   }
+  header.scrolled{border-bottom-color:var(--line);background:rgba(13,13,13,.88);box-shadow:0 8px 30px rgba(0,0,0,.35)}
   nav{display:flex;align-items:center;justify-content:space-between;height:68px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.16rem;letter-spacing:-.01em}
   .brand img{width:34px;height:34px;border-radius:8px}
@@ -54,19 +67,27 @@
     background:linear-gradient(177deg,#fde7bd 0%,#e6bd6e 22%,#c8903a 48%,#a06e22 60%,#e4bd70 82%,#fbe6b4 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
   }
-  .nav-links{display:flex;align-items:center;gap:30px}
-  .nav-links a.link{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .2s}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a.link{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .2s;position:relative}
+  .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--gold);transition:width .25s ease}
   .nav-links a.link:hover{color:var(--paper)}
+  .nav-links a.link:hover::after{width:100%}
   .btn{
-    display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
+    position:relative;display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
     transition:transform .15s ease, box-shadow .2s ease, background .2s;
-    cursor:pointer;border:none;white-space:nowrap;
+    cursor:pointer;border:none;white-space:nowrap;overflow:hidden;
   }
   .btn-gold{
     background:linear-gradient(180deg,#f4d488 0%,#dcae54 44%,#c8903a 54%,#b17d2c 100%);
     color:#2a1c05;
     box-shadow:0 4px 20px rgba(200,144,58,.34), inset 0 1px 0 rgba(255,255,255,.5), inset 0 -1px 0 rgba(0,0,0,.18);
   }
+  .btn-gold::after{ /* brilho que varre o botão de tempos em tempos */
+    content:"";position:absolute;top:0;bottom:0;left:-80%;width:45%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg);animation:sweep 4.5s ease-in-out infinite;
+  }
+  @keyframes sweep{0%,72%{left:-80%}88%,100%{left:140%}}
   .btn-gold:hover{transform:translateY(-2px);
     background:linear-gradient(180deg,#fbe3a2 0%,#e6b95f 44%,#d29a40 54%,#bd872f 100%);
     box-shadow:0 10px 32px rgba(200,144,58,.52), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.18)}
@@ -75,52 +96,208 @@
   @media(max-width:720px){.nav-links a.link{display:none}}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden}
+  .hero{position:relative;padding:88px 0 40px;text-align:center;overflow:hidden}
   .hero::before{
     content:"";position:absolute;inset:0;z-index:0;
-    background:radial-gradient(650px 420px at 50% -10%, rgba(200,144,58,.18), transparent 70%);
+    background:radial-gradient(720px 460px at 50% -12%, rgba(200,144,58,.20), transparent 70%);
   }
+  #dust{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .compass{ /* rosa dos ventos gigante e quase invisível girando ao fundo */
+    position:absolute;top:-140px;left:50%;width:920px;height:920px;margin-left:-460px;z-index:0;
+    opacity:.05;pointer-events:none;animation:spin 140s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
   .hero .wrap{position:relative;z-index:1}
-  .hero-logo{width:96px;height:96px;border-radius:22px;margin:0 auto 28px;display:block;
+  .hero-logo{width:88px;height:88px;border-radius:22px;margin:0 auto 24px;display:block;
     box-shadow:0 12px 44px rgba(200,144,58,.22)}
   .eyebrow{
-    display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--gold);border:1px solid var(--line);border-radius:100px;padding:6px 16px;margin-bottom:26px;
+    display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);border:1px solid var(--line);border-radius:100px;padding:6px 16px;margin-bottom:24px;
+    background:rgba(13,13,13,.5);
   }
-  h1{font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.08;letter-spacing:-.025em;font-weight:800;margin-bottom:22px}
-  .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.28rem);color:var(--muted);max-width:640px;margin:0 auto 38px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,144,58,.55)}55%{box-shadow:0 0 0 7px rgba(200,144,58,0)}}
+  h1{font-size:clamp(2.4rem,6vw,4.1rem);line-height:1.06;letter-spacing:-.028em;font-weight:800;margin-bottom:20px}
+  .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.26rem);color:var(--muted);max-width:640px;margin:0 auto 34px}
   .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .cta-row .btn{padding:15px 30px;font-size:1.02rem}
-  .trust{margin-top:26px;font-size:.86rem;color:var(--muted)}
-  .dl-note{margin-top:22px;font-size:.92rem;color:var(--muted)}
+  .trust{margin-top:24px;font-size:.86rem;color:var(--muted)}
+  .dl-note{margin-top:18px;font-size:.9rem;color:var(--muted)}
   .dl-note a{color:var(--gold-soft);font-weight:600;border-bottom:1px solid rgba(200,144,58,.35)}
   .dl-note a:hover{color:var(--gold)}
-  .dl-hint{display:block;max-width:540px;margin:9px auto 0;font-size:.8rem;line-height:1.55;
-    color:var(--muted);opacity:.82}
+  .dl-hint{display:block;max-width:540px;margin:8px auto 0;font-size:.78rem;line-height:1.55;
+    color:var(--muted);opacity:.8}
   .dl-hint b{color:var(--paper);font-weight:600}
 
-  /* ---------- SECTIONS ---------- */
-  section.block{padding:80px 0;border-top:1px solid var(--line)}
-  .sec-head{text-align:center;max-width:620px;margin:0 auto 52px}
+  /* entrada em cascata dos elementos do hero */
+  .hero .up{opacity:0;transform:translateY(22px);animation:rise .8s cubic-bezier(.22,.8,.3,1) forwards}
+  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.15s}.hero .d3{animation-delay:.25s}
+  .hero .d4{animation-delay:.38s}.hero .d5{animation-delay:.5s}.hero .d6{animation-delay:.62s}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- MOCKUP DO APP ---------- */
+  .stage{position:relative;max-width:920px;margin:56px auto 0;perspective:1400px;z-index:1}
+  .mock-glow{position:absolute;inset:-8% -6%;z-index:0;pointer-events:none;
+    background:radial-gradient(58% 62% at 50% 42%, rgba(200,144,58,.22), transparent 70%);
+    filter:blur(28px)}
+  .mock{
+    position:relative;z-index:1;text-align:left;
+    background:linear-gradient(180deg,#161513,#111110);
+    border:1px solid rgba(200,144,58,.22);border-radius:18px;overflow:hidden;
+    box-shadow:0 50px 120px rgba(0,0,0,.6), 0 18px 50px rgba(200,144,58,.08), inset 0 1px 0 rgba(255,255,255,.05);
+    transform-style:preserve-3d;will-change:transform;
+    opacity:0;transform:translateY(40px) rotateX(8deg);
+  }
+  .mock.in{animation:mockIn 1.1s cubic-bezier(.2,.75,.25,1) .35s forwards}
+  @keyframes mockIn{to{opacity:1;transform:translateY(0) rotateX(0)}}
+  .mock-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .mock-bar .dots{display:flex;gap:6px}
+  .mock-bar .dots i{width:10px;height:10px;border-radius:50%;background:#2f2d2a}
+  .mock-bar .dots i:first-child{background:#5a4a2e}
+  .mock-url{flex:1;max-width:300px;margin:0 auto;text-align:center;font-size:.72rem;color:var(--muted);
+    background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:7px;padding:4px 12px}
+  .mock-url b{color:var(--gold-soft);font-weight:600}
+  .mock-body{display:grid;grid-template-columns:52px 1fr;min-height:430px}
+  .mock-rail{border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 0}
+  .mock-rail i{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    font-style:normal;font-size:.9rem;color:var(--muted);opacity:.75}
+  .mock-rail i.on{background:rgba(200,144,58,.15);color:var(--gold);opacity:1}
+  .mock-main{padding:18px;display:grid;gap:14px;grid-template-rows:auto 1fr auto}
+  .mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .mstat{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .mstat .lb{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .mstat .vl{font-size:1.24rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums}
+  .mstat .sb{font-size:.72rem;color:var(--muted);margin-top:2px}
+  .mstat .sb .pos{color:var(--green);font-weight:700}
+  .mbar{height:6px;background:#26231f;border-radius:6px;margin-top:9px;overflow:hidden}
+  .mbar i{display:block;height:100%;width:0;border-radius:6px;
+    background:linear-gradient(90deg,#a06e22,#e4bd70,#c8903a);
+    transition:width 1.6s cubic-bezier(.22,.8,.3,1) .9s}
+  .mock.play .mbar i{width:78%}
+  .mcharts{display:grid;grid-template-columns:1.75fr 1fr;gap:12px;min-height:0}
+  .mpanel{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;min-height:0}
+  .mpanel .ttl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+  .mpanel .ttl em{font-style:normal;color:var(--gold-soft);font-size:.7rem;letter-spacing:0;text-transform:none}
+  .mpanel svg{width:100%;height:auto;display:block;flex:1}
+  /* linha do gráfico se desenhando */
+  .lchart .stroke{fill:none;stroke:url(#lg1);stroke-width:3;stroke-linecap:round;
+    stroke-dasharray:1000;stroke-dashoffset:1000}
+  .mock.play .lchart .stroke{transition:stroke-dashoffset 2s cubic-bezier(.3,.6,.3,1) .7s;stroke-dashoffset:0}
+  .lchart .area{fill:url(#lg2);opacity:0}
+  .mock.play .lchart .area{transition:opacity 1.2s ease 1.9s;opacity:1}
+  .lchart .grid-l{stroke:rgba(255,255,255,.05);stroke-width:1}
+  .lchart .enddot{fill:#f4d488;opacity:0}
+  .mock.play .lchart .enddot{animation:dotIn .5s ease 2.6s forwards, blink 2.4s ease-in-out 3.1s infinite}
+  @keyframes dotIn{to{opacity:1}}
+  @keyframes blink{0%,100%{r:4}50%{r:6}}
+  /* rosca de categorias */
+  .donut circle.seg{fill:none;stroke-width:17;stroke-dasharray:0 100;transition:stroke-dasharray 1.1s cubic-bezier(.3,.6,.3,1)}
+  .donut .dc{fill:var(--paper);font-size:13px;font-weight:800;letter-spacing:-.02em}
+  .donut .dl{fill:var(--muted);font-size:6.5px;letter-spacing:.06em;text-transform:uppercase}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-top:10px}
+  .legend span{display:flex;align-items:center;gap:6px;font-size:.66rem;color:var(--muted);white-space:nowrap}
+  .legend i{width:8px;height:8px;border-radius:3px;flex-shrink:0}
+  /* feed de transações ao vivo */
+  .mfeed{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:12px 16px 8px}
+  .mfeed .ttl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+  .live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+  #feed{list-style:none;height:132px;overflow:hidden}
+  #feed li{display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.82rem}
+  #feed li:last-child{border-bottom:none}
+  #feed li.enter{animation:feedIn .55s cubic-bezier(.22,.8,.3,1)}
+  @keyframes feedIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+  #feed .fic{width:30px;height:30px;border-radius:8px;background:rgba(200,144,58,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+  #feed .fnm{flex:1;min-width:0}
+  #feed .fnm b{display:block;font-weight:600;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #feed .fnm small{color:var(--muted);font-size:.68rem}
+  #feed .fvl{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #feed .fvl.pos{color:var(--green)} #feed .fvl.neg{color:var(--red)}
+  /* pílulas flutuando ao redor do mockup */
+  .pill{
+    position:absolute;z-index:2;display:flex;align-items:center;gap:8px;
+    background:rgba(24,24,22,.92);border:1px solid rgba(200,144,58,.35);border-radius:100px;
+    padding:9px 16px;font-size:.8rem;font-weight:600;white-space:nowrap;
+    box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(6px);
+    opacity:0;
+  }
+  .mock.in ~ .pill{animation:pillIn .7s ease forwards, bob 5.5s ease-in-out 1.2s infinite alternate}
+  .pill.p1{top:10%;right:-26px;animation-delay:1.3s, 1.3s !important}
+  .pill.p2{bottom:16%;left:-30px;animation-delay:1.6s, 1.6s !important}
+  .pill b{color:var(--gold-soft)}
+  @keyframes pillIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes bob{from{margin-top:0}to{margin-top:-12px}}
+  @media(max-width:960px){.pill{display:none}}
+  @media(max-width:760px){
+    .mcharts{grid-template-columns:1fr}
+    .mstats{grid-template-columns:1fr 1fr}
+    .mstat:nth-child(3){display:none}
+    .mock-body{grid-template-columns:1fr}
+    .mock-rail{display:none}
+  }
+
+  /* ---------- FAIXA DE NÚMEROS ---------- */
+  .stats-strip{padding:56px 0 8px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+  @media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:26px 12px}}
+  .stat .n{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .stat .t{color:var(--muted);font-size:.88rem;margin-top:2px}
+
+  /* ---------- SEÇÕES ---------- */
+  section.block{padding:88px 0;border-top:1px solid var(--line)}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
   .sec-head h2{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
   .sec-head p{color:var(--muted);font-size:1.06rem}
+
+  /* revelação no scroll */
+  .rev{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.8,.3,1) var(--d,0s),transform .7s cubic-bezier(.22,.8,.3,1) var(--d,0s)}
+  .rev.in{opacity:1;transform:none}
 
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
   @media(max-width:560px){.grid{grid-template-columns:1fr}}
   .feat{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
-    transition:transform .18s ease,border-color .2s;
+    position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+    transition:transform .2s ease,border-color .25s;overflow:hidden;
+  }
+  .feat::after{ /* brilho que segue o mouse */
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+    background:radial-gradient(320px 220px at var(--mx,50%) var(--my,50%), rgba(200,144,58,.13), transparent 70%);
   }
   .feat:hover{transform:translateY(-4px);border-color:rgba(200,144,58,.5)}
+  .feat:hover::after{opacity:1}
   .feat .ic{
     width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
     background:rgba(200,144,58,.12);font-size:1.4rem;margin-bottom:16px;
+    transition:transform .25s ease;
   }
+  .feat:hover .ic{transform:scale(1.12) rotate(-4deg)}
   .feat h3{font-size:1.14rem;margin-bottom:8px;letter-spacing:-.01em}
   .feat p{color:var(--muted);font-size:.96rem}
 
-  /* ---------- SECURITY ---------- */
+  /* ---------- COMO FUNCIONA ---------- */
+  .steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:940px;margin:0 auto}
+  .steps::before{ /* linha que se desenha ligando os passos */
+    content:"";position:absolute;top:31px;left:12%;right:12%;height:2px;z-index:0;
+    background:linear-gradient(90deg,rgba(200,144,58,.0),rgba(200,144,58,.55),rgba(200,144,58,.0));
+    transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(.22,.8,.3,1) .3s;
+  }
+  .steps.in::before{transform:scaleX(1)}
+  @media(max-width:720px){.steps{grid-template-columns:1fr;gap:26px}.steps::before{display:none}}
+  .step{position:relative;z-index:1;text-align:center;padding:0 8px}
+  .step .num{
+    width:62px;height:62px;margin:0 auto 18px;border-radius:50%;
+    background:linear-gradient(180deg,#1e1c19,#141311);border:1px solid rgba(200,144,58,.45);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;color:var(--gold-soft);
+    box-shadow:0 10px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
+    position:relative;
+  }
+  .step .num::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(200,144,58,.28);
+    opacity:0;transform:scale(.85);transition:all .6s ease .5s}
+  .steps.in .step .num::after{opacity:1;transform:scale(1)}
+  .step h3{font-size:1.12rem;margin-bottom:8px;letter-spacing:-.01em}
+  .step p{color:var(--muted);font-size:.94rem;max-width:270px;margin:0 auto}
+
+  /* ---------- SEGURANÇA ---------- */
   .sec-security{background:var(--ink2)}
   .sec-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;max-width:820px;margin:0 auto}
   @media(max-width:640px){.sec-list{grid-template-columns:1fr}}
@@ -129,12 +306,18 @@
   .sec-item h4{font-size:1.02rem;margin-bottom:3px}
   .sec-item p{color:var(--muted);font-size:.92rem}
 
-  /* ---------- PRICE / CTA ---------- */
+  /* ---------- PREÇO ---------- */
+  @property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+  .price-shell{position:relative;max-width:524px;margin:0 auto;border-radius:26px;padding:1.5px;
+    background:conic-gradient(from var(--ang),transparent 0 18%,rgba(200,144,58,.85) 26%,rgba(253,231,189,.9) 30%,rgba(200,144,58,.85) 34%,transparent 42% 100%),
+      linear-gradient(180deg,rgba(200,144,58,.35),rgba(200,144,58,.12));
+    animation:ring 5.5s linear infinite;
+  }
+  @keyframes ring{to{--ang:360deg}}
   .price-card{
-    position:relative;
-    max-width:520px;margin:0 auto;text-align:center;
+    position:relative;text-align:center;
     background:linear-gradient(180deg,var(--card),#121210);
-    border:1px solid rgba(200,144,58,.38);border-radius:24px;padding:48px 40px;
+    border-radius:24.5px;padding:48px 40px;
     box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
   }
   .disc-badge{
@@ -152,6 +335,19 @@
   .price-card li{padding:7px 0;color:var(--muted);display:flex;gap:10px}
   .price-card li::before{content:"✓";color:var(--gold);font-weight:700}
 
+  /* ---------- FAQ ---------- */
+  .faq{max-width:720px;margin:0 auto}
+  .faq details{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden;
+    transition:border-color .25s}
+  .faq details[open]{border-color:rgba(200,144,58,.45)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:18px 22px;font-weight:600;font-size:1rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{color:var(--gold);font-size:1.3rem;font-weight:400;transition:transform .3s ease;flex-shrink:0;line-height:1}
+  .faq details[open] summary .pl{transform:rotate(45deg)}
+  .faq .ans{padding:0 22px 20px;color:var(--muted);font-size:.94rem}
+  .faq .ans b{color:var(--paper);font-weight:600}
+
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line);padding:52px 0 40px;color:var(--muted)}
   .foot-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:34px}
@@ -163,16 +359,27 @@
   .foot-col a{display:block;font-size:.94rem;margin-bottom:9px;color:var(--muted);transition:color .2s}
   .foot-col a:hover{color:var(--gold-soft)}
   .foot-bottom{border-top:1px solid var(--line);padding-top:24px;font-size:.84rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* respeita quem prefere menos movimento */
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .metal-gold{animation:none}
+    .rev,.mock{opacity:1;transform:none}
+    .pill{opacity:1}
+  }
 </style>
 </head>
 <body>
 
-<header>
+<div id="progress"></div>
+
+<header id="hdr">
   <div class="wrap">
     <nav>
       <a class="brand" href="/"><img src="logo.png" alt="North Finances"> North<span>&nbsp;Finances</span></a>
       <div class="nav-links">
         <a class="link" href="#recursos">Recursos</a>
+        <a class="link" href="#como-funciona">Como funciona</a>
         <a class="link" href="#seguranca">Segurança</a>
         <a class="link" href="#preco">Preço</a>
         <a class="btn btn-gold" href="https://app.northfinances.com.br">Acessar o app</a>
@@ -183,16 +390,108 @@
 
 <!-- HERO -->
 <section class="hero">
+  <canvas id="dust"></canvas>
+  <svg class="compass" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="none" stroke="#c8903a" stroke-width=".6">
+      <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="40"/>
+      <path d="M100 4v192M4 100h192M32 32l136 136M168 32L32 168"/>
+    </g>
+    <path d="M100 14l7 78-7 12-7-12z" fill="#c8903a"/>
+    <path d="M100 186l-7-78 7-12 7 12z" fill="#c8903a" opacity=".4"/>
+  </svg>
   <div class="wrap">
-    <img class="hero-logo" src="logo.png" alt="North Finances">
-    <span class="eyebrow">Controle financeiro pessoal</span>
-    <h1>Encontre seu <span class="metal-gold">norte&nbsp;financeiro</span></h1>
-    <p class="sub">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Chega de planilha bagunçada e de perder o controle do dinheiro.</p>
-    <div class="cta-row">
+    <img class="hero-logo up d1" src="logo.png" alt="North Finances">
+    <span class="eyebrow up d2"><span class="dot"></span> Controle financeiro pessoal</span>
+    <h1 class="up d3">Encontre seu <span class="metal-gold">norte&nbsp;financeiro</span></h1>
+    <p class="sub up d4">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Chega de planilha bagunçada e de perder o controle do dinheiro.</p>
+    <div class="cta-row up d5">
       <a class="btn btn-gold" href="https://app.northfinances.com.br">Começar grátis no navegador</a>
     </div>
-    <div class="trust">Nada pra instalar · Funciona no celular e no PC · 31 dias grátis, depois R$ 9,90/mês</div>
-    <div class="dl-note">
+    <div class="trust up d6">Nada pra instalar · Funciona no celular e no PC · 31 dias grátis, depois R$ 9,90/mês</div>
+
+    <!-- MOCKUP ANIMADO DO APP -->
+    <div class="stage">
+      <div class="mock-glow"></div>
+      <div class="mock" id="mock">
+        <div class="mock-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="mock-url">🔒 <b>app.northfinances.com.br</b></span>
+          <span style="width:46px"></span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-rail">
+            <i class="on">📊</i><i>💸</i><i>📈</i><i>🎯</i><i>⚙️</i>
+          </div>
+          <div class="mock-main">
+            <div class="mstats">
+              <div class="mstat">
+                <div class="lb">Saldo do mês</div>
+                <div class="vl"><span class="cnt" data-to="2847.9" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
+                <div class="sb"><span class="pos">▲ 12%</span> vs. mês passado</div>
+              </div>
+              <div class="mstat">
+                <div class="lb">Investido</div>
+                <div class="vl"><span class="cnt" data-to="15430" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
+                <div class="sb"><span class="pos">+R$ 212,40</span> este mês</div>
+              </div>
+              <div class="mstat">
+                <div class="lb">Reserva de emergência</div>
+                <div class="vl"><span class="cnt" data-to="78" data-dec="0" data-suf="%">0%</span></div>
+                <div class="mbar"><i></i></div>
+              </div>
+            </div>
+            <div class="mcharts">
+              <div class="mpanel lchart">
+                <div class="ttl">Evolução do patrimônio <em>últimos 7 meses</em></div>
+                <svg viewBox="0 0 520 200" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="#a06e22"/><stop offset=".5" stop-color="#e4bd70"/><stop offset="1" stop-color="#f4d488"/>
+                    </linearGradient>
+                    <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="rgba(200,144,58,.32)"/><stop offset="1" stop-color="rgba(200,144,58,0)"/>
+                    </linearGradient>
+                  </defs>
+                  <g class="grid-l">
+                    <line x1="10" y1="50" x2="510" y2="50"/><line x1="10" y1="100" x2="510" y2="100"/><line x1="10" y1="150" x2="510" y2="150"/>
+                  </g>
+                  <path class="area" d="M10,152 C38,148 65,141 93,140 C121,139 148,147 176,146 C204,145 232,120 260,112 C288,104 315,104 343,98 C371,92 398,78 426,66 C454,54 482,44 510,38 L510,200 L10,200 Z"/>
+                  <path class="stroke" pathLength="1000" d="M10,152 C38,148 65,141 93,140 C121,139 148,147 176,146 C204,145 232,120 260,112 C288,104 315,104 343,98 C371,92 398,78 426,66 C454,54 482,44 510,38"/>
+                  <circle class="enddot" cx="510" cy="38" r="4"/>
+                </svg>
+              </div>
+              <div class="mpanel">
+                <div class="ttl">Pra onde foi o dinheiro</div>
+                <svg class="donut" viewBox="0 0 140 140" aria-hidden="true">
+                  <circle cx="70" cy="70" r="52" fill="none" stroke="#24211d" stroke-width="17"/>
+                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#c8903a" data-len="32" stroke-dashoffset="25"/>
+                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#e0b878" data-len="24" stroke-dashoffset="-7"/>
+                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#8a6420" data-len="16" stroke-dashoffset="-31"/>
+                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#57524b" data-len="12" stroke-dashoffset="-47"/>
+                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#3a3733" data-len="16" stroke-dashoffset="-59"/>
+                  <text class="dc" x="70" y="68" text-anchor="middle">R$ 3.590</text>
+                  <text class="dl" x="70" y="82" text-anchor="middle">gastos no mês</text>
+                </svg>
+                <div class="legend">
+                  <span><i style="background:#c8903a"></i>Moradia 32%</span>
+                  <span><i style="background:#e0b878"></i>Alimentação 24%</span>
+                  <span><i style="background:#8a6420"></i>Transporte 16%</span>
+                  <span><i style="background:#57524b"></i>Lazer 12%</span>
+                </div>
+              </div>
+            </div>
+            <div class="mfeed">
+              <div class="ttl"><span class="live"></span> Últimas transações</div>
+              <ul id="feed"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pill p1">📈 Rendimento hoje: <b>+R$ 12,31</b></div>
+      <div class="pill p2">🎯 Meta Viagem: <b>64%</b></div>
+    </div>
+
+    <div class="dl-note" style="margin-top:34px">
       📱 <b style="color:var(--paper)">No celular vira app também:</b> abra <b style="color:var(--paper)">app.northfinances.com.br</b> no navegador e toque em <b style="color:var(--paper)">"Adicionar à tela inicial"</b> — fica um ícone na tela, igual a um aplicativo, sem baixar nada.
     </div>
     <div class="dl-note">
@@ -202,40 +501,52 @@
   </div>
 </section>
 
+<!-- NÚMEROS -->
+<div class="stats-strip">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rev"><div class="n"><span class="cnt" data-to="31" data-dec="0">0</span> <span class="gold">dias</span></div><div class="t">de teste grátis, sem cartão</div></div>
+      <div class="stat rev" style="--d:.1s"><div class="n">R$ <span class="cnt" data-to="9.9" data-dec="2">0,00</span></div><div class="t">por mês depois do teste</div></div>
+      <div class="stat rev" style="--d:.2s"><div class="n"><span class="cnt" data-to="2" data-dec="0">0</span> <span class="gold">min</span></div><div class="t">pra criar a conta e começar</div></div>
+      <div class="stat rev" style="--d:.3s"><div class="n"><span class="cnt" data-to="100" data-dec="0">0</span><span class="gold">%</span></div><div class="t">dos seus dados exportáveis</div></div>
+    </div>
+  </div>
+</div>
+
 <!-- RECURSOS -->
 <section class="block" id="recursos">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rev">
       <h2>Tudo que você precisa pra organizar o dinheiro</h2>
       <p>Feito pra quem quer clareza de verdade — do gasto do dia a dia até a carteira de investimentos.</p>
     </div>
     <div class="grid">
-      <div class="feat">
+      <div class="feat rev">
         <div class="ic">📊</div>
         <h3>Dashboard claro</h3>
         <p>Receitas × despesas em um gráfico, saldo do mês e pra onde seu dinheiro está indo, atualizado na hora.</p>
       </div>
-      <div class="feat">
+      <div class="feat rev" style="--d:.08s">
         <div class="ic">📈</div>
         <h3>Investimentos</h3>
         <p>Acompanhe caixinhas com rendimento CDI e ativos (ETFs, FIIs, cripto) com preço médio e cotação automática.</p>
       </div>
-      <div class="feat">
+      <div class="feat rev" style="--d:.16s">
         <div class="ic">🎯</div>
         <h3>Metas & reserva</h3>
         <p>Crie metas vinculadas ao seu patrimônio — elas se atualizam sozinhas conforme você guarda dinheiro.</p>
       </div>
-      <div class="feat">
+      <div class="feat rev" style="--d:.08s">
         <div class="ic">📥</div>
         <h3>Importe seu extrato</h3>
         <p>Suba o arquivo OFX ou CSV do seu banco e as transações entram organizadas, com o saldo conciliado.</p>
       </div>
-      <div class="feat">
+      <div class="feat rev" style="--d:.16s">
         <div class="ic">☁️</div>
         <h3>Conta na nuvem</h3>
         <p>Faça login e acesse os mesmos dados no navegador e no app de desktop. Tudo sincroniza automaticamente.</p>
       </div>
-      <div class="feat">
+      <div class="feat rev" style="--d:.24s">
         <div class="ic">💾</div>
         <h3>Backup completo</h3>
         <p>Exporte tudo em um arquivo quando quiser. Seus dados são seus — sem prisão, sem depender de ninguém.</p>
@@ -244,27 +555,54 @@
   </div>
 </section>
 
+<!-- COMO FUNCIONA -->
+<section class="block" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Do zero ao controle em <span class="metal-gold">3 passos</span></h2>
+      <p>Sem configuração complicada, sem conectar conta bancária, sem senha do banco.</p>
+    </div>
+    <div class="steps rev" id="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Crie sua conta</h3>
+        <p>E-mail e senha, confirmação por código de 6 dígitos. Leva 2 minutos e não pede cartão.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Lance ou importe</h3>
+        <p>Registre os gastos do dia a dia ou suba o extrato do banco (OFX/CSV) de uma vez.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Veja o norte</h3>
+        <p>Dashboard, metas e investimentos se atualizam sozinhos. Você só acompanha o dinheiro crescer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SEGURANÇA -->
 <section class="block sec-security" id="seguranca">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rev">
       <h2>Seus dados, protegidos e no controle</h2>
       <p>Dinheiro é assunto sério. A North foi construída com privacidade desde a base.</p>
     </div>
     <div class="sec-list">
-      <div class="sec-item">
+      <div class="sec-item rev">
         <span class="chk">◆</span>
         <div><h4>Isolamento por usuário</h4><p>Cada conta só enxerga os próprios dados — garantido no nível do banco de dados, não só na tela.</p></div>
       </div>
-      <div class="sec-item">
+      <div class="sec-item rev" style="--d:.08s">
         <span class="chk">◆</span>
         <div><h4>Servidores no Brasil</h4><p>Sua informação fica hospedada em data center na região de São Paulo.</p></div>
       </div>
-      <div class="sec-item">
+      <div class="sec-item rev" style="--d:.16s">
         <span class="chk">◆</span>
         <div><h4>Conforme a LGPD</h4><p>Você pode exportar ou apagar seus dados a qualquer momento. Transparência total nos termos.</p></div>
       </div>
-      <div class="sec-item">
+      <div class="sec-item rev" style="--d:.24s">
         <span class="chk">◆</span>
         <div><h4>Funciona offline</h4><p>No app de desktop, seus dados ficam em cache e continuam acessíveis mesmo sem internet.</p></div>
       </div>
@@ -275,25 +613,63 @@
 <!-- PREÇO -->
 <section class="block" id="preco">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rev">
       <h2>Comece com <span class="metal-gold">31 dias grátis</span></h2>
       <p>Experimente tudo sem pagar nada. A cobrança só começa depois do teste — e você cancela quando quiser.</p>
     </div>
-    <div class="price-card">
-      <div class="disc-badge">92% OFF</div>
-      <div class="tag">🚀 Oferta de lançamento</div>
-      <div class="price-old">De R$ 119,90</div>
-      <div class="amount"><span class="metal-gold">R$ 9,90</span><small>/mês</small></div>
-      <div class="price-note">após os <strong style="color:var(--paper)">31 dias grátis</strong> · cancele quando quiser</div>
-      <ul>
-        <li>Transações e dashboard ilimitados</li>
-        <li>Carteira de investimentos completa</li>
-        <li>Metas, reserva e orçamento</li>
-        <li>Conta na nuvem + app de desktop</li>
-        <li>Backup e exportação quando quiser</li>
-      </ul>
-      <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar teste grátis de 31 dias</a>
-      <div class="fineprint">Sem cobrança hoje. Você só paga se continuar depois do período de teste.</div>
+    <div class="price-shell rev">
+      <div class="price-card">
+        <div class="disc-badge">92% OFF</div>
+        <div class="tag">🚀 Oferta de lançamento</div>
+        <div class="price-old">De R$ 119,90</div>
+        <div class="amount"><span class="metal-gold">R$ 9,90</span><small>/mês</small></div>
+        <div class="price-note">após os <strong style="color:var(--paper)">31 dias grátis</strong> · cancele quando quiser</div>
+        <ul>
+          <li>Transações e dashboard ilimitados</li>
+          <li>Carteira de investimentos completa</li>
+          <li>Metas, reserva e orçamento</li>
+          <li>Conta na nuvem + app de desktop</li>
+          <li>Backup e exportação quando quiser</li>
+        </ul>
+        <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar teste grátis de 31 dias</a>
+        <div class="fineprint">Sem cobrança hoje. Você só paga se continuar depois do período de teste.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Perguntas frequentes</h2>
+      <p>O que todo mundo pergunta antes de começar.</p>
+    </div>
+    <div class="faq rev">
+      <details>
+        <summary>Preciso cadastrar cartão pra testar? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> Os 31 dias são grátis de verdade — você cria a conta só com e-mail e senha. A cobrança só existe se você decidir assinar depois do teste.</div>
+      </details>
+      <details>
+        <summary>Funciona no celular? <span class="pl">+</span></summary>
+        <div class="ans">Sim. É só abrir <b>app.northfinances.com.br</b> no navegador do celular. E se tocar em <b>"Adicionar à tela inicial"</b>, vira um ícone que abre em tela cheia, igual a um aplicativo.</div>
+      </details>
+      <details>
+        <summary>Preciso conectar minha conta bancária? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não — e isso é proposital.</b> A North nunca pede senha do banco. Você lança os gastos ou importa o extrato (OFX/CSV) que o próprio banco te dá. Seus acessos bancários continuam só com você.</div>
+      </details>
+      <details>
+        <summary>Meus dados ficam presos na plataforma? <span class="pl">+</span></summary>
+        <div class="ans">Nunca. Você exporta <b>tudo</b> em um arquivo de backup quando quiser, e pode apagar sua conta e seus dados a qualquer momento, como manda a LGPD.</div>
+      </details>
+      <details>
+        <summary>Como cancelo a assinatura? <span class="pl">+</span></summary>
+        <div class="ans">Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte, sem retenção chata. Seu acesso continua até o fim do período já pago.</div>
+      </details>
+      <details>
+        <summary>O Windows mostrou um aviso azul ao instalar. É normal? <span class="pl">+</span></summary>
+        <div class="ans">É o <b>SmartScreen</b>, um aviso padrão do Windows para aplicativos novos de qualquer desenvolvedor independente. É só clicar em <b>"Mais informações"</b> e depois <b>"Executar assim mesmo"</b> — o instalador é o app oficial da North Finances, publicado por nós.</div>
+      </details>
     </div>
   </div>
 </section>
@@ -313,6 +689,7 @@
           <a href="https://github.com/Barssottini/controle-financeiro/releases/latest/download/North-Finances-Setup.exe">Baixar para Windows</a>
           <a href="#recursos">Recursos</a>
           <a href="#preco">Preço</a>
+          <a href="#faq">Perguntas frequentes</a>
         </div>
         <div class="foot-col">
           <h5>Empresa</h5>
@@ -328,6 +705,173 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+'use strict';
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fmt=function(v,dec){return v.toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});};
+
+/* ── header + barra de progresso ── */
+var hdr=document.getElementById('hdr'),prog=document.getElementById('progress');
+function onScroll(){
+  hdr.classList.toggle('scrolled',scrollY>8);
+  var h=document.documentElement,max=h.scrollHeight-innerHeight;
+  prog.style.width=(max>0?(scrollY/max*100):0)+'%';
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ── revelação no scroll ── */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.18,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(function(el){io.observe(el);});
+
+/* ── contadores ── */
+function runCounter(el){
+  var to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0',10);
+  var pre=el.dataset.pre||'',suf=el.dataset.suf||'';
+  if(reduced){el.textContent=pre+fmt(to,dec)+suf;return;}
+  var t0=null,DUR=1700;
+  function frame(t){
+    if(!t0)t0=t;
+    var p=Math.min((t-t0)/DUR,1);
+    var e=1-Math.pow(2,-10*p); // easeOutExpo
+    el.textContent=pre+fmt(to*e,dec)+suf;
+    if(p<1)requestAnimationFrame(frame);else el.textContent=pre+fmt(to,dec)+suf;
+  }
+  requestAnimationFrame(frame);
+}
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){runCounter(e.target);cio.unobserve(e.target);}});
+},{threshold:.6});
+document.querySelectorAll('.cnt').forEach(function(el){cio.observe(el);});
+
+/* ── mockup: entrada, gráficos e rosca ── */
+var mock=document.getElementById('mock');
+var mio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting)return;
+    mock.classList.add('in');
+    setTimeout(function(){
+      mock.classList.add('play');
+      // rosca: cada fatia cresce em sequência
+      mock.querySelectorAll('.donut .seg').forEach(function(c,i){
+        setTimeout(function(){
+          var len=parseFloat(c.dataset.len);
+          c.style.strokeDasharray=len+' '+(100-len);
+        },350+i*190);
+      });
+    },reduced?0:500);
+    mio.unobserve(mock);
+  });
+},{threshold:.25});
+mio.observe(mock);
+
+/* ── tilt 3D suave no mockup (só desktop) ── */
+if(!reduced&&matchMedia('(pointer:fine)').matches){
+  var stage=document.querySelector('.stage'),rx=0,ry=0,tx=0,ty=0,raf=null;
+  function loop(){
+    rx+=(tx-rx)*.08;ry+=(ty-ry)*.08;
+    mock.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';
+    if(Math.abs(tx-rx)>.01||Math.abs(ty-ry)>.01)raf=requestAnimationFrame(loop);else raf=null;
+  }
+  stage.addEventListener('mousemove',function(ev){
+    if(!mock.classList.contains('in'))return;
+    var r=stage.getBoundingClientRect();
+    tx=((ev.clientY-r.top)/r.height-.5)*-5;
+    ty=((ev.clientX-r.left)/r.width-.5)*6;
+    if(!raf)raf=requestAnimationFrame(loop);
+  });
+  stage.addEventListener('mouseleave',function(){tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop);});
+}
+
+/* ── feed de transações "ao vivo" ── */
+var TX=[
+  {i:'💼',n:'Salário',c:'Receita',v:3500,p:1},
+  {i:'🛒',n:'Supermercado',c:'Alimentação',v:-182.4},
+  {i:'📈',n:'Rendimento CDI',c:'Investimentos',v:12.31,p:1},
+  {i:'⛽',n:'Combustível',c:'Transporte',v:-120},
+  {i:'🎯',n:'Aporte na reserva',c:'Meta',v:300,p:1},
+  {i:'🍕',n:'Delivery',c:'Alimentação',v:-54.9},
+  {i:'🏠',n:'Aluguel',c:'Moradia',v:-1150},
+  {i:'💊',n:'Farmácia',c:'Saúde',v:-38.75}
+];
+var feed=document.getElementById('feed'),txi=0,feedTimer=null;
+function txRow(t,enter){
+  var li=document.createElement('li');
+  if(enter)li.className='enter';
+  var sign=t.v>0?'+':'−';
+  var cls=t.v>0?'pos':'neg';
+  li.innerHTML='<span class="fic">'+t.i+'</span>'+
+    '<span class="fnm"><b>'+t.n+'</b><small>'+t.c+'</small></span>'+
+    '<span class="fvl '+cls+'">'+sign+'R$ '+fmt(Math.abs(t.v),2)+'</span>';
+  return li;
+}
+// preenche as 4 primeiras linhas de cara
+for(var k=0;k<4;k++){feed.appendChild(txRow(TX[k%TX.length],false));}
+txi=4;
+function tick(){
+  var t=TX[txi%TX.length];txi++;
+  feed.insertBefore(txRow(t,true),feed.firstChild);
+  while(feed.children.length>4)feed.removeChild(feed.lastChild);
+}
+if(!reduced){
+  var fio=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){if(!feedTimer)feedTimer=setInterval(tick,2600);}
+      else{clearInterval(feedTimer);feedTimer=null;}
+    });
+  },{threshold:.2});
+  fio.observe(feed);
+}
+
+/* ── brilho que segue o mouse nos cards ── */
+document.querySelectorAll('.feat').forEach(function(card){
+  card.addEventListener('mousemove',function(ev){
+    var r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',(ev.clientX-r.left)+'px');
+    card.style.setProperty('--my',(ev.clientY-r.top)+'px');
+  });
+});
+
+/* ── poeira dourada no hero ── */
+var cv=document.getElementById('dust');
+if(cv&&!reduced){
+  var ctx=cv.getContext('2d'),ps=[],W=0,H=0,dpr=Math.min(devicePixelRatio||1,2),run=true;
+  function resize(){
+    var hero=cv.parentElement,r=hero.getBoundingClientRect();
+    W=r.width;H=r.height;
+    cv.width=W*dpr;cv.height=H*dpr;
+    cv.style.width=W+'px';cv.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();addEventListener('resize',resize);
+  var N=Math.min(70,Math.floor(W/16));
+  for(var j=0;j<N;j++){
+    ps.push({x:Math.random()*W,y:Math.random()*H,r:.6+Math.random()*1.4,
+      vy:.08+Math.random()*.25,ph:Math.random()*Math.PI*2,sp:.4+Math.random()*.8,a:.06+Math.random()*.3});
+  }
+  function draw(t){
+    if(!run)return;
+    ctx.clearRect(0,0,W,H);
+    for(var q=0;q<ps.length;q++){
+      var p=ps[q];
+      p.y-=p.vy;p.x+=Math.sin(t/1400*p.sp+p.ph)*.16;
+      if(p.y<-6){p.y=H+6;p.x=Math.random()*W;}
+      var tw=.6+.4*Math.sin(t/900+p.ph*3);
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);
+      ctx.fillStyle='rgba(228,189,112,'+(p.a*tw).toFixed(3)+')';ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+  document.addEventListener('visibilitychange',function(){
+    run=!document.hidden;if(run)requestAnimationFrame(draw);
+  });
+}
+})();
+</script>
 
 </body>
 </html>

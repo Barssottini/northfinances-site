@@ -949,5 +949,66 @@ if(cv&&!reduced){
 })();
 </script>
 
+<!-- ===== Aviso de cookies (LGPD) + gate do Meta Pixel ===== -->
+<style>
+  .nf-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;
+    background:rgba(20,20,18,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.5);
+    padding:16px 18px;max-width:720px;margin:0 auto;animation:nfCookieUp .4s ease}
+  @keyframes nfCookieUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .nf-cookie-in{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .nf-cookie-txt{flex:1;min-width:240px;font-size:.9rem;line-height:1.5;color:#c9c4bd}
+  .nf-cookie-txt strong{display:block;color:var(--paper);font-weight:700;margin-bottom:2px}
+  .nf-cookie-btns{display:flex;gap:10px;flex-shrink:0}
+  .nf-cookie-btn{border:0;border-radius:10px;padding:10px 20px;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:filter .2s,background .2s,border-color .2s,color .2s}
+  .nf-cookie-btn.gold{background:var(--gold);color:var(--ink)}
+  .nf-cookie-btn.gold:hover{filter:brightness(1.08)}
+  .nf-cookie-btn.ghost{background:transparent;color:#c9c4bd;border:1px solid var(--line)}
+  .nf-cookie-btn.ghost:hover{border-color:var(--muted);color:var(--paper)}
+  .nf-cookie-btn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+  @media(max-width:520px){.nf-cookie-btns{width:100%}.nf-cookie-btn{flex:1}}
+</style>
+<div id="nf-cookie" class="nf-cookie" hidden role="dialog" aria-label="Aviso de cookies">
+  <div class="nf-cookie-in">
+    <div class="nf-cookie-txt">
+      <strong>Privacidade em primeiro lugar.</strong>
+      Usamos cookies de medição (Meta) apenas nas páginas deste site, pra saber de onde vêm nossos visitantes e melhorar os anúncios. Seus dados financeiros não passam por aqui — ficam criptografados dentro do app.
+    </div>
+    <div class="nf-cookie-btns">
+      <button id="nf-cookie-reject" class="nf-cookie-btn ghost" type="button">Recusar</button>
+      <button id="nf-cookie-accept" class="nf-cookie-btn gold" type="button">Aceitar</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='nf_cookie_consent';
+  var banner=document.getElementById('nf-cookie');
+  var saved=null; try{saved=localStorage.getItem(KEY);}catch(e){}
+
+  // Gate do Meta Pixel: só carrega se o usuário ACEITOU.
+  // >>> Quando tivermos o Pixel ID, o código-base do Meta entra DENTRO desta função. <<<
+  window.nfLoadPixel=function(){
+    if(window.__nfPixelLoaded) return;
+    window.__nfPixelLoaded=true;
+    /* META PIXEL (base code) — inserir aqui com o Pixel ID.
+       Depois de carregado, os botões "Começar teste grátis" disparam fbq('track','Lead'). */
+  };
+
+  function hide(){ if(banner){ banner.hidden=true; banner.style.display='none'; } }
+  function accept(){ try{localStorage.setItem(KEY,'accepted');}catch(e){} hide(); window.nfLoadPixel(); }
+  function reject(){ try{localStorage.setItem(KEY,'rejected');}catch(e){} hide(); }
+
+  if(saved==='accepted'){ hide(); window.nfLoadPixel(); }
+  else if(saved==='rejected'){ hide(); }
+  else if(banner){ banner.hidden=false; }
+
+  var a=document.getElementById('nf-cookie-accept');
+  var r=document.getElementById('nf-cookie-reject');
+  if(a) a.addEventListener('click',accept);
+  if(r) r.addEventListener('click',reject);
+})();
+</script>
+
 </body>
 </html>

@@ -9,18 +9,72 @@
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <meta property="og:title" content="North Finances — Encontre seu norte financeiro">
 <meta property="og:description" content="Controle financeiro pessoal: transações, investimentos e metas num só lugar. Comece com 31 dias grátis.">
-<meta property="og:image" content="https://northfinances.com.br/logo.png">
+<meta property="og:image" content="https://northfinances.com.br/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="North Finances — Encontre seu norte financeiro. Controle financeiro pessoal com criptografia de ponta a ponta.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://northfinances.com.br">
+<meta property="og:site_name" content="North Finances">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="North Finances — Encontre seu norte financeiro">
+<meta name="twitter:description" content="Controle financeiro pessoal com criptografia de ponta a ponta e código aberto. 31 dias grátis, depois R$ 9,90/mês.">
+<meta name="twitter:image" content="https://northfinances.com.br/og-image.png">
+<link rel="canonical" href="https://northfinances.com.br/">
+<link rel="apple-touch-icon" href="logo-192.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "North Finances",
+      "url": "https://northfinances.com.br",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, Windows",
+      "inLanguage": "pt-BR",
+      "description": "Controle financeiro pessoal: transações, investimentos, metas, orçamento e contas a pagar num só lugar, com criptografia de ponta a ponta e código aberto.",
+      "offers": {
+        "@type": "Offer",
+        "price": "9.90",
+        "priceCurrency": "BRL",
+        "category": "subscription",
+        "url": "https://app.northfinances.com.br",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": { "@type": "Organization", "name": "North Finances", "url": "https://northfinances.com.br" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Preciso cadastrar cartão pra testar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não. Os 31 dias são grátis de verdade — você cria a conta só com e-mail e senha. A cobrança só existe se você decidir assinar depois do teste." } },
+        { "@type": "Question", "name": "Funciona no celular?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sim. É só abrir app.northfinances.com.br no navegador do celular. Tocando em \"Adicionar à tela inicial\", vira um ícone que abre em tela cheia, igual a um aplicativo." } },
+        { "@type": "Question", "name": "Preciso conectar minha conta bancária?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não — e isso é proposital. A North nunca pede senha do banco. Você lança os gastos ou importa o extrato (OFX/CSV) que o próprio banco te dá." } },
+        { "@type": "Question", "name": "A North consegue ver o que eu gasto?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não. Seus dados são criptografados no seu próprio aparelho antes de subir para a nuvem — no servidor fica só texto embaralhado. Sem a sua senha ou a sua chave de recuperação, nem a North consegue abrir. E como o código é aberto, dá pra conferir." } },
+        { "@type": "Question", "name": "E se alguém descobrir minha senha?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ative a verificação em duas etapas (2FA) e o login passa a exigir um código do seu celular. Você também recebe um e-mail a cada novo login e pode desconectar todos os dispositivos com um clique." } },
+        { "@type": "Question", "name": "Como cancelo a assinatura?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte. Seu acesso continua até o fim do período já pago." } }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   :root{
     --ink:#0d0d0d; --ink2:#141414; --card:#181816; --line:#2a2926;
     --gold:#c8903a; --gold-soft:#e0b878; --paper:#faf9f7; --muted:#9b958e;
     --green:#7dc98f; --red:#e07d6d;
     --radius:16px; --maxw:1120px;
+    --ff-display:'Playfair Display',Georgia,'Times New Roman',serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -93,7 +147,36 @@
     box-shadow:0 10px 32px rgba(200,144,58,.52), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.18)}
   .btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
-  @media(max-width:720px){.nav-links a.link{display:none}}
+  /* botão do menu: só existe no mobile */
+  .menu-btn{
+    display:none;background:transparent;border:1px solid var(--line);border-radius:9px;
+    width:40px;height:40px;cursor:pointer;padding:0;flex:none;
+    align-items:center;justify-content:center;gap:4px;flex-direction:column;
+  }
+  .menu-btn:hover{border-color:var(--gold)}
+  .menu-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .menu-btn i{display:block;width:17px;height:1.5px;background:var(--paper);border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+  .menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+  @media(max-width:720px){
+    .menu-btn{display:flex}
+    .nav-links{
+      position:absolute;left:0;right:0;top:100%;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:rgba(13,13,13,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.5);
+      padding:8px 24px 18px;
+      opacity:0;visibility:hidden;transform:translateY(-8px);
+      transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    }
+    .nav-links.open{opacity:1;visibility:visible;transform:none}
+    .nav-links a.link{padding:13px 2px;font-size:1rem;border-bottom:1px solid var(--line)}
+    .nav-links a.link::after{display:none}
+    .nav-links .btn{margin-top:14px;text-align:center}
+    header{position:sticky}
+  }
 
   /* ---------- HERO ---------- */
   .hero{position:relative;padding:88px 0 40px;text-align:center;overflow:hidden}
@@ -117,7 +200,7 @@
   }
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.2s ease-in-out infinite}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,144,58,.55)}55%{box-shadow:0 0 0 7px rgba(200,144,58,0)}}
-  h1{font-size:clamp(2.4rem,6vw,4.1rem);line-height:1.06;letter-spacing:-.028em;font-weight:800;margin-bottom:20px}
+  h1{font-family:var(--ff-display);font-size:clamp(2.5rem,6.2vw,4.3rem);line-height:1.04;letter-spacing:-.02em;font-weight:600;margin-bottom:20px}
   .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.26rem);color:var(--muted);max-width:640px;margin:0 auto 34px}
   .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .cta-row .btn{padding:15px 30px;font-size:1.02rem}
@@ -239,13 +322,13 @@
   .stats-strip{padding:56px 0 8px}
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
   @media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:26px 12px}}
-  .stat .n{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .stat .n{font-family:var(--ff-display);font-size:clamp(2rem,4.2vw,2.85rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
   .stat .t{color:var(--muted);font-size:.88rem;margin-top:2px}
 
   /* ---------- SEÇÕES ---------- */
   section.block{padding:88px 0;border-top:1px solid var(--line)}
   .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
-  .sec-head h2{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
+  .sec-head h2{font-family:var(--ff-display);font-size:clamp(1.9rem,4.2vw,2.65rem);letter-spacing:-.015em;font-weight:600;margin-bottom:14px}
   .sec-head p{color:var(--muted);font-size:1.06rem}
 
   /* revelação no scroll */
@@ -305,6 +388,8 @@
   .sec-item .chk{color:var(--gold);font-size:1.15rem;line-height:1.5;flex-shrink:0}
   .sec-item h4{font-size:1.02rem;margin-bottom:3px}
   .sec-item p{color:var(--muted);font-size:.92rem}
+  a.inl{color:var(--gold-soft);font-weight:600;border-bottom:1px solid rgba(200,144,58,.35);white-space:nowrap}
+  a.inl:hover{color:var(--gold);border-bottom-color:var(--gold)}
 
   /* ---------- PREÇO ---------- */
   @property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
@@ -327,7 +412,7 @@
   }
   .price-card .tag{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .price-card .price-old{font-size:1.35rem;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(155,149,142,.65);margin-top:8px}
-  .price-card .amount{font-size:3.6rem;font-weight:800;letter-spacing:-.03em;margin:2px 0 4px}
+  .price-card .amount{font-family:var(--ff-display);font-size:3.8rem;font-weight:600;letter-spacing:-.02em;margin:2px 0 4px}
   .price-card .amount small{font-size:1rem;color:var(--muted);font-weight:500;letter-spacing:0}
   .price-card .price-note{color:var(--muted);font-size:.95rem}
   .price-card .fineprint{color:var(--muted);font-size:.8rem;margin-top:16px;opacity:.85}
@@ -377,7 +462,10 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="/"><img src="logo.png" alt="North Finances"> North<span>&nbsp;Finances</span></a>
-      <div class="nav-links">
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+        <i></i><i></i><i></i>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a class="link" href="#recursos">Recursos</a>
         <a class="link" href="#manual">Manual</a>
         <a class="link" href="#como-funciona">Como funciona</a>
@@ -406,7 +494,7 @@
     <h1 class="up d3">Encontre seu <span class="metal-gold">norte&nbsp;financeiro</span></h1>
     <p class="sub up d4">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Chega de planilha bagunçada e de perder o controle do dinheiro.</p>
     <div class="cta-row up d5">
-      <a class="btn btn-gold" href="https://app.northfinances.com.br">Começar grátis no navegador</a>
+      <a class="btn btn-gold" data-nf-cta="trial" href="https://app.northfinances.com.br">Começar grátis no navegador</a>
     </div>
     <div class="trust up d6">Criptografado no seu aparelho · Nada pra instalar · Funciona no celular e no PC · 31 dias grátis, depois R$ 9,90/mês</div>
 
@@ -509,7 +597,7 @@
       <div class="stat rev"><div class="n"><span class="cnt" data-to="31" data-dec="0">0</span> <span class="gold">dias</span></div><div class="t">de teste grátis, sem cartão</div></div>
       <div class="stat rev" style="--d:.1s"><div class="n">R$ <span class="cnt" data-to="9.9" data-dec="2">0,00</span></div><div class="t">por mês depois do teste</div></div>
       <div class="stat rev" style="--d:.2s"><div class="n"><span class="cnt" data-to="2" data-dec="0">0</span> <span class="gold">min</span></div><div class="t">pra criar a conta e começar</div></div>
-      <div class="stat rev" style="--d:.3s"><div class="n"><span class="cnt" data-to="2" data-dec="0">0</span><span class="gold">FA</span></div><div class="t">verificação em duas etapas opcional</div></div>
+      <div class="stat rev" style="--d:.3s"><div class="n">2<span class="gold">FA</span></div><div class="t">verificação em duas etapas opcional</div></div>
     </div>
   </div>
 </div>
@@ -612,6 +700,12 @@
     <div class="sec-head rev">
       <h2>Criptografado no seu aparelho — <span class="metal-gold">nem nós conseguimos ler</span></h2>
       <p>Seus dados são cifrados dentro do seu navegador, antes de subir para a nuvem. No servidor fica só texto embaralhado, e a chave é sua. E como o código é aberto, isso não é promessa: é verificável.</p>
+      <p style="margin-top:16px;font-size:.95rem">
+        <a class="inl" href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Auditar o código no GitHub</a>
+        <span style="color:var(--line);margin:0 10px">·</span>
+        <a class="inl" href="https://github.com/Barssottini/controle-financeiro/blob/main/THREAT_MODEL.md" target="_blank" rel="noopener">Ler nosso modelo de ameaças</a>
+      </p>
+      <p style="margin-top:8px;font-size:.86rem;opacity:.75">O modelo de ameaças lista, por escrito, também o que a North <em>não</em> protege. Poucos publicam isso. Nós preferimos que você leia antes de confiar.</p>
     </div>
     <div class="sec-list">
       <div class="sec-item rev">
@@ -620,7 +714,7 @@
       </div>
       <div class="sec-item rev" style="--d:.06s">
         <span class="chk">◆</span>
-        <div><h4>Código aberto</h4><p>O app é público no GitHub. Qualquer pessoa pode auditar como seus dados são protegidos — confiança que se verifica, não que se pede.</p></div>
+        <div><h4>Código aberto</h4><p>O app é público no GitHub. Qualquer pessoa pode auditar como seus dados são protegidos — confiança que se verifica, não que se pede. <a class="inl" href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Ver o código →</a></p></div>
       </div>
       <div class="sec-item rev" style="--d:.12s">
         <span class="chk">◆</span>
@@ -689,7 +783,7 @@
           <li>Conta na nuvem + app de desktop</li>
           <li>Proteção com 2FA e alerta de novos logins</li>
         </ul>
-        <a class="btn btn-gold" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar teste grátis de 31 dias</a>
+        <a class="btn btn-gold" data-nf-cta="trial" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Começar teste grátis de 31 dias</a>
         <div class="fineprint">Sem cobrança hoje. Você só paga se continuar depois do período de teste.</div>
       </div>
     </div>
@@ -722,7 +816,7 @@
       </details>
       <details>
         <summary>Meus dados ficam presos na plataforma? <span class="pl">+</span></summary>
-        <div class="ans">Não. Os dados são <b>seus</b>: você pode apagar sua conta e todas as informações a qualquer momento, direto no app — com 15 dias para se arrepender antes da exclusão definitiva, como manda a LGPD.</div>
+        <div class="ans">Vale responder isso com precisão, porque são duas coisas diferentes. <b>Sair você sai quando quiser:</b> dá para apagar a conta e tudo que está nela a qualquer momento, direto no app, com 15 dias para se arrepender antes da exclusão definitiva. <b>Levar embora num arquivo, hoje não dá:</b> o North ainda não tem exportação. Seus lançamentos ficam todos visíveis e consultáveis dentro do app, mas não existe um botão que gere um arquivo para abrir em outro lugar. É uma lacuna que reconhecemos — e ela tem um motivo técnico: seus dados são cifrados com uma chave que só existe no seu aparelho, então nem nós conseguimos gerar esse arquivo do nosso lado.</div>
       </details>
       <details>
         <summary>E se alguém descobrir minha senha? <span class="pl">+</span></summary>
@@ -761,6 +855,7 @@
           <h5>Produto</h5>
           <a href="https://app.northfinances.com.br">Acessar o app</a>
           <a href="https://github.com/Barssottini/controle-financeiro/releases/latest/download/North-Finances-Setup.exe">Baixar para Windows</a>
+          <a href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Código no GitHub</a>
           <a href="#recursos">Recursos</a>
           <a href="https://app.northfinances.com.br/manual.html" target="_blank" rel="noopener">Manual do usuário</a>
           <a href="#preco">Preço</a>
@@ -768,7 +863,8 @@
         </div>
         <div class="foot-col">
           <h5>Empresa</h5>
-          <a href="https://app.northfinances.com.br/termos.html">Termos & Privacidade</a>
+          <a href="/termos.html">Termos &amp; Privacidade</a>
+          <a href="#" id="nf-cookie-prefs">Preferências de cookies</a>
           <a href="mailto:suporte@northfinances.com.br">Suporte</a>
           <a href="https://instagram.com/north.finances">Instagram</a>
           <a href="https://www.facebook.com/profile.php?id=61592066423454">Facebook</a>
@@ -787,6 +883,24 @@
 'use strict';
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var fmt=function(v,dec){return v.toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});};
+
+/* ── menu do celular ── */
+var mbtn=document.getElementById('menu-btn'),nav=document.getElementById('nav-links');
+function closeMenu(){nav.classList.remove('open');mbtn.setAttribute('aria-expanded','false');mbtn.setAttribute('aria-label','Abrir menu');}
+if(mbtn&&nav){
+  mbtn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    mbtn.setAttribute('aria-expanded',open?'true':'false');
+    mbtn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+  });
+  // clicar num link fecha o menu antes de rolar até a seção
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu();});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){closeMenu();mbtn.focus();}});
+  addEventListener('click',function(e){
+    if(!nav.classList.contains('open'))return;
+    if(!nav.contains(e.target)&&!mbtn.contains(e.target))closeMenu();
+  });
+}
 
 /* ── header + barra de progresso ── */
 var hdr=document.getElementById('hdr'),prog=document.getElementById('progress');
@@ -973,6 +1087,7 @@ if(cv&&!reduced){
     <div class="nf-cookie-txt">
       <strong>Privacidade em primeiro lugar.</strong>
       Usamos cookies de medição (Meta) apenas nas páginas deste site, pra saber de onde vêm nossos visitantes e melhorar os anúncios. Seus dados financeiros não passam por aqui — ficam criptografados dentro do app.
+      <a href="/termos.html#cookies" target="_blank" rel="noopener" style="color:var(--gold-soft);font-weight:600;white-space:nowrap">Saiba mais</a>
     </div>
     <div class="nf-cookie-btns">
       <button id="nf-cookie-reject" class="nf-cookie-btn ghost" type="button">Recusar</button>
@@ -997,8 +1112,19 @@ if(cv&&!reduced){
   };
 
   function hide(){ if(banner){ banner.hidden=true; banner.style.display='none'; } }
+  function show(){ if(banner){ banner.style.display=''; banner.hidden=false; } }
   function accept(){ try{localStorage.setItem(KEY,'accepted');}catch(e){} hide(); window.nfLoadPixel(); }
   function reject(){ try{localStorage.setItem(KEY,'rejected');}catch(e){} hide(); }
+
+  // "Preferências de cookies" no rodapé: apaga a escolha e reabre o aviso.
+  // O pixel já carregado só some de fato no próximo carregamento — por isso o aviso.
+  var prefs=document.getElementById('nf-cookie-prefs');
+  if(prefs) prefs.addEventListener('click',function(ev){
+    ev.preventDefault();
+    try{localStorage.removeItem(KEY);}catch(e){}
+    show();
+    banner.scrollIntoView({block:'nearest'});
+  });
 
   if(saved==='accepted'){ hide(); window.nfLoadPixel(); }
   else if(saved==='rejected'){ hide(); }
@@ -1009,12 +1135,22 @@ if(cv&&!reduced){
   if(a) a.addEventListener('click',accept);
   if(r) r.addEventListener('click',reject);
 
-  // Evento "Lead" nos CTAs de teste grátis (só dispara se o pixel estiver carregado = consentido)
-  var ctas=document.querySelectorAll('a[href*="app.northfinances.com.br"]');
-  for(var i=0;i<ctas.length;i++){
-    ctas[i].addEventListener('click',function(){
-      if(window.fbq && window.__nfPixelLoaded){ fbq('track','Lead'); }
-    });
+  // Medição de cliques (só dispara se o pixel estiver carregado = consentido).
+  //
+  // "Lead" é reservado para intenção real de testar: os dois CTAs de teste grátis.
+  // Todo o resto que leva ao app (botão do topo, rodapé, manual do usuário) conta
+  // como "ClickApp" — é navegação, não intenção de assinar. Misturar os dois infla
+  // o Lead e faz a campanha otimizar pela métrica errada.
+  function track(ev){ if(window.fbq && window.__nfPixelLoaded){ fbq('track',ev); } }
+
+  var leads=document.querySelectorAll('[data-nf-cta="trial"]');
+  for(var i=0;i<leads.length;i++){
+    leads[i].addEventListener('click',function(){ track('Lead'); });
+  }
+
+  var outbound=document.querySelectorAll('a[href*="app.northfinances.com.br"]:not([data-nf-cta="trial"])');
+  for(var j=0;j<outbound.length;j++){
+    outbound[j].addEventListener('click',function(){ track('ClickApp'); });
   }
 })();
 </script>

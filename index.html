@@ -1152,6 +1152,31 @@ if(cv&&!reduced){
   for(var j=0;j<outbound.length;j++){
     outbound[j].addEventListener('click',function(){ track('ClickApp'); });
   }
+
+  // ── Repasse de atribuição para o app ──
+  // O app roda noutro domínio e não enxerga estes cookies. Sem eles a Meta não
+  // consegue ligar o cadastro ao anúncio que o gerou. Os cookies só existem
+  // depois do aceite do aviso, então não há repasse sem consentimento — é o
+  // mesmo sinal que a função meta-capi exige do outro lado.
+  function nfCookie(name){
+    var m=document.cookie.match('(^|;)\\s*'+name+'\\s*=\\s*([^;]+)');
+    return m?m.pop():'';
+  }
+  function nfAttribution(a){
+    var fbc=nfCookie('_fbc'), fbp=nfCookie('_fbp');
+    if(!fbc && !fbp) return;
+    try{
+      var u=new URL(a.href);
+      if(fbc) u.searchParams.set('nfbc',fbc);
+      if(fbp) u.searchParams.set('nfbp',fbp);
+      a.href=u.toString();
+    }catch(e){}
+  }
+  var appLinks=document.querySelectorAll('a[href*="app.northfinances.com.br"]');
+  for(var k=0;k<appLinks.length;k++){
+    appLinks[k].addEventListener('mousedown',function(){ nfAttribution(this); });
+    appLinks[k].addEventListener('click',function(){ nfAttribution(this); });
+  }
 })();
 </script>
 

@@ -52,8 +52,13 @@ $content   = [System.IO.File]::ReadAllText($source, [System.Text.Encoding]::UTF8
 
 # Injeta o aviso logo apos o doctype.
 $pattern  = '(?i)^(<!DOCTYPE html>\r?\n)'
+# O termos.html e CRLF, mas o here-string acima produz LF. Injetar sem
+# normalizar deixa as 7 linhas do aviso fora do padrao do documento e suja
+# todo diff futuro do arquivo gerado — exatamente o ruido que o .gitattributes
+# foi criado para eliminar.
+$bannerCRLF = ($banner -replace "`r`n", "`n") -replace "`n", "`r`n"
 $expected = [System.Text.RegularExpressions.Regex]::Replace(
-  $content, $pattern, ('$1' + $banner + "`n"), 'None')
+  $content, $pattern, ('$1' + $bannerCRLF + "`r`n"), 'None')
 
 if ($expected -eq $content) {
   Write-Host "Nao encontrei '<!DOCTYPE html>' na primeira linha de $source." -ForegroundColor Red

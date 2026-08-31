@@ -37,6 +37,42 @@ if (-not (Test-Path $source)) {
   exit 2
 }
 
+# -- Deriva entre a data dos termos e o aviso dentro do app -------------------
+# O index.html tem a constante TERMOS_VERSAO, que decide se a barra "atualizamos
+# os termos" aparece para quem ja usava o app. Se ela ficar para tras da data no
+# topo de termos.html, o documento muda e ninguem e avisado — que e exatamente a
+# promessa da secao 12 dos proprios termos. Este script ja existe para impedir
+# que duas copias divirjam; a constante e a terceira copia da mesma informacao.
+$appFile = Join-Path $here '../controle-financeiro/index.html'
+$drift   = $false
+if (Test-Path $appFile) {
+  $termosTxt = [System.IO.File]::ReadAllText($source,  [System.Text.Encoding]::UTF8)
+  $appTxt    = [System.IO.File]::ReadAllText($appFile, [System.Text.Encoding]::UTF8)
+  $meses = @{ jan='01'; fev='02'; mar='03'; abr='04'; mai='05'; jun='06';
+              jul='07'; ago='08'; set='09'; out='10'; nov='11'; dez='12' }
+  # Sem contrabarra de proposito: [0-9] em vez de \d, [^ ] em vez de \S. Este
+  # bloco ja foi escrito uma vez com \d e \s e chegou aqui sem as contrabarras,
+  # comidas por uma camada de escape no caminho. O regex casou com nada, o teste
+  # passou em silencio e o verificador nasceu morto. Classe de caractere explicita
+  # nao tem como ser destruida assim.
+  $mData = [regex]::Match($termosTxt, 'atualiza[^:]*: *([0-9]{1,2}) +de +([^ ]+) +de +([0-9]{4})')
+  $mCons = [regex]::Match($appTxt,    "TERMOS_VERSAO *= *'([0-9-]+)'")
+  if ($mData.Success -and $mCons.Success) {
+    $chave = $mData.Groups[2].Value.Substring(0,3).ToLower()
+    if ($meses.ContainsKey($chave)) {
+      $esperado = '{0}-{1}-{2:D2}' -f $mData.Groups[3].Value, $meses[$chave], [int]$mData.Groups[1].Value
+      $atual    = $mCons.Groups[1].Value
+      if ($esperado -ne $atual) {
+        $drift = $true
+        Write-Host "DIVERGENCIA: termos.html diz $esperado e index.html tem TERMOS_VERSAO='$atual'." -ForegroundColor Red
+        Write-Host "Quem ja usa o app nao sera avisado da mudanca. Atualize TERMOS_VERSAO e TERMOS_RESUMO no index.html."
+      }
+    }
+  } else {
+    Write-Host "Aviso: nao consegui ler a data dos termos ou a constante do app; deriva nao verificada." -ForegroundColor Yellow
+  }
+}
+
 $banner = @'
 <!--
   ARQUIVO GERADO - NAO EDITE AQUI.
@@ -73,6 +109,7 @@ if (Test-Path $dest) {
 
 if ($current -eq $expected) {
   Write-Host "termos.html ja esta em dia." -ForegroundColor Green
+  if ($drift) { exit 1 }
   exit 0
 }
 
@@ -85,4 +122,5 @@ if ($Check) {
 [System.IO.File]::WriteAllText($dest, $expected, $utf8NoBom)
 Write-Host "termos.html atualizado a partir de controle-financeiro/termos.html" -ForegroundColor Green
 Write-Host "Commite nos DOIS repositorios."
+if ($drift) { exit 1 }
 exit 0

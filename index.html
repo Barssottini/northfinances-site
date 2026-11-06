@@ -203,6 +203,7 @@
   /* "North" e "Finances" num item so do flex: separados, o gap de 10px entrava
      entre as duas palavras, alem do espaco normal */
   .brand b{font-weight:inherit;white-space:nowrap}
+  .brand b span{margin-left:4px}
   .brand span{
     background:linear-gradient(177deg,#fde7bd 0%,#e6bd6e 22%,#c8903a 48%,#a06e22 60%,#e4bd70 82%,#fbe6b4 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
@@ -276,7 +277,6 @@
     background:radial-gradient(760px 480px at 50% -10%, rgba(200,144,58,.20), transparent 70%);
   }
   #dust{position:absolute;inset:0;z-index:0;pointer-events:none}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,144,58,.55)}55%{box-shadow:0 0 0 7px rgba(200,144,58,0)}}
   .hero .wrap{position:relative;z-index:1}
   h1{font-family:var(--ff-display);font-size:clamp(2.55rem,6.4vw,4.55rem);line-height:1.03;letter-spacing:-.025em;
     font-weight:600;max-width:900px;margin:0 auto 22px;text-wrap:balance}
@@ -312,41 +312,42 @@
   .ph-status{display:flex;justify-content:space-between;align-items:center;padding:13px 26px 0 30px;height:44px;font-size:.74rem;font-weight:700;flex:none}
   .ph-status .sig{display:flex;gap:5px;align-items:center}
   .ph-status .sig svg{fill:currentColor;display:block}
-  .ph-body{flex:1;padding:12px 15px 0;display:flex;flex-direction:column;gap:11px;min-height:0}
-  .ph-hi{display:flex;justify-content:space-between;align-items:center}
-  .ph-hi small{display:block;color:var(--muted);font-size:.66rem}
-  .ph-hi b{font-size:.98rem;letter-spacing:-.01em}
-  .ph-hi img{width:30px;height:30px;border-radius:9px}
-  .ph-chips{display:flex;gap:5px;overflow:hidden}
-  .ph-chips span{font-size:.64rem;font-weight:600;padding:5px 10px;border-radius:100px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
-  .ph-chips span.on{background:rgba(200,144,58,.16);border-color:rgba(200,144,58,.45);color:var(--gold-soft)}
-  .ph-bal{background:linear-gradient(160deg,#221f1a,#171512);border:1px solid rgba(200,144,58,.24);border-radius:18px;padding:13px 15px}
-  .ph-bal .lb{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-  .ph-bal .vl{font-family:var(--ff-display);font-size:1.62rem;font-weight:600;letter-spacing:-.02em;line-height:1.18;font-variant-numeric:tabular-nums}
-  .ph-bal .sb{font-size:.66rem;color:var(--muted)}
-  .ph-bal .sb .pos{color:var(--green);font-weight:700}
-  .ph-bud{background:#1a1816;border:1px solid var(--line);border-radius:14px;padding:10px 13px}
-  .ph-bud .row{display:flex;justify-content:space-between;align-items:baseline;font-size:.7rem;margin-bottom:6px}
-  .ph-bud .row span{color:var(--muted);font-size:.64rem}
+  /* Tela inicial do North no tema escuro, como o app desenha: topo com avatar e
+     mes, cartao "Saldo do periodo" com receitas e despesas, e as ultimas
+     transacoes. Cores do cartao copiadas do CSS do app (#72ce91, #ff8178...). */
+  .ph-top{display:flex;align-items:center;justify-content:space-between;padding:4px 16px 0;flex:none;background:#0d0d0d}
+  .ph-av{width:30px;height:30px;border-radius:50%;background:#f2ede8;color:#0d0d0d;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem}
+  .ph-mes{display:flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700}
+  .ph-mes svg{width:13px;height:13px;fill:none;stroke:var(--muted);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .ph-gift{width:19px;height:19px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .ph-hero{text-align:center;padding:14px 14px 18px;background:#0d0d0d;border-radius:0 0 26px 26px;box-shadow:0 1px 0 #2a2723;flex:none}
+  .ph-hero .lb{font-size:.68rem;color:var(--muted)}
+  .ph-hero .vl{font-size:1.72rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums;margin-top:2px}
+  .ph-eye{width:18px;height:18px;margin:6px auto 12px;display:block;fill:none;stroke:var(--paper);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+  .ph-io{display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:left}
+  .ph-io>div{display:flex;align-items:center;gap:7px;min-width:0}
+  .ph-io .ar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+  .ph-io .ar.in{background:#267a48} .ph-io .ar.out{background:#b83228}
+  .ph-io .ar svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .ph-io small{display:block;font-size:.58rem;color:var(--muted)}
+  .ph-io b{font-size:.76rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ph-io b.pos{color:#72ce91} .ph-io b.neg{color:#ff8178}
+  .ph-panel{margin:12px 11px 0;padding:11px 13px 4px;background:#181715;border:1px solid #2a2723;border-radius:16px;flex:1;min-height:0;overflow:hidden}
+  .ph-panel .ttl{font-size:.74rem;font-weight:700;margin-bottom:2px}
   .mbar{height:6px;background:#26231f;border-radius:6px;overflow:hidden}
-  .mbar i{display:block;height:100%;width:0;border-radius:6px;
-    background:linear-gradient(90deg,#b8862f,#e8c06a);
+  .mbar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#b8862f,#e8c06a);
     transition:width 1.6s cubic-bezier(.22,.8,.3,1) .9s}
-  .mock.play .mbar i{width:72%}
-  .mfeed .ttl{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;display:flex;align-items:center;gap:7px}
-  .live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
-  /* 4 linhas inteiras: o JS mantem 4 no feed, e meia linha cortada pela barra de abas parece defeito */
-  #feed{list-style:none;height:174px;overflow:hidden}
-  #feed li{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.78rem}
+  #feed{list-style:none}
+  #feed li{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.78rem}
   #feed li:last-child{border-bottom:none}
-  #feed li.enter{animation:feedIn .55s cubic-bezier(.22,.8,.3,1)}
-  @keyframes feedIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-  #feed .fic{width:30px;height:30px;border-radius:9px;background:rgba(200,144,58,.1);display:flex;align-items:center;justify-content:center;font-size:.86rem;flex-shrink:0}
+  /* o quadrado do icone tem a cor do tipo, como no app: verde receita, vermelho despesa */
+  #feed .fic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.86rem;flex-shrink:0}
+  #feed .fic.pos{background:#16301f} #feed .fic.neg{background:#3a1c19}
   #feed .fnm{flex:1;min-width:0}
   #feed .fnm b{display:block;font-weight:600;font-size:.78rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #feed .fnm small{display:block;color:var(--muted);font-size:.64rem;line-height:1.25}
-  #feed .fvl{font-weight:700;font-size:.76rem;font-variant-numeric:tabular-nums;white-space:nowrap}
-  #feed .fvl.pos{color:var(--green)} #feed .fvl.neg{color:var(--red)}
+  #feed .fnm small{display:block;color:var(--muted);font-size:.62rem;line-height:1.25}
+  #feed .fvl{font-weight:700;font-size:.74rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #feed .fvl.pos{color:#72ce91} #feed .fvl.neg{color:#ff8178}
   /* a mesma barra de abas do app — inclusive o + medido contra o Mobills */
   .ph-tab{margin-top:auto;flex:none;display:flex;justify-content:space-around;align-items:flex-end;
     padding:8px 4px 20px;border-top:1px solid rgba(255,255,255,.06);background:#0c0c0b}
@@ -385,7 +386,8 @@
   .float.tx .fic{width:36px;height:36px;border-radius:11px;background:rgba(200,144,58,.12);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:none}
   .float.tx b{display:block;font-size:.88rem}
   .float.tx small{color:var(--muted);font-size:.7rem}
-  .float.tx .neg{margin-left:auto;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .float.tx .neg,.float.tx .due-f{margin-left:auto;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .float.tx .due-f{color:#e8c06a}
   @keyframes floatIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
   @keyframes bob{from{margin-top:0}to{margin-top:-12px}}
   @media(max-width:960px){.float{display:none}}
@@ -683,28 +685,26 @@
               <svg viewBox="0 0 26 12" width="24" height="11"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="16" height="8" rx="1.6"/><rect x="23.5" y="4" width="2" height="4" rx="1" opacity=".5"/></svg>
             </span>
           </div>
-          <div class="ph-body">
-            <div class="ph-hi">
-              <div><small>Visão geral</small><b>Novembro de 2026</b></div>
-              <img src="logo-192.png" alt="">
-            </div>
-            <div class="ph-chips"><span class="on">Todas</span><span>Nubank</span><span>Itaú</span><span>Carteira</span></div>
-            <div class="ph-bal">
-              <div class="lb">Saldo do mês</div>
-              <div class="vl"><span class="cnt" data-to="2847.9" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
-              <div class="sb"><span class="pos">▲ 12%</span> em relação a outubro</div>
-            </div>
-            <div class="ph-bud">
-              <div class="row"><b>Alimentação</b><span>R$ 864 de R$ 1.200</span></div>
-              <div class="mbar"><i></i></div>
-            </div>
-            <div class="mfeed">
-              <div class="ttl"><span class="live"></span> Últimas transações</div>
-              <ul id="feed"></ul>
+          <div class="ph-top">
+            <span class="ph-av">N</span>
+            <span class="ph-mes"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg>novembro de 2026<svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span>
+            <svg class="ph-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+          </div>
+          <div class="ph-hero">
+            <div class="lb">Saldo do período</div>
+            <div class="vl"><span class="cnt" data-to="2847.9" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
+            <svg class="ph-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <div class="ph-io">
+              <div><span class="ar in"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span><span><small>Receitas</small><b class="pos">R$ 6.437,90</b></span></div>
+              <div><span class="ar out"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span><span><small>Despesas</small><b class="neg">R$ 3.590,00</b></span></div>
             </div>
           </div>
+          <div class="ph-panel">
+            <div class="ttl">Últimas transações</div>
+            <ul id="feed"></ul>
+          </div>
           <div class="ph-tab">
-            <span class="tb on"><i><svg viewBox="0 0 24 24"><path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></i>Início</span>
+            <span class="tb on"><i><svg viewBox="0 0 24 24"><path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></i>Principal</span>
             <span class="tb"><i><svg viewBox="0 0 24 24"><path d="M4 6h2M4 12h2M4 18h2M9 6h11M9 12h11M9 18h11"/></svg></i>Transações</span>
             <span class="fab"><svg viewBox="0 0 22 22"><path d="M11 1.35V20.65M1.35 11H20.65"/></svg></span>
             <span class="tb"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5h8.5"/></svg></i>Orçamento</span>
@@ -714,7 +714,7 @@
       </div>
       <div class="float f1" aria-hidden="true"><div class="fk">Rendimento do dia</div><div class="fv pos">+R$ 12,31</div></div>
       <div class="float f2" aria-hidden="true"><div class="fk">Meta · Viagem</div><div class="fv">64%</div><div class="mbar"><i style="--w:64%"></i></div></div>
-      <div class="float f3 tx" aria-hidden="true"><span class="fic"><svg viewBox="0 0 24 24"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span><b>Restaurante</b><small>Alimentação · hoje</small></span><span class="neg">−R$ 86,00</span></div>
+      <div class="float f3 tx" aria-hidden="true"><span class="fic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>Internet</b><small>Conta a pagar · vence amanhã</small></span><span class="due-f">R$ 99,90</span></div>
       <div class="float f4" aria-hidden="true"><div class="fk"><svg class="fl-ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Criptografia de ponta a ponta</div><div class="fs">dados acessíveis apenas a você</div></div>
     </div>
   </div>
@@ -1158,45 +1158,26 @@ if(!reduced&&matchMedia('(pointer:fine)').matches){
   stage.addEventListener('mouseleave',function(){tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop);});
 }
 
-/* ── feed de transações "ao vivo" ── */
+/* ── ultimas transacoes do celular ──
+   Estatico de proposito. O feed antigo inseria uma transacao nova a cada 2,6s
+   com uma bolinha "ao vivo" — o que sugere que o North puxa os lancamentos do
+   banco, justamente o que ele nao faz e o que o site promete nao fazer. */
 var TX=[
-  {i:'💼',n:'Salário',c:'Receita',v:3500,p:1},
-  {i:'🛒',n:'Supermercado',c:'Alimentação',v:-182.4},
-  {i:'📈',n:'Rendimento CDI',c:'Investimentos',v:12.31,p:1},
-  {i:'⛽',n:'Combustível',c:'Transporte',v:-120},
-  {i:'🎯',n:'Aporte na reserva',c:'Meta',v:300,p:1},
-  {i:'🍕',n:'Delivery',c:'Alimentação',v:-54.9},
-  {i:'🏠',n:'Aluguel',c:'Moradia',v:-1150},
-  {i:'💊',n:'Farmácia',c:'Saúde',v:-38.75}
+  // mais nova primeiro, como a lista do app
+  {i:'🍽️',n:'Restaurante',c:'Alimentação',d:'09/11',v:-86},
+  {i:'⛽',n:'Combustível',c:'Transporte',d:'08/11',v:-120},
+  {i:'🛒',n:'Supermercado',c:'Alimentação',d:'07/11',v:-182.4},
+  {i:'💊',n:'Farmácia',c:'Saúde',d:'06/11',v:-38.75},
+  {i:'💼',n:'Salário',c:'Salário',d:'05/11',v:3500}
 ];
-var feed=document.getElementById('feed'),txi=0,feedTimer=null;
-function txRow(t,enter){
-  var li=document.createElement('li');
-  if(enter)li.className='enter';
-  var sign=t.v>0?'+':'−';
-  var cls=t.v>0?'pos':'neg';
-  li.innerHTML='<span class="fic">'+t.i+'</span>'+
-    '<span class="fnm"><b>'+t.n+'</b><small>'+t.c+'</small></span>'+
-    '<span class="fvl '+cls+'">'+sign+'R$ '+fmt(Math.abs(t.v),2)+'</span>';
-  return li;
-}
-// preenche as 4 primeiras linhas de cara
-for(var k=0;k<4;k++){feed.appendChild(txRow(TX[k%TX.length],false));}
-txi=4;
-function tick(){
-  var t=TX[txi%TX.length];txi++;
-  feed.insertBefore(txRow(t,true),feed.firstChild);
-  while(feed.children.length>4)feed.removeChild(feed.lastChild);
-}
-if(!reduced){
-  var fio=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){if(!feedTimer)feedTimer=setInterval(tick,2600);}
-      else{clearInterval(feedTimer);feedTimer=null;}
-    });
-  },{threshold:.2});
-  fio.observe(feed);
-}
+var feed=document.getElementById('feed');
+TX.forEach(function(t){
+  var li=document.createElement('li'),cls=t.v>0?'pos':'neg';
+  li.innerHTML='<span class="fic '+cls+'">'+t.i+'</span>'+
+    '<span class="fnm"><b>'+t.n+'</b><small>'+t.c+' · '+t.d+'</small></span>'+
+    '<span class="fvl '+cls+'">'+(t.v>0?'+':'−')+'R$ '+fmt(Math.abs(t.v),2)+'</span>';
+  feed.appendChild(li);
+});
 
 /* ── brilho que segue o mouse nos cards ── */
 document.querySelectorAll('.feat').forEach(function(card){

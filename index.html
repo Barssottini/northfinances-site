@@ -47,23 +47,103 @@
         "url": "https://app.northfinances.com.br",
         "availability": "https://schema.org/InStock"
       },
-      "publisher": { "@type": "Organization", "name": "North Finances", "url": "https://northfinances.com.br" }
+      "publisher": {
+        "@type": "Organization",
+        "name": "North Finances",
+        "url": "https://northfinances.com.br"
+      }
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Preciso cadastrar cartão pra testar?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Não. O plano Free é gratuito para sempre e não tem limite de lançamentos — você cria a conta só com e-mail e senha, sem cartão. A cobrança só existe se você escolher o Pro." } },
-        { "@type": "Question", "name": "Funciona no celular?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sim. É só abrir app.northfinances.com.br no navegador do celular. Tocando em \"Adicionar à tela inicial\", vira um ícone que abre em tela cheia, igual a um aplicativo." } },
-        { "@type": "Question", "name": "Preciso conectar minha conta bancária?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Não — e isso é proposital. A North nunca pede senha do banco. Você lança os gastos ou importa o extrato (OFX/CSV) que o próprio banco te dá." } },
-        { "@type": "Question", "name": "A North consegue ver o que eu gasto?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Não. Seus dados são criptografados no seu próprio aparelho antes de subir para a nuvem — no servidor fica só texto embaralhado. Sem a sua senha ou a sua chave de recuperação, nem a North consegue abrir. E como o código é aberto, dá pra conferir." } },
-        { "@type": "Question", "name": "E se alguém descobrir minha senha?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Ative a verificação em duas etapas (2FA) e o login passa a exigir um código do seu celular. Você também recebe um e-mail a cada novo login e pode desconectar todos os dispositivos com um clique." } },
-        { "@type": "Question", "name": "Como cancelo a assinatura?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte. Seu acesso continua até o fim do período já pago." } }
+        {
+          "@type": "Question",
+          "name": "Preciso cadastrar cartão?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. O plano Free é gratuito para sempre e não tem limite de lançamentos — você cria a conta só com e-mail e senha, sem cartão. A cobrança só existe se você escolher o Pro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre o Free e o Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Free tem tudo para organizar o dia a dia, sem limite de lançamentos: transações, orçamento por categoria, metas, importação de extrato e exportação dos seus dados. O Pro, por R$ 19,90/mês, acrescenta a carteira de investimentos, as contas a pagar e receber e várias contas separadas — Nubank, Itaú e carteira, cada uma no seu lugar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Funciona no celular?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. É só abrir app.northfinances.com.br no navegador do celular. E se tocar em \"Adicionar à tela inicial\", vira um ícone que abre em tela cheia, igual a um aplicativo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso conectar minha conta bancária?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não — e isso é proposital. A North nunca pede senha do banco. Você lança os gastos ou importa o extrato (OFX/CSV) que o próprio banco te dá. Seus acessos bancários continuam só com você."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A North consegue ver o que eu gasto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Seus dados são criptografados no seu próprio aparelho antes de subir para a nuvem — no nosso servidor fica só texto embaralhado. Sem a sua senha (ou a sua chave de recuperação), nem a gente consegue abrir. E como o código é aberto, dá pra conferir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Meus dados ficam presos na plataforma?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Você exporta tudo quando quiser, direto no app, em Configurações → Seus dados: a conta inteira em JSON ou uma planilha dos lançamentos. E pode apagar a conta e tudo que está nela a qualquer momento, com 15 dias para se arrepender antes da exclusão definitiva."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "E se alguém descobrir minha senha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sua conta tem camadas extras: ative a verificação em duas etapas (2FA) e o login passa a exigir um código do seu celular — senha sozinha não abre nada. Além disso, você recebe um e-mail a cada novo login e pode desconectar todos os dispositivos com um clique nas configurações."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "As contas a pagar me avisam antes de vencer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, dentro do app — é um recurso do Pro. O painel destaca as contas que estão perto de vencer ou já vencidas, assim que você abre. Quando marca a conta como paga, a despesa entra automaticamente nas suas transações."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como cancelo o Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte, sem retenção chata. O Pro continua até o fim do período já pago e depois você volta para o Free, sem perder nada do que cadastrou."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Windows mostrou um aviso azul ao instalar. É normal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É o SmartScreen, um aviso padrão do Windows para aplicativos novos de qualquer desenvolvedor independente. É só clicar em \"Mais informações\" e depois \"Executar assim mesmo\" — o instalador é o app oficial da North Finances, publicado por nós."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como falo com o suporte?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É só mandar um e-mail para suporte@northfinances.com.br. Você também encontra esse contato dentro do app, em Configurações → Suporte."
+          }
+        }
       ]
     }
   ]
@@ -107,29 +187,35 @@
     background:linear-gradient(90deg,#a06e22,#e4bd70,#c8903a);
     box-shadow:0 0 12px rgba(200,144,58,.6)}
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(13,13,13,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid transparent;
-    transition:border-color .3s,background .3s,box-shadow .3s;
+  /* ---------- NAV: pílula flutuante ---------- */
+  header{position:sticky;top:0;z-index:50;padding:14px 0 0;background:transparent}
+  nav{
+    position:relative;max-width:1000px;margin:0 auto;
+    display:flex;align-items:center;height:62px;padding:0 9px 0 20px;
+    background:rgba(18,18,16,.74);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.08);border-radius:100px;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+    transition:background .3s,border-color .3s,box-shadow .3s;
   }
-  header.scrolled{border-bottom-color:var(--line);background:rgba(13,13,13,.88);box-shadow:0 8px 30px rgba(0,0,0,.35)}
-  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.16rem;letter-spacing:-.01em}
-  .brand img{width:34px;height:34px;border-radius:8px}
+  header.scrolled nav{background:rgba(18,18,16,.92);border-color:rgba(200,144,58,.24);box-shadow:0 14px 44px rgba(0,0,0,.55)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;letter-spacing:-.01em;flex:none}
+  .brand img{width:32px;height:32px;border-radius:8px}
   .brand span{
     background:linear-gradient(177deg,#fde7bd 0%,#e6bd6e 22%,#c8903a 48%,#a06e22 60%,#e4bd70 82%,#fbe6b4 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
   }
-  .nav-links{display:flex;align-items:center;gap:28px}
-  .nav-links a.link{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .2s;position:relative}
+  /* auto nas duas pontas: os links ficam no meio, entre a marca e os botões */
+  .nav-links{flex:1;display:flex;align-items:center;gap:26px}
+  .nav-links a.link:first-child{margin-left:auto}
+  .nav-links a.link{color:var(--muted);font-size:.93rem;font-weight:500;transition:color .2s;position:relative}
   .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--gold);transition:width .25s ease}
   .nav-links a.link:hover{color:var(--paper)}
   .nav-links a.link:hover::after{width:100%}
+  .nav-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+  .nav-actions .btn{padding:10px 19px;font-size:.9rem}
   .btn{
-    position:relative;display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:.95rem;
-    transition:transform .15s ease, box-shadow .2s ease, background .2s;
+    position:relative;display:inline-block;padding:11px 22px;border-radius:100px;font-weight:600;font-size:.95rem;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s, border-color .2s, color .2s;
     cursor:pointer;border:none;white-space:nowrap;overflow:hidden;
   }
   .btn-gold{
@@ -146,12 +232,12 @@
   .btn-gold:hover{transform:translateY(-2px);
     background:linear-gradient(180deg,#fbe3a2 0%,#e6b95f 44%,#d29a40 54%,#bd872f 100%);
     box-shadow:0 10px 32px rgba(200,144,58,.52), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.18)}
-  .btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
+  .btn-ghost{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,.14)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
   /* botão do menu: só existe no mobile */
   .menu-btn{
-    display:none;background:transparent;border:1px solid var(--line);border-radius:9px;
-    width:40px;height:40px;cursor:pointer;padding:0;flex:none;
+    display:none;background:transparent;border:1px solid var(--line);border-radius:50%;
+    width:42px;height:42px;cursor:pointer;padding:0;flex:none;margin-left:auto;
     align-items:center;justify-content:center;gap:4px;flex-direction:column;
   }
   .menu-btn:hover{border-color:var(--gold)}
@@ -161,29 +247,30 @@
   .menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
   .menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
 
-  @media(max-width:720px){
+  @media(max-width:860px){
+    nav{padding:0 9px 0 18px}
     .menu-btn{display:flex}
     .nav-links{
-      position:absolute;left:0;right:0;top:100%;
+      position:absolute;left:0;right:0;top:calc(100% + 8px);
       flex-direction:column;align-items:stretch;gap:0;
-      background:rgba(13,13,13,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.5);
-      padding:8px 24px 18px;
+      background:#141412;
+      border:1px solid rgba(255,255,255,.08);border-radius:22px;box-shadow:0 24px 50px rgba(0,0,0,.6);
+      padding:8px 18px 18px;
       opacity:0;visibility:hidden;transform:translateY(-8px);
       transition:opacity .22s ease,transform .22s ease,visibility .22s;
     }
     .nav-links.open{opacity:1;visibility:visible;transform:none}
-    .nav-links a.link{padding:13px 2px;font-size:1rem;border-bottom:1px solid var(--line)}
+    .nav-links a.link,.nav-links a.link:first-child{padding:13px 2px;font-size:1rem;border-bottom:1px solid var(--line);margin-left:0}
     .nav-links a.link::after{display:none}
-    .nav-links .btn{margin-top:14px;text-align:center}
-    header{position:sticky}
+    .nav-actions{margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .nav-actions .btn{text-align:center;padding:12px 10px}
   }
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;padding:88px 0 40px;text-align:center;overflow:hidden}
+  .hero{position:relative;padding:78px 0 0;text-align:center;overflow:hidden}
   .hero::before{
     content:"";position:absolute;inset:0;z-index:0;
-    background:radial-gradient(720px 460px at 50% -12%, rgba(200,144,58,.20), transparent 70%);
+    background:radial-gradient(760px 480px at 50% -10%, rgba(200,144,58,.20), transparent 70%);
   }
   #dust{position:absolute;inset:0;z-index:0;pointer-events:none}
   .compass{ /* rosa dos ventos gigante e quase invisível girando ao fundo */
@@ -191,154 +278,141 @@
     opacity:.05;pointer-events:none;animation:spin 140s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
-  .hero .wrap{position:relative;z-index:1}
-  .hero-logo{width:88px;height:88px;border-radius:22px;margin:0 auto 24px;display:block;
-    box-shadow:0 12px 44px rgba(200,144,58,.22)}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--gold);border:1px solid var(--line);border-radius:100px;padding:6px 16px;margin-bottom:24px;
-    background:rgba(13,13,13,.5);
-  }
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.2s ease-in-out infinite}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,144,58,.55)}55%{box-shadow:0 0 0 7px rgba(200,144,58,0)}}
-  h1{font-family:var(--ff-display);font-size:clamp(2.5rem,6.2vw,4.3rem);line-height:1.04;letter-spacing:-.02em;font-weight:600;margin-bottom:20px}
-  .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.26rem);color:var(--muted);max-width:640px;margin:0 auto 34px}
+  .hero .wrap{position:relative;z-index:1}
+  h1{font-family:var(--ff-display);font-size:clamp(2.55rem,6.4vw,4.55rem);line-height:1.03;letter-spacing:-.025em;
+    font-weight:600;max-width:900px;margin:0 auto 22px;text-wrap:balance}
+  .hero p.sub{font-size:clamp(1.05rem,2.3vw,1.22rem);color:var(--muted);max-width:620px;margin:0 auto 32px;text-wrap:pretty}
   .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .cta-row .btn{padding:15px 30px;font-size:1.02rem}
-  .trust{margin-top:24px;font-size:.86rem;color:var(--muted)}
-  .dl-note{margin-top:18px;font-size:.9rem;color:var(--muted)}
-  .dl-note a{color:var(--gold-soft);font-weight:600;border-bottom:1px solid rgba(200,144,58,.35)}
-  .dl-note a:hover{color:var(--gold)}
-  .dl-hint{display:block;max-width:540px;margin:8px auto 0;font-size:.78rem;line-height:1.55;
-    color:var(--muted);opacity:.8}
-  .dl-hint b{color:var(--paper);font-weight:600}
+  .cta-row .btn{padding:16px 36px;font-size:1.04rem}
+  .cta-note{margin-top:14px;font-size:.84rem;color:var(--muted)}
 
   /* entrada em cascata dos elementos do hero */
   .hero .up{opacity:0;transform:translateY(22px);animation:rise .8s cubic-bezier(.22,.8,.3,1) forwards}
-  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.15s}.hero .d3{animation-delay:.25s}
-  .hero .d4{animation-delay:.38s}.hero .d5{animation-delay:.5s}.hero .d6{animation-delay:.62s}
+  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.17s}.hero .d3{animation-delay:.29s}.hero .d4{animation-delay:.4s}
   @keyframes rise{to{opacity:1;transform:none}}
 
-  /* ---------- MOCKUP DO APP ---------- */
-  .stage{position:relative;max-width:920px;margin:56px auto 0;perspective:1400px;z-index:1}
-  .mock-glow{position:absolute;inset:-8% -6%;z-index:0;pointer-events:none;
-    background:radial-gradient(58% 62% at 50% 42%, rgba(200,144,58,.22), transparent 70%);
-    filter:blur(28px)}
+  /* ---------- O CELULAR NO HERÓI ---------- */
+  /* O id "mock" e as classes .in/.play continuam sendo o gancho do JavaScript
+     de entrada, contadores e feed — o celular só trocou a moldura. */
+  .stage{position:relative;max-width:1000px;height:660px;margin:58px auto 0;perspective:1400px;z-index:1}
+  .mock-glow{position:absolute;left:50%;top:30px;width:660px;height:600px;margin-left:-330px;z-index:0;pointer-events:none;
+    background:radial-gradient(50% 50% at 50% 45%,rgba(200,144,58,.26),transparent 70%);filter:blur(30px)}
   .mock{
-    position:relative;z-index:1;text-align:left;
-    background:linear-gradient(180deg,#161513,#111110);
-    border:1px solid rgba(200,144,58,.22);border-radius:18px;overflow:hidden;
-    box-shadow:0 50px 120px rgba(0,0,0,.6), 0 18px 50px rgba(200,144,58,.08), inset 0 1px 0 rgba(255,255,255,.05);
+    position:absolute;left:50%;top:0;width:300px;height:620px;margin-left:-150px;z-index:1;text-align:left;
+    background:#0a0a09;border-radius:50px;padding:10px;
+    border:1px solid rgba(200,144,58,.30);
+    box-shadow:0 0 0 2px #1c1a17, 0 60px 120px rgba(0,0,0,.7), 0 20px 60px rgba(200,144,58,.10), inset 0 0 0 1px rgba(255,255,255,.05);
     transform-style:preserve-3d;will-change:transform;
     opacity:0;transform:translateY(40px) rotateX(8deg);
   }
   .mock.in{animation:mockIn 1.1s cubic-bezier(.2,.75,.25,1) .35s forwards}
   @keyframes mockIn{to{opacity:1;transform:translateY(0) rotateX(0)}}
-  .mock-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
-  .mock-bar .dots{display:flex;gap:6px}
-  .mock-bar .dots i{width:10px;height:10px;border-radius:50%;background:#2f2d2a}
-  .mock-bar .dots i:first-child{background:#5a4a2e}
-  .mock-url{flex:1;max-width:300px;margin:0 auto;text-align:center;font-size:.72rem;color:var(--muted);
-    background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:7px;padding:4px 12px}
-  .mock-url b{color:var(--gold-soft);font-weight:600}
-  .mock-body{display:grid;grid-template-columns:52px 1fr;min-height:430px}
-  .mock-rail{border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 0}
-  .mock-rail i{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;
-    font-style:normal;font-size:.9rem;color:var(--muted);opacity:.75}
-  .mock-rail i.on{background:rgba(200,144,58,.15);color:var(--gold);opacity:1}
-  .mock-main{padding:18px;display:grid;gap:14px;grid-template-rows:auto 1fr auto}
-  .mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .mstat{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .mstat .lb{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-  .mstat .vl{font-size:1.24rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums}
-  .mstat .sb{font-size:.72rem;color:var(--muted);margin-top:2px}
-  .mstat .sb .pos{color:var(--green);font-weight:700}
-  .mbar{height:6px;background:#26231f;border-radius:6px;margin-top:9px;overflow:hidden}
+  .ph-screen{position:relative;height:100%;border-radius:41px;overflow:hidden;
+    background:linear-gradient(180deg,#161512,#0f0e0d);display:flex;flex-direction:column}
+  .ph-island{position:absolute;top:10px;left:50%;width:94px;height:27px;margin-left:-47px;background:#000;border-radius:20px;z-index:3}
+  .ph-status{display:flex;justify-content:space-between;align-items:center;padding:13px 26px 0 30px;height:44px;font-size:.74rem;font-weight:700;flex:none}
+  .ph-status .sig{display:flex;gap:5px;align-items:center}
+  .ph-status .sig svg{fill:currentColor;display:block}
+  .ph-body{flex:1;padding:12px 15px 0;display:flex;flex-direction:column;gap:11px;min-height:0}
+  .ph-hi{display:flex;justify-content:space-between;align-items:center}
+  .ph-hi small{display:block;color:var(--muted);font-size:.66rem}
+  .ph-hi b{font-size:.98rem;letter-spacing:-.01em}
+  .ph-hi img{width:30px;height:30px;border-radius:9px}
+  .ph-chips{display:flex;gap:5px;overflow:hidden}
+  .ph-chips span{font-size:.64rem;font-weight:600;padding:5px 10px;border-radius:100px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .ph-chips span.on{background:rgba(200,144,58,.16);border-color:rgba(200,144,58,.45);color:var(--gold-soft)}
+  .ph-bal{background:linear-gradient(160deg,#221f1a,#171512);border:1px solid rgba(200,144,58,.24);border-radius:18px;padding:13px 15px}
+  .ph-bal .lb{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .ph-bal .vl{font-family:var(--ff-display);font-size:1.62rem;font-weight:600;letter-spacing:-.02em;line-height:1.18;font-variant-numeric:tabular-nums}
+  .ph-bal .sb{font-size:.66rem;color:var(--muted)}
+  .ph-bal .sb .pos{color:var(--green);font-weight:700}
+  .ph-bud{background:#1a1816;border:1px solid var(--line);border-radius:14px;padding:10px 13px}
+  .ph-bud .row{display:flex;justify-content:space-between;align-items:baseline;font-size:.7rem;margin-bottom:6px}
+  .ph-bud .row span{color:var(--muted);font-size:.64rem}
+  .mbar{height:6px;background:#26231f;border-radius:6px;overflow:hidden}
   .mbar i{display:block;height:100%;width:0;border-radius:6px;
-    background:linear-gradient(90deg,#a06e22,#e4bd70,#c8903a);
+    background:linear-gradient(90deg,#b8862f,#e8c06a);
     transition:width 1.6s cubic-bezier(.22,.8,.3,1) .9s}
-  .mock.play .mbar i{width:78%}
-  .mcharts{display:grid;grid-template-columns:1.75fr 1fr;gap:12px;min-height:0}
-  .mpanel{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;min-height:0}
-  .mpanel .ttl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
-  .mpanel .ttl em{font-style:normal;color:var(--gold-soft);font-size:.7rem;letter-spacing:0;text-transform:none}
-  .mpanel svg{width:100%;height:auto;display:block;flex:1}
-  /* linha do gráfico se desenhando */
-  .lchart .stroke{fill:none;stroke:url(#lg1);stroke-width:3;stroke-linecap:round;
-    stroke-dasharray:1000;stroke-dashoffset:1000}
-  .mock.play .lchart .stroke{transition:stroke-dashoffset 2s cubic-bezier(.3,.6,.3,1) .7s;stroke-dashoffset:0}
-  .lchart .area{fill:url(#lg2);opacity:0}
-  .mock.play .lchart .area{transition:opacity 1.2s ease 1.9s;opacity:1}
-  .lchart .grid-l{stroke:rgba(255,255,255,.05);stroke-width:1}
-  .lchart .enddot{fill:#f4d488;opacity:0}
-  .mock.play .lchart .enddot{animation:dotIn .5s ease 2.6s forwards, blink 2.4s ease-in-out 3.1s infinite}
-  @keyframes dotIn{to{opacity:1}}
-  @keyframes blink{0%,100%{r:4}50%{r:6}}
-  /* rosca de categorias */
-  .donut circle.seg{fill:none;stroke-width:17;stroke-dasharray:0 100;transition:stroke-dasharray 1.1s cubic-bezier(.3,.6,.3,1)}
-  .donut .dc{fill:var(--paper);font-size:13px;font-weight:800;letter-spacing:-.02em}
-  .donut .dl{fill:var(--muted);font-size:6.5px;letter-spacing:.06em;text-transform:uppercase}
-  .legend{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-top:10px}
-  .legend span{display:flex;align-items:center;gap:6px;font-size:.66rem;color:var(--muted);white-space:nowrap}
-  .legend i{width:8px;height:8px;border-radius:3px;flex-shrink:0}
-  /* feed de transações ao vivo */
-  .mfeed{background:#1c1a17;border:1px solid var(--line);border-radius:12px;padding:12px 16px 8px}
-  .mfeed .ttl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+  .mock.play .mbar i{width:72%}
+  .mfeed .ttl{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;display:flex;align-items:center;gap:7px}
   .live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
-  #feed{list-style:none;height:132px;overflow:hidden}
-  #feed li{display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.82rem}
+  /* 4 linhas inteiras: o JS mantem 4 no feed, e meia linha cortada pela barra de abas parece defeito */
+  #feed{list-style:none;height:174px;overflow:hidden}
+  #feed li{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.78rem}
   #feed li:last-child{border-bottom:none}
   #feed li.enter{animation:feedIn .55s cubic-bezier(.22,.8,.3,1)}
   @keyframes feedIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-  #feed .fic{width:30px;height:30px;border-radius:8px;background:rgba(200,144,58,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+  #feed .fic{width:30px;height:30px;border-radius:9px;background:rgba(200,144,58,.1);display:flex;align-items:center;justify-content:center;font-size:.86rem;flex-shrink:0}
   #feed .fnm{flex:1;min-width:0}
-  #feed .fnm b{display:block;font-weight:600;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #feed .fnm small{color:var(--muted);font-size:.68rem}
-  #feed .fvl{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #feed .fnm b{display:block;font-weight:600;font-size:.78rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #feed .fnm small{display:block;color:var(--muted);font-size:.64rem;line-height:1.25}
+  #feed .fvl{font-weight:700;font-size:.76rem;font-variant-numeric:tabular-nums;white-space:nowrap}
   #feed .fvl.pos{color:var(--green)} #feed .fvl.neg{color:var(--red)}
-  /* pílulas flutuando ao redor do mockup */
-  .pill{
-    position:absolute;z-index:2;display:flex;align-items:center;gap:8px;
-    background:rgba(24,24,22,.92);border:1px solid rgba(200,144,58,.35);border-radius:100px;
-    padding:9px 16px;font-size:.8rem;font-weight:600;white-space:nowrap;
-    box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(6px);
-    opacity:0;
-  }
-  .mock.in ~ .pill{animation:pillIn .7s ease forwards, bob 5.5s ease-in-out 1.2s infinite alternate}
-  .pill.p1{top:10%;right:-26px;animation-delay:1.3s, 1.3s !important}
-  .pill.p2{bottom:16%;left:-30px;animation-delay:1.6s, 1.6s !important}
-  .pill b{color:var(--gold-soft)}
-  @keyframes pillIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  /* a mesma barra de abas do app — inclusive o + medido contra o Mobills */
+  .ph-tab{margin-top:auto;flex:none;display:flex;justify-content:space-around;align-items:flex-end;
+    padding:8px 4px 20px;border-top:1px solid rgba(255,255,255,.06);background:#0c0c0b}
+  .ph-tab .tb{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.5rem;font-weight:600;color:var(--muted);width:50px}
+  .ph-tab .tb i{display:flex;align-items:center;justify-content:center;width:36px;height:20px;border-radius:10px}
+  .ph-tab .tb svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .ph-tab .tb svg.dots circle{fill:currentColor;stroke:none}
+  .ph-tab .tb.on{color:var(--gold-soft)}
+  .ph-tab .tb.on i{background:rgba(200,144,58,.18)}
+  .ph-tab .fab{width:40px;height:40px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;
+    margin:0 2px 8px;box-shadow:0 6px 16px rgba(0,0,0,.5);flex:none}
+  .ph-tab .fab svg{width:17px;height:17px;fill:none;stroke:#0d0d0d;stroke-width:2.7;stroke-linecap:round}
+
+  /* cartões flutuando em volta do celular */
+  .float{position:absolute;z-index:2;text-align:left;min-width:176px;
+    background:rgba(22,21,19,.94);border:1px solid rgba(255,255,255,.09);border-radius:18px;
+    padding:12px 15px;box-shadow:0 22px 50px rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    opacity:0}
+  .mock.in ~ .float{animation:floatIn .7s ease forwards, bob 5.5s ease-in-out infinite alternate}
+  .mock.in ~ .float.f1{animation-delay:1.2s,1.2s}
+  .mock.in ~ .float.f2{animation-delay:1.45s,1.45s}
+  .mock.in ~ .float.f3{animation-delay:1.7s,1.7s}
+  .mock.in ~ .float.f4{animation-delay:1.95s,1.95s}
+  .float.f1{top:58px;left:6%}
+  .float.f2{top:178px;right:5%}
+  .float.f3{bottom:158px;left:2%}
+  .float.f4{bottom:74px;right:8%}
+  .float .fk{font-size:.74rem;color:var(--muted)}
+  .float .fv{font-size:1.18rem;font-weight:800;letter-spacing:-.01em;margin-top:2px;font-variant-numeric:tabular-nums}
+  .float .fv.pos{color:var(--green)}
+  .float .fs{font-size:.72rem;color:var(--muted);margin-top:2px}
+  .float .mbar{margin-top:8px}
+  .float .mbar i{background:linear-gradient(90deg,#a06e22,#e4bd70);transition-delay:2.1s}
+  .mock.in ~ .float .mbar i{width:var(--w)}
+  .float.tx{display:flex;align-items:center;gap:11px;min-width:236px}
+  .float.tx .fic{width:36px;height:36px;border-radius:11px;background:rgba(200,144,58,.12);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:none}
+  .float.tx b{display:block;font-size:.88rem}
+  .float.tx small{color:var(--muted);font-size:.7rem}
+  .float.tx .neg{margin-left:auto;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;white-space:nowrap}
+  @keyframes floatIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
   @keyframes bob{from{margin-top:0}to{margin-top:-12px}}
-  @media(max-width:960px){.pill{display:none}}
-  @media(max-width:760px){
-    .mcharts{grid-template-columns:1fr}
-    .mstats{grid-template-columns:1fr 1fr}
-    .mstat:nth-child(3){display:none}
-    .mock-body{grid-template-columns:1fr}
-    .mock-rail{display:none}
-  }
+  @media(max-width:960px){.float{display:none}}
+  @media(max-width:560px){.stage{height:640px;margin-top:44px}}
 
   /* ---------- FAIXA DE NÚMEROS ---------- */
   .stats-strip{padding:56px 0 8px}
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
   @media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:26px 12px}}
-  .stat .n{font-family:var(--ff-display);font-size:clamp(2rem,4.2vw,2.85rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  /* a faixa deixou de ser numero ("31 dias") e virou prova em palavras: tamanho menor
+     e uma linha so no desktop, senao "Ponta a ponta" quebra e o vizinho nao */
+  .stat .n{font-family:var(--ff-display);font-size:clamp(1.55rem,3.1vw,2.3rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  @media(min-width:721px){.stat .n{white-space:nowrap}}
   .stat .t{color:var(--muted);font-size:.88rem;margin-top:2px}
 
   /* ---------- SEÇÕES ---------- */
   section.block{padding:88px 0;border-top:1px solid var(--line)}
   .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
-  .sec-head h2{font-family:var(--ff-display);font-size:clamp(1.9rem,4.2vw,2.65rem);letter-spacing:-.015em;font-weight:600;margin-bottom:14px}
+  .sec-head h2{font-family:var(--ff-display);font-size:clamp(1.9rem,4.2vw,2.65rem);letter-spacing:-.015em;font-weight:600;margin-bottom:14px;text-wrap:balance}
   .sec-head p{color:var(--muted);font-size:1.06rem}
 
   /* revelação no scroll */
   .rev{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.8,.3,1) var(--d,0s),transform .7s cubic-bezier(.22,.8,.3,1) var(--d,0s)}
   .rev.in{opacity:1;transform:none}
 
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
   .feat{
     position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
     transition:transform .2s ease,border-color .25s;overflow:hidden;
@@ -358,39 +432,107 @@
   .feat h3{font-size:1.14rem;margin-bottom:8px;letter-spacing:-.01em}
   .feat p{color:var(--muted);font-size:.96rem}
 
-  /* ---------- COMO FUNCIONA ---------- */
-  .steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:940px;margin:0 auto}
-  .steps::before{ /* linha que se desenha ligando os passos */
-    content:"";position:absolute;top:31px;left:12%;right:12%;height:2px;z-index:0;
-    background:linear-gradient(90deg,rgba(200,144,58,.0),rgba(200,144,58,.55),rgba(200,144,58,.0));
-    transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(.22,.8,.3,1) .3s;
-  }
-  .steps.in::before{transform:scaleX(1)}
-  @media(max-width:720px){.steps{grid-template-columns:1fr;gap:26px}.steps::before{display:none}}
-  .step{position:relative;z-index:1;text-align:center;padding:0 8px}
-  .step .num{
-    width:62px;height:62px;margin:0 auto 18px;border-radius:50%;
-    background:linear-gradient(180deg,#1e1c19,#141311);border:1px solid rgba(200,144,58,.45);
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;color:var(--gold-soft);
-    box-shadow:0 10px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
-    position:relative;
-  }
-  .step .num::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(200,144,58,.28);
-    opacity:0;transform:scale(.85);transition:all .6s ease .5s}
-  .steps.in .step .num::after{opacity:1;transform:scale(1)}
-  .step h3{font-size:1.12rem;margin-bottom:8px;letter-spacing:-.01em}
-  .step p{color:var(--muted);font-size:.94rem;max-width:270px;margin:0 auto}
+  /* ---------- O QUE O NORTH FAZ: 4 cartões ---------- */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:980px){.grid4{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid4{grid-template-columns:1fr}}
 
-  /* ---------- SEGURANÇA ---------- */
+  /* ---------- SEÇÕES ALTERNADAS: objeção no título, resposta no texto ---------- */
+  .alt{padding:96px 0;border-top:1px solid var(--line)}
+  .alt-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .alt.flip .alt-txt{order:2}
+  @media(max-width:860px){
+    .alt{padding:72px 0}
+    .alt-row{grid-template-columns:1fr;gap:34px}
+    .alt.flip .alt-txt{order:0}
+  }
+  .alt-txt .kick{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .alt-txt h2{font-family:var(--ff-display);font-size:clamp(2rem,4.2vw,3rem);line-height:1.08;letter-spacing:-.02em;
+    font-weight:600;margin-bottom:18px;text-wrap:balance}
+  .alt-txt p{color:var(--muted);font-size:1.08rem;max-width:480px;margin-bottom:28px;text-wrap:pretty}
+  .alt-txt .btn{padding:14px 30px}
+  .pro-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:3px 9px;border-radius:100px;
+    background:rgba(200,144,58,.16);border:1px solid rgba(200,144,58,.42);color:var(--gold-soft);line-height:1.4}
+
+  /* o "visual" de cada seção é um pedaço do app feito em HTML: sem imagem, nítido em qualquer tela */
+  .vis{position:relative;background:linear-gradient(180deg,#171614,#121110);border:1px solid var(--line);border-radius:24px;
+    padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04)}
+  .vis::before{content:"";position:absolute;inset:-1px;border-radius:24px;pointer-events:none;
+    background:radial-gradient(60% 50% at 30% 0%,rgba(200,144,58,.13),transparent 70%)}
+  .vis > *{position:relative}
+  .vis .vt{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .vis .vt em{font-style:normal;color:var(--gold-soft);text-transform:none;letter-spacing:0;font-weight:700;font-size:.92rem}
+  /* barras de categoria e de orçamento: enchem quando a seção entra na tela */
+  .bars{display:grid;gap:16px}
+  .bars .row{display:grid;grid-template-columns:1fr auto;gap:5px 12px;font-size:.94rem;align-items:baseline}
+  .bars .row .v{font-weight:700;font-variant-numeric:tabular-nums}
+  .bars .track{grid-column:1/-1;height:8px;background:#24211d;border-radius:8px;overflow:hidden}
+  .bars .track i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#a06e22,#e4bd70);
+    transition:width 1.4s cubic-bezier(.22,.8,.3,1) var(--d,.25s)}
+  .rev.in .bars .track i{width:var(--w)}
+  .bars .track i.ok{background:linear-gradient(90deg,#3f8f5a,#7dc98f)}
+  .bars .track i.warn{background:linear-gradient(90deg,#b8862f,#e8c06a)}
+  .bars .track i.over{background:linear-gradient(90deg,#a8463a,#e07d6d)}
+  .bars .d{grid-column:1/-1;font-size:.76rem;color:var(--muted)}
+  .bars .d .sobe{color:var(--red)} .bars .d .cai{color:var(--green)}
+  /* várias contas */
+  .acc-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+  .acc-tabs span{font-size:.8rem;font-weight:600;padding:7px 14px;border-radius:100px;border:1px solid var(--line);color:var(--muted)}
+  .acc-tabs span.on{background:rgba(200,144,58,.16);border-color:rgba(200,144,58,.45);color:var(--gold-soft)}
+  .list{display:grid;gap:10px}
+  .list .it{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#1a1816}
+  .list .av{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none;
+    font-weight:800;font-size:.9rem;background:rgba(200,144,58,.14);color:var(--gold-soft)}
+  .list .nm{flex:1;min-width:0}
+  .list .nm b{display:block;font-size:.92rem}
+  .list .nm small{color:var(--muted);font-size:.74rem}
+  .list .vl{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .list .vl.pos{color:var(--green)} .list .vl.neg{color:var(--red)}
+  .tot{display:flex;justify-content:space-between;align-items:baseline;padding:14px 4px 0;margin-top:4px;
+    border-top:1px dashed var(--line);font-weight:700}
+  .tot span:first-child{color:var(--muted);font-weight:600;font-size:.9rem}
+  .tot .big{font-family:var(--ff-display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em}
+  /* selo de vencimento das contas a pagar */
+  .due{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px;white-space:nowrap}
+  .due.soon{background:rgba(232,192,106,.14);color:#e8c06a}
+  .due.late{background:rgba(224,125,109,.14);color:var(--red)}
+  .due.paid{background:rgba(125,201,143,.14);color:var(--green)}
+  .due.next{background:rgba(255,255,255,.06);color:var(--muted)}
+  .inv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px}
+  .inv-head .lb{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .inv-head .big{font-family:var(--ff-display);font-size:2.1rem;font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+  .inv-head .pos{color:var(--green);font-weight:700;font-size:.86rem;white-space:nowrap}
+
+  /* ---------- SEGURANÇA: 4 pontos ---------- */
   .sec-security{background:var(--ink2)}
-  .sec-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;max-width:820px;margin:0 auto}
-  @media(max-width:640px){.sec-list{grid-template-columns:1fr}}
-  .sec-item{display:flex;gap:14px;align-items:flex-start}
-  .sec-item .chk{color:var(--gold);font-size:1.15rem;line-height:1.5;flex-shrink:0}
-  .sec-item h4{font-size:1.02rem;margin-bottom:3px}
-  .sec-item p{color:var(--muted);font-size:.92rem}
+  .sec4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:980px){.sec4{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.sec4{grid-template-columns:1fr}}
+  .sec4 .it{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:border-color .25s,transform .2s}
+  .sec4 .it:hover{border-color:rgba(200,144,58,.45);transform:translateY(-3px)}
+  .sec4 .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(200,144,58,.12);font-size:1.3rem;margin-bottom:16px}
+  .sec4 h3{font-size:1.06rem;margin-bottom:8px;letter-spacing:-.01em}
+  .sec4 p{color:var(--muted);font-size:.93rem}
+  .sec-more{text-align:center;color:var(--muted);font-size:.9rem;margin:34px auto 0;max-width:760px}
+  .sec-more b{color:var(--paper);font-weight:600}
+  .sec-links{text-align:center;margin-top:16px;font-size:.95rem}
+  .sec-links .sep{color:var(--line);margin:0 10px}
+  .sec-honest{text-align:center;margin:10px auto 0;font-size:.86rem;color:var(--muted);opacity:.78;max-width:620px}
   a.inl{color:var(--gold-soft);font-weight:600;border-bottom:1px solid rgba(200,144,58,.35);white-space:nowrap}
   a.inl:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* ---------- CHAMADA FINAL ---------- */
+  .final{position:relative;padding:112px 0 104px;text-align:center;border-top:1px solid var(--line);overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(640px 360px at 50% 100%,rgba(200,144,58,.16),transparent 70%)}
+  .final .wrap{position:relative}
+  .final h2{font-family:var(--ff-display);font-size:clamp(2.3rem,5.4vw,3.8rem);line-height:1.05;letter-spacing:-.02em;
+    font-weight:600;margin-bottom:16px;text-wrap:balance}
+  .final p{color:var(--muted);font-size:1.12rem;margin:0 auto 32px;max-width:520px}
+  .final .btn{padding:16px 36px;font-size:1.04rem}
 
   /* ---------- PREÇO ---------- */
   @property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
@@ -472,7 +614,7 @@
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
     .metal-gold{animation:none}
     .rev,.mock{opacity:1;transform:none}
-    .pill{opacity:1}
+    .float{opacity:1}
   }
 </style>
 </head>
@@ -484,17 +626,18 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="/"><img src="logo.png" alt="North Finances"> North<span>&nbsp;Finances</span></a>
+      <div class="nav-links" id="nav-links">
+        <a class="link" href="#vantagens">Vantagens</a>
+        <a class="link" href="#seguranca">Segurança</a>
+        <a class="link" href="#preco">Preços</a>
+        <span class="nav-actions">
+          <a class="btn btn-ghost" href="https://app.northfinances.com.br">Entrar</a>
+          <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Criar conta</a>
+        </span>
+      </div>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
         <i></i><i></i><i></i>
       </button>
-      <div class="nav-links" id="nav-links">
-        <a class="link" href="#recursos">Recursos</a>
-        <a class="link" href="#manual">Manual</a>
-        <a class="link" href="#como-funciona">Como funciona</a>
-        <a class="link" href="#seguranca">Segurança</a>
-        <a class="link" href="#preco">Preço</a>
-        <a class="btn btn-gold" href="https://app.northfinances.com.br">Acessar o app</a>
-      </div>
     </nav>
   </div>
 </header>
@@ -511,206 +654,209 @@
     <path d="M100 186l-7-78 7-12 7 12z" fill="#c8903a" opacity=".4"/>
   </svg>
   <div class="wrap">
-    <img class="hero-logo up d1" src="logo.png" alt="North Finances">
-    <span class="eyebrow up d2"><span class="dot"></span> Controle financeiro pessoal</span>
-    <h1 class="up d3">Encontre seu <span class="metal-gold">norte&nbsp;financeiro</span></h1>
-    <p class="sub up d4">Transações, investimentos, metas e reserva de emergência — tudo num só lugar, simples e no seu bolso. Chega de planilha bagunçada e de perder o controle do dinheiro.</p>
-    <div class="cta-row up d5">
-      <a class="btn btn-gold" data-nf-cta="trial" href="https://app.northfinances.com.br">Começar grátis no navegador</a>
+    <h1 class="up d1">Seu dinheiro organizado num lugar que <span class="metal-gold">nem nós conseguimos abrir</span></h1>
+    <p class="sub up d2">Eu organizo seus gastos, mostro pra onde o dinheiro foi e acendo o sinal amarelo quando o orçamento aperta. Tudo cifrado no seu aparelho — sem pedir a senha do seu banco.</p>
+    <div class="cta-row up d3">
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
     </div>
-    <div class="trust up d6">Criptografado no seu aparelho · Nada pra instalar · Funciona no celular e no PC · Grátis para sempre</div>
+    <div class="cta-note up d4">Grátis para sempre · sem cartão · no celular e no computador</div>
 
-    <!-- MOCKUP ANIMADO DO APP -->
+    <!-- O APP NO CELULAR -->
     <div class="stage">
       <div class="mock-glow"></div>
-      <div class="mock" id="mock">
-        <div class="mock-bar">
-          <span class="dots"><i></i><i></i><i></i></span>
-          <span class="mock-url">🔒 <b>app.northfinances.com.br</b></span>
-          <span style="width:46px"></span>
-        </div>
-        <div class="mock-body">
-          <div class="mock-rail">
-            <i class="on">📊</i><i>💸</i><i>📈</i><i>🎯</i><i>⚙️</i>
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="ph-screen">
+          <span class="ph-island"></span>
+          <div class="ph-status">
+            <span>9:41</span>
+            <span class="sig">
+              <svg viewBox="0 0 18 12" width="17" height="11"><rect x="0" y="8" width="3" height="4" rx=".6"/><rect x="5" y="5.5" width="3" height="6.5" rx=".6"/><rect x="10" y="3" width="3" height="9" rx=".6"/><rect x="15" y="0" width="3" height="12" rx=".6"/></svg>
+              <svg viewBox="0 0 26 12" width="24" height="11"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="16" height="8" rx="1.6"/><rect x="23.5" y="4" width="2" height="4" rx="1" opacity=".5"/></svg>
+            </span>
           </div>
-          <div class="mock-main">
-            <div class="mstats">
-              <div class="mstat">
-                <div class="lb">Saldo do mês</div>
-                <div class="vl"><span class="cnt" data-to="2847.9" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
-                <div class="sb"><span class="pos">▲ 12%</span> vs. mês passado</div>
-              </div>
-              <div class="mstat">
-                <div class="lb">Investido</div>
-                <div class="vl"><span class="cnt" data-to="15430" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
-                <div class="sb"><span class="pos">+R$ 212,40</span> este mês</div>
-              </div>
-              <div class="mstat">
-                <div class="lb">Reserva de emergência</div>
-                <div class="vl"><span class="cnt" data-to="78" data-dec="0" data-suf="%">0%</span></div>
-                <div class="mbar"><i></i></div>
-              </div>
+          <div class="ph-body">
+            <div class="ph-hi">
+              <div><small>Bom dia</small><b>Seu mês, até aqui</b></div>
+              <img src="logo-192.png" alt="">
             </div>
-            <div class="mcharts">
-              <div class="mpanel lchart">
-                <div class="ttl">Evolução do patrimônio <em>últimos 7 meses</em></div>
-                <svg viewBox="0 0 520 200" preserveAspectRatio="none" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0" stop-color="#a06e22"/><stop offset=".5" stop-color="#e4bd70"/><stop offset="1" stop-color="#f4d488"/>
-                    </linearGradient>
-                    <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stop-color="rgba(200,144,58,.32)"/><stop offset="1" stop-color="rgba(200,144,58,0)"/>
-                    </linearGradient>
-                  </defs>
-                  <g class="grid-l">
-                    <line x1="10" y1="50" x2="510" y2="50"/><line x1="10" y1="100" x2="510" y2="100"/><line x1="10" y1="150" x2="510" y2="150"/>
-                  </g>
-                  <path class="area" d="M10,152 C38,148 65,141 93,140 C121,139 148,147 176,146 C204,145 232,120 260,112 C288,104 315,104 343,98 C371,92 398,78 426,66 C454,54 482,44 510,38 L510,200 L10,200 Z"/>
-                  <path class="stroke" pathLength="1000" d="M10,152 C38,148 65,141 93,140 C121,139 148,147 176,146 C204,145 232,120 260,112 C288,104 315,104 343,98 C371,92 398,78 426,66 C454,54 482,44 510,38"/>
-                  <circle class="enddot" cx="510" cy="38" r="4"/>
-                </svg>
-              </div>
-              <div class="mpanel">
-                <div class="ttl">Pra onde foi o dinheiro</div>
-                <svg class="donut" viewBox="0 0 140 140" aria-hidden="true">
-                  <circle cx="70" cy="70" r="52" fill="none" stroke="#24211d" stroke-width="17"/>
-                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#c8903a" data-len="32" stroke-dashoffset="25"/>
-                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#e0b878" data-len="24" stroke-dashoffset="-7"/>
-                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#8a6420" data-len="16" stroke-dashoffset="-31"/>
-                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#57524b" data-len="12" stroke-dashoffset="-47"/>
-                  <circle class="seg" pathLength="100" cx="70" cy="70" r="52" stroke="#3a3733" data-len="16" stroke-dashoffset="-59"/>
-                  <text class="dc" x="70" y="68" text-anchor="middle">R$ 3.590</text>
-                  <text class="dl" x="70" y="82" text-anchor="middle">gastos no mês</text>
-                </svg>
-                <div class="legend">
-                  <span><i style="background:#c8903a"></i>Moradia 32%</span>
-                  <span><i style="background:#e0b878"></i>Alimentação 24%</span>
-                  <span><i style="background:#8a6420"></i>Transporte 16%</span>
-                  <span><i style="background:#57524b"></i>Lazer 12%</span>
-                </div>
-              </div>
+            <div class="ph-chips"><span class="on">Todas</span><span>Nubank</span><span>Itaú</span><span>Carteira</span></div>
+            <div class="ph-bal">
+              <div class="lb">Saldo do mês</div>
+              <div class="vl"><span class="cnt" data-to="2847.9" data-dec="2" data-pre="R$ ">R$ 0,00</span></div>
+              <div class="sb"><span class="pos">▲ 12%</span> vs. mês passado</div>
+            </div>
+            <div class="ph-bud">
+              <div class="row"><b>Alimentação</b><span>R$ 864 de R$ 1.200</span></div>
+              <div class="mbar"><i></i></div>
             </div>
             <div class="mfeed">
               <div class="ttl"><span class="live"></span> Últimas transações</div>
               <ul id="feed"></ul>
             </div>
           </div>
+          <div class="ph-tab">
+            <span class="tb on"><i><svg viewBox="0 0 24 24"><path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></i>Início</span>
+            <span class="tb"><i><svg viewBox="0 0 24 24"><path d="M4 6h2M4 12h2M4 18h2M9 6h11M9 12h11M9 18h11"/></svg></i>Transações</span>
+            <span class="fab"><svg viewBox="0 0 22 22"><path d="M11 1.35V20.65M1.35 11H20.65"/></svg></span>
+            <span class="tb"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5h8.5"/></svg></i>Orçamento</span>
+            <span class="tb"><i><svg class="dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></i>Mais</span>
+          </div>
         </div>
       </div>
-      <div class="pill p1">📈 Rendimento hoje: <b>+R$ 12,31</b></div>
-      <div class="pill p2">🎯 Meta Viagem: <b>64%</b></div>
-    </div>
-
-    <div class="dl-note" style="margin-top:34px">
-      📱 <b style="color:var(--paper)">No celular vira app também:</b> abra <b style="color:var(--paper)">app.northfinances.com.br</b> no navegador e toque em <b style="color:var(--paper)">"Adicionar à tela inicial"</b> — fica um ícone na tela, igual a um aplicativo, sem baixar nada.
-    </div>
-    <div class="dl-note">
-      Prefere um app no computador? <a href="https://github.com/Barssottini/controle-financeiro/releases/latest/download/North-Finances-Setup.exe">Baixar para Windows</a>
-      <span class="dl-hint">Ao abrir o instalador, o Windows mostra um aviso azul do SmartScreen. É só clicar em <b>"Mais informações"</b> e depois <b>"Executar assim mesmo"</b> — é seguro, é o app oficial da North Finances.</span>
+      <div class="float f1" aria-hidden="true"><div class="fk">📈 Rendimento hoje</div><div class="fv pos">+R$ 12,31</div></div>
+      <div class="float f2" aria-hidden="true"><div class="fk">🎯 Meta Viagem</div><div class="fv">64%</div><div class="mbar"><i style="--w:64%"></i></div></div>
+      <div class="float f3 tx" aria-hidden="true"><span class="fic">🍔</span><span><b>Delivery</b><small>Alimentação · hoje</small></span><span class="neg">−R$ 42,00</span></div>
+      <div class="float f4" aria-hidden="true"><div class="fk">🔒 Cifrado no seu aparelho</div><div class="fs">nem a North consegue ler</div></div>
     </div>
   </div>
 </section>
 
-<!-- NÚMEROS -->
+<!-- PROVA -->
 <div class="stats-strip">
   <div class="wrap">
     <div class="stats">
       <div class="stat rev"><div class="n">R$ <span class="cnt" data-to="0" data-dec="0">0</span></div><div class="t">plano grátis para sempre, sem cartão</div></div>
-      <div class="stat rev" style="--d:.1s"><div class="n"><span class="gold">Ponta a ponta</span></div><div class="t">cifrado no seu aparelho — nem nós lemos</div></div>
+      <div class="stat rev" style="--d:.1s"><div class="n"><span class="gold">Ponta a ponta</span></div><div class="t">cifrado no seu aparelho</div></div>
       <div class="stat rev" style="--d:.2s"><div class="n"><span class="gold">Código aberto</span></div><div class="t">qualquer pessoa audita o que roda</div></div>
       <div class="stat rev" style="--d:.3s"><div class="n">Zero <span class="gold">bancos</span></div><div class="t">não pedimos acesso à sua conta</div></div>
     </div>
   </div>
 </div>
 
-<!-- RECURSOS -->
-<section class="block" id="recursos">
+<!-- O QUE O NORTH FAZ -->
+<section class="block" id="vantagens">
   <div class="wrap">
     <div class="sec-head rev">
-      <h2>Tudo que você precisa pra organizar o dinheiro</h2>
-      <p>Feito pra quem quer clareza de verdade — do gasto do dia a dia até a carteira de investimentos.</p>
+      <h2>O que o North faz <span class="metal-gold">por você</span></h2>
+      <p>Você lança ou importa. Eu organizo, somo e mostro o caminho.</p>
     </div>
-    <div class="grid">
+    <div class="grid4">
       <div class="feat rev">
-        <div class="ic">📊</div>
-        <h3>Dashboard claro</h3>
-        <p>Receitas × despesas em um gráfico, saldo do mês e pra onde seu dinheiro está indo, atualizado na hora.</p>
-      </div>
-      <div class="feat rev" style="--d:.08s">
-        <div class="ic">📈</div>
-        <h3>Investimentos</h3>
-        <p>Acompanhe caixinhas com rendimento CDI e ativos (ETFs, FIIs, cripto) com preço médio e cotação automática.</p>
-      </div>
-      <div class="feat rev" style="--d:.16s">
-        <div class="ic">🎯</div>
-        <h3>Metas & reserva</h3>
-        <p>Crie metas vinculadas ao seu patrimônio — elas se atualizam sozinhas conforme você guarda dinheiro.</p>
+        <div class="ic">⚡</div>
+        <h3>Lança em segundos</h3>
+        <p>Receita ou despesa em poucos toques, do celular ou do computador.</p>
       </div>
       <div class="feat rev" style="--d:.08s">
         <div class="ic">📥</div>
-        <h3>Importe seu extrato</h3>
-        <p>Suba o arquivo OFX ou CSV do seu banco e as transações entram organizadas, com o saldo conciliado.</p>
+        <h3>Importa seu extrato</h3>
+        <p>Exporte o OFX ou CSV do seu banco e eu organizo tudo, sem duplicar o que já está lá.</p>
       </div>
       <div class="feat rev" style="--d:.16s">
-        <div class="ic">☁️</div>
-        <h3>Conta na nuvem</h3>
-        <p>Faça login e acesse os mesmos dados no navegador e no app de desktop. Tudo sincroniza automaticamente.</p>
+        <div class="ic">🎯</div>
+        <h3>Acompanha suas metas</h3>
+        <p>Viagem, reserva de emergência, quitar uma dívida. Você vê quanto falta, mês a mês.</p>
       </div>
       <div class="feat rev" style="--d:.24s">
-        <div class="ic">🔎</div>
-        <h3>Pra onde foi seu dinheiro</h3>
-        <p>Ranking dos gastos por categoria com comparativo do mês anterior — veja na hora o que está pesando e onde dá pra cortar.</p>
-      </div>
-      <div class="feat rev" style="--d:.08s">
-        <div class="ic">🚦</div>
-        <h3>Orçamento por categoria</h3>
-        <p>Defina um limite de gasto mensal por categoria e acompanhe a barra encher. Verde, amarelo, vermelho: você vê na hora quando está perto de estourar.</p>
-      </div>
-      <div class="feat rev" style="--d:.16s">
-        <div class="ic">🔔</div>
-        <h3>Contas a pagar</h3>
-        <p>Cadastre suas contas fixas e o app destaca no painel quando o vencimento se aproxima. Marcou como paga? A despesa entra sozinha nas transações.</p>
+        <div class="ic">💻</div>
+        <h3>No celular e no PC</h3>
+        <p>Abra no navegador, adicione à tela inicial ou <a class="inl" href="https://github.com/Barssottini/controle-financeiro/releases/latest/download/North-Finances-Setup.exe">baixe para Windows</a>. Tudo sincroniza.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MANUAL DO USUÁRIO -->
-<section class="block" id="manual">
-  <div class="wrap">
-    <div class="sec-head rev">
-      <h2>Conheça cada <span class="metal-gold">menu por dentro</span></h2>
-      <p>Um manual completo mostrando o que cada tela do North Finances faz, com telas de exemplo — do Dashboard às Configurações.</p>
+<!-- 1. GASTOS -->
+<section class="alt" id="gastos">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">📊 Seus gastos</span>
+      <h2>Pra onde foi o dinheiro? <span class="metal-gold">Eu te mostro.</span></h2>
+      <p>Cada gasto entra numa categoria, e o gráfico mostra o que mais pesou no mês — com o comparativo do mês anterior. Sem abrir planilha nenhuma.</p>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
     </div>
-    <div class="rev" style="text-align:center">
-      <a class="btn btn-gold" href="https://app.northfinances.com.br/manual.html" target="_blank" rel="noopener">Ver o manual completo</a>
+    <div class="vis rev" style="--d:.1s" aria-hidden="true">
+      <div class="vt">Gastos de novembro <em>R$ 3.590</em></div>
+      <div class="bars">
+        <div class="row"><span>🏠 Moradia</span><span class="v">R$ 1.150</span><span class="track"><i style="--w:100%"></i></span><span class="d">igual a outubro</span></div>
+        <div class="row"><span>🛒 Alimentação</span><span class="v">R$ 864</span><span class="track"><i style="--w:75%;--d:.4s"></i></span><span class="d"><span class="sobe">▲ 8%</span> vs. outubro</span></div>
+        <div class="row"><span>⛽ Transporte</span><span class="v">R$ 574</span><span class="track"><i style="--w:50%;--d:.55s"></i></span><span class="d"><span class="cai">▼ 5%</span> vs. outubro</span></div>
+        <div class="row"><span>🎬 Lazer</span><span class="v">R$ 431</span><span class="track"><i style="--w:37%;--d:.7s"></i></span><span class="d"><span class="sobe">▲ 14%</span> vs. outubro</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
-<section class="block" id="como-funciona">
-  <div class="wrap">
-    <div class="sec-head rev">
-      <h2>Do zero ao controle em <span class="metal-gold">3 passos</span></h2>
-      <p>Sem configuração complicada, sem conectar conta bancária, sem senha do banco.</p>
+<!-- 2. ORÇAMENTO -->
+<section class="alt flip" id="orcamento">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">🚦 Orçamento</span>
+      <h2>Estourou o orçamento? <span class="metal-gold">Não comigo.</span></h2>
+      <p>Defina um limite por categoria e acompanhe a barra encher. Verde, amarelo, vermelho: você vê antes de passar do ponto — não no fim do mês.</p>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
     </div>
-    <div class="steps rev" id="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Crie sua conta</h3>
-        <p>E-mail e senha, confirmação por código de 6 dígitos. Leva 2 minutos e não pede cartão.</p>
+    <div class="vis rev" style="--d:.1s" aria-hidden="true">
+      <div class="vt">Limites de novembro <em>3 categorias</em></div>
+      <div class="bars">
+        <div class="row"><span>🛒 Mercado</span><span class="v">R$ 494 <span style="color:var(--muted);font-weight:500">de 800</span></span><span class="track"><i class="ok" style="--w:62%"></i></span><span class="d">sobram R$ 306</span></div>
+        <div class="row"><span>🍽️ Restaurantes</span><span class="v">R$ 370 <span style="color:var(--muted);font-weight:500">de 400</span></span><span class="track"><i class="warn" style="--w:92%;--d:.4s"></i></span><span class="d">quase no limite — sobram R$ 30</span></div>
+        <div class="row"><span>🎬 Lazer</span><span class="v">R$ 431 <span style="color:var(--muted);font-weight:500">de 400</span></span><span class="track"><i class="over" style="--w:100%;--d:.55s"></i></span><span class="d"><span class="sobe">passou R$ 31</span></span></div>
       </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>Lance ou importe</h3>
-        <p>Registre os gastos do dia a dia ou suba o extrato do banco (OFX/CSV) de uma vez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. VÁRIAS CONTAS -->
+<section class="alt" id="contas">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">🏦 Várias contas <span class="pro-tag">PRO</span></span>
+      <h2>Nubank, Itaú, carteira. <span class="metal-gold">Cada um no seu lugar.</span></h2>
+      <p>Importe o extrato de cada banco na conta certa. Eles não se misturam — e, quando quiser, você vê o total de todas juntas.</p>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
+    </div>
+    <div class="vis rev" style="--d:.1s" aria-hidden="true">
+      <div class="acc-tabs"><span class="on">Todas</span><span>Nubank</span><span>Itaú</span><span>Carteira</span></div>
+      <div class="list">
+        <div class="it"><span class="av">N</span><span class="nm"><b>Nubank</b><small>Conta corrente · extrato de hoje</small></span><span class="vl">R$ 1.842,30</span></div>
+        <div class="it"><span class="av">I</span><span class="nm"><b>Itaú</b><small>Conta salário</small></span><span class="vl">R$ 3.210,00</span></div>
+        <div class="it"><span class="av">C</span><span class="nm"><b>Carteira</b><small>Dinheiro em espécie</small></span><span class="vl">R$ 186,50</span></div>
       </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h3>Veja o norte</h3>
-        <p>Dashboard, metas e investimentos se atualizam sozinhos. Você só acompanha o dinheiro crescer.</p>
+      <div class="tot"><span>Todas as contas</span><span class="big">R$ 5.238,80</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CONTAS A PAGAR -->
+<section class="alt flip" id="contas-a-pagar">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">🔔 Contas a pagar <span class="pro-tag">PRO</span></span>
+      <h2>Esqueceu de pagar? <span class="metal-gold">Eu lembro.</span></h2>
+      <p>Cadastre aluguel, internet, academia. O painel destaca o que vence nos próximos dias e, quando você marca como paga, a despesa entra sozinha nas transações.</p>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
+    </div>
+    <div class="vis rev" style="--d:.1s" aria-hidden="true">
+      <div class="vt">A pagar este mês <em>R$ 1.392,20</em></div>
+      <div class="list">
+        <div class="it"><span class="av">📶</span><span class="nm"><b>Internet</b><small>R$ 99,90</small></span><span class="due late">venceu ontem</span></div>
+        <div class="it"><span class="av">🏠</span><span class="nm"><b>Aluguel</b><small>R$ 1.150,00</small></span><span class="due soon">vence amanhã</span></div>
+        <div class="it"><span class="av">💡</span><span class="nm"><b>Luz</b><small>R$ 142,30</small></span><span class="due next">em 6 dias</span></div>
+        <div class="it"><span class="av">💪</span><span class="nm"><b>Academia</b><small>R$ 89,90</small></span><span class="due paid">paga ✓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. INVESTIMENTOS -->
+<section class="alt" id="investimentos">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">📈 Investimentos <span class="pro-tag">PRO</span></span>
+      <h2>Seus investimentos, <span class="metal-gold">sem planilha.</span></h2>
+      <p>Caixinhas com rendimento do CDI, ações, FIIs e cripto, com preço médio e cotação automática. O patrimônio inteiro num lugar só — e as metas se atualizam sozinhas.</p>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Começar grátis</a>
+    </div>
+    <div class="vis rev" style="--d:.1s" aria-hidden="true">
+      <div class="inv-head">
+        <div><div class="lb">Patrimônio investido</div><div class="big">R$ 15.430,00</div></div>
+        <span class="pos">+R$ 212,40 este mês</span>
+      </div>
+      <div class="list">
+        <div class="it"><span class="av">🏦</span><span class="nm"><b>Reserva de emergência</b><small>100% do CDI</small></span><span class="vl">R$ 8.200,00</span></div>
+        <div class="it"><span class="av">📊</span><span class="nm"><b>BOVA11</b><small>ETF · <span style="color:var(--green)">+2,4%</span></small></span><span class="vl">R$ 3.180,00</span></div>
+        <div class="it"><span class="av">🏢</span><span class="nm"><b>Fundos imobiliários</b><small>FIIs · <span style="color:var(--green)">+1,1%</span></small></span><span class="vl">R$ 2.650,00</span></div>
+        <div class="it"><span class="av">₿</span><span class="nm"><b>Bitcoin</b><small>Cripto · <span style="color:var(--red)">−3,2%</span></small></span><span class="vl">R$ 1.400,00</span></div>
       </div>
     </div>
   </div>
@@ -720,65 +866,38 @@
 <section class="block sec-security" id="seguranca">
   <div class="wrap">
     <div class="sec-head rev">
-      <h2>Criptografado no seu aparelho — <span class="metal-gold">nem nós conseguimos ler</span></h2>
-      <p>Seus dados são cifrados dentro do seu navegador, antes de subir para a nuvem. No servidor fica só texto embaralhado, e a chave é sua. E como o código é aberto, isso não é promessa: é verificável.</p>
-      <p style="margin-top:16px;font-size:.95rem">
-        <a class="inl" href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Auditar o código no GitHub</a>
-        <span style="color:var(--line);margin:0 10px">·</span>
-        <a class="inl" href="https://github.com/Barssottini/controle-financeiro/blob/main/THREAT_MODEL.md" target="_blank" rel="noopener">Ler nosso modelo de ameaças</a>
-      </p>
-      <p style="margin-top:8px;font-size:.86rem;opacity:.75">O modelo de ameaças lista, por escrito, também o que a North <em>não</em> protege. Poucos publicam isso. Nós preferimos que você leia antes de confiar.</p>
+      <h2>Nem nós conseguimos <span class="metal-gold">ler seus dados</span></h2>
+      <p>Tudo é cifrado no seu aparelho antes de subir pra nuvem. No nosso servidor fica só texto embaralhado — e como o código é aberto, isso não é promessa: é verificável.</p>
     </div>
-    <div class="sec-list">
-      <div class="sec-item rev">
-        <span class="chk">◆</span>
-        <div><h4>Criptografia de ponta a ponta</h4><p>A chave nasce da sua senha, no seu aparelho. Guardamos só texto cifrado — sem a sua senha ou a sua chave de recuperação, nem a North abre seus dados.</p></div>
+    <div class="sec4">
+      <div class="it rev">
+        <div class="ic">🔐</div>
+        <h3>Cifrado no seu aparelho</h3>
+        <p>A chave nasce da sua senha, no seu aparelho. Sem ela — ou sem a sua chave de recuperação — ninguém abre seus dados. Nem a North.</p>
       </div>
-      <div class="sec-item rev" style="--d:.06s">
-        <span class="chk">◆</span>
-        <div><h4>Código aberto</h4><p>O app é público no GitHub. Qualquer pessoa pode auditar como seus dados são protegidos — confiança que se verifica, não que se pede. <a class="inl" href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Ver o código →</a></p></div>
+      <div class="it rev" style="--d:.08s">
+        <div class="ic">🏦</div>
+        <h3>Nenhum acesso ao seu banco</h3>
+        <p>Você importa só o extrato que quiser. Nenhuma senha de banco, nenhuma conexão com a sua conta.</p>
       </div>
-      <div class="sec-item rev" style="--d:.12s">
-        <span class="chk">◆</span>
-        <div><h4>Nada se conecta ao seu banco</h4><p>Você exporta o extrato e importa só o que quiser. Nenhuma senha de banco, nenhuma inteligência artificial lendo os seus gastos.</p></div>
+      <div class="it rev" style="--d:.16s">
+        <div class="ic">👁️</div>
+        <h3>Código aberto</h3>
+        <p>O app é público no GitHub. Qualquer pessoa pode auditar como seus dados são protegidos — confiança que se verifica, não que se pede.</p>
       </div>
-      <div class="sec-item rev" style="--d:.18s">
-        <span class="chk">◆</span>
-        <div><h4>Verificação em duas etapas</h4><p>Ative o 2FA e o login passa a pedir um código do seu celular (Google Authenticator). Nem sabendo a senha alguém entra.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.08s">
-        <span class="chk">◆</span>
-        <div><h4>Login blindado</h4><p>Captcha invisível bloqueia robôs, senha forte é obrigatória e você recebe um e-mail a cada novo acesso à sua conta.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.16s">
-        <span class="chk">◆</span>
-        <div><h4>Isolamento por usuário</h4><p>Cada conta só enxerga os próprios dados — garantido no nível do banco de dados, não só na tela.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.24s">
-        <span class="chk">◆</span>
-        <div><h4>Servidores no Brasil</h4><p>Sua informação fica hospedada em data center na região de São Paulo.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.32s">
-        <span class="chk">◆</span>
-        <div><h4>Conforme a LGPD</h4><p>Os dados são seus: solicite a exclusão da conta e das informações a qualquer momento. Transparência total nos termos.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.4s">
-        <span class="chk">◆</span>
-        <div><h4>Você no comando</h4><p>Perdeu um aparelho ou usou um computador público? Encerre a sessão em todos os dispositivos com um clique.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.48s">
-        <span class="chk">◆</span>
-        <div><h4>Sessão única</h4><p>Se sua senha for usada em outro navegador ou aparelho, essa sessão anterior é encerrada automaticamente — impossível dois lugares acessarem sua conta ao mesmo tempo.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.56s">
-        <span class="chk">◆</span>
-        <div><h4>Bloqueio por inatividade</h4><p>Ficou alguns minutos sem mexer? A tela borra seus dados sozinha até você confirmar que ainda está ali.</p></div>
-      </div>
-      <div class="sec-item rev" style="--d:.64s">
-        <span class="chk">◆</span>
-        <div><h4>Valores ocultos por padrão</h4><p>Um botão esconde todos os números em R$ da tela — você escolhe quando revelar, mesmo do lado de alguém.</p></div>
+      <div class="it rev" style="--d:.24s">
+        <div class="ic">📦</div>
+        <h3>Seus dados, sua decisão</h3>
+        <p>Exporte tudo em JSON ou planilha quando quiser, ou apague a conta. Servidores em São Paulo, conforme a LGPD.</p>
       </div>
     </div>
+    <p class="sec-more rev"><b>E ainda:</b> verificação em duas etapas · e-mail a cada novo login · sessão única por aparelho · bloqueio por inatividade · valores escondidos por padrão</p>
+    <p class="sec-links rev">
+      <a class="inl" href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Auditar o código no GitHub</a>
+      <span class="sep">·</span>
+      <a class="inl" href="https://github.com/Barssottini/controle-financeiro/blob/main/THREAT_MODEL.md" target="_blank" rel="noopener">Ler nosso modelo de ameaças</a>
+    </p>
+    <p class="sec-honest rev">O modelo de ameaças lista, por escrito, também o que a North <em>não</em> protege. Poucos publicam isso. Nós preferimos que você leia antes de confiar.</p>
   </div>
 </section>
 
@@ -806,7 +925,7 @@
           <li>Conta na nuvem + app de desktop</li>
           <li>Uma conta financeira</li>
         </ul>
-        <a class="btn" data-nf-cta="free" href="https://app.northfinances.com.br" style="width:100%;padding:15px;border:1px solid rgba(255,255,255,.18)">Criar conta grátis</a>
+        <a class="btn" data-nf-cta="signup" href="https://app.northfinances.com.br" style="width:100%;padding:15px;border:1px solid rgba(255,255,255,.18)">Criar conta grátis</a>
         <div class="fineprint">Não pedimos cartão para usar o Free.</div>
       </div>
 
@@ -822,7 +941,7 @@
             <li>Importar cada extrato na conta certa, sem misturar</li>
             <li>Suporte por e-mail</li>
           </ul>
-          <a class="btn btn-gold" data-nf-cta="trial" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Assinar o Pro</a>
+          <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br" style="width:100%;padding:15px">Assinar o Pro</a>
           <div class="fineprint">Lançar gasto por WhatsApp, com IA, chega no Pro em breve.</div>
         </div>
       </div>
@@ -840,8 +959,12 @@
     </div>
     <div class="faq rev">
       <details>
-        <summary>Preciso cadastrar cartão pra testar? <span class="pl">+</span></summary>
+        <summary>Preciso cadastrar cartão? <span class="pl">+</span></summary>
         <div class="ans"><b>Não.</b> O plano Free é gratuito para sempre e não tem limite de lançamentos — você cria a conta só com e-mail e senha, sem cartão. A cobrança só existe se você escolher o Pro.</div>
+      </details>
+      <details>
+        <summary>Qual a diferença entre o Free e o Pro? <span class="pl">+</span></summary>
+        <div class="ans">O <b>Free</b> tem tudo para organizar o dia a dia, sem limite de lançamentos: transações, orçamento por categoria, metas, importação de extrato e exportação dos seus dados. O <b>Pro</b>, por R$ 19,90/mês, acrescenta a carteira de investimentos, as contas a pagar e receber e várias contas separadas — Nubank, Itaú e carteira, cada uma no seu lugar.</div>
       </details>
       <details>
         <summary>Funciona no celular? <span class="pl">+</span></summary>
@@ -857,7 +980,7 @@
       </details>
       <details>
         <summary>Meus dados ficam presos na plataforma? <span class="pl">+</span></summary>
-        <div class="ans">Vale responder isso com precisão, porque são duas coisas diferentes. <b>Sair você sai quando quiser:</b> dá para apagar a conta e tudo que está nela a qualquer momento, direto no app, com 15 dias para se arrepender antes da exclusão definitiva. <b>Levar embora num arquivo, hoje não dá:</b> o North ainda não tem exportação. Seus lançamentos ficam todos visíveis e consultáveis dentro do app, mas não existe um botão que gere um arquivo para abrir em outro lugar. É uma lacuna que reconhecemos — e ela tem um motivo técnico: seus dados são cifrados com uma chave que só existe no seu aparelho, então nem nós conseguimos gerar esse arquivo do nosso lado.</div>
+        <div class="ans"><b>Não.</b> Você exporta tudo quando quiser, direto no app, em <b>Configurações → Seus dados</b>: a conta inteira em JSON ou uma planilha dos lançamentos. E pode apagar a conta e tudo que está nela a qualquer momento, com 15 dias para se arrepender antes da exclusão definitiva.</div>
       </details>
       <details>
         <summary>E se alguém descobrir minha senha? <span class="pl">+</span></summary>
@@ -865,11 +988,11 @@
       </details>
       <details>
         <summary>As contas a pagar me avisam antes de vencer? <span class="pl">+</span></summary>
-        <div class="ans">Sim, <b>dentro do app</b>: o painel destaca as contas que estão perto de vencer ou já vencidas, assim que você abre. Quando marca a conta como paga, a despesa entra automaticamente nas suas transações.</div>
+        <div class="ans">Sim, <b>dentro do app</b> — é um recurso do Pro. O painel destaca as contas que estão perto de vencer ou já vencidas, assim que você abre. Quando marca a conta como paga, a despesa entra automaticamente nas suas transações.</div>
       </details>
       <details>
-        <summary>Como cancelo a assinatura? <span class="pl">+</span></summary>
-        <div class="ans">Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte, sem retenção chata. Seu acesso continua até o fim do período já pago.</div>
+        <summary>Como cancelo o Pro? <span class="pl">+</span></summary>
+        <div class="ans">Dentro do próprio app, em dois cliques — sem ligação, sem e-mail pro suporte, sem retenção chata. O Pro continua até o fim do período já pago e depois você volta para o Free, <b>sem perder nada do que cadastrou</b>.</div>
       </details>
       <details>
         <summary>O Windows mostrou um aviso azul ao instalar. É normal? <span class="pl">+</span></summary>
@@ -880,6 +1003,16 @@
         <div class="ans">É só mandar um e-mail para <b><a href="mailto:suporte@northfinances.com.br" style="color:var(--gold)">suporte@northfinances.com.br</a></b>. Você também encontra esse contato dentro do app, em Configurações → Suporte.</div>
       </details>
     </div>
+  </div>
+</section>
+
+<!-- CHAMADA FINAL -->
+<section class="final" id="comecar">
+  <div class="wrap rev">
+    <h2>Encontre seu <span class="metal-gold">norte financeiro</span></h2>
+    <p>Comece agora. É grátis — e continua sendo.</p>
+    <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br">Criar conta grátis</a>
+    <div class="cta-note">Sem cartão · leva 2 minutos</div>
   </div>
 </section>
 
@@ -897,7 +1030,7 @@
           <a href="https://app.northfinances.com.br">Acessar o app</a>
           <a href="https://github.com/Barssottini/controle-financeiro/releases/latest/download/North-Finances-Setup.exe">Baixar para Windows</a>
           <a href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Código no GitHub</a>
-          <a href="#recursos">Recursos</a>
+          <a href="#vantagens">Vantagens</a>
           <a href="https://app.northfinances.com.br/manual.html" target="_blank" rel="noopener">Manual do usuário</a>
           <a href="#preco">Preço</a>
           <a href="#faq">Perguntas frequentes</a>
@@ -1178,18 +1311,19 @@ if(cv&&!reduced){
 
   // Medição de cliques (só dispara se o pixel estiver carregado = consentido).
   //
-  // "Lead" é reservado para intenção real de testar: os dois CTAs de teste grátis.
-  // Todo o resto que leva ao app (botão do topo, rodapé, manual do usuário) conta
-  // como "ClickApp" — é navegação, não intenção de assinar. Misturar os dois infla
-  // o Lead e faz a campanha otimizar pela métrica errada.
+  // "Lead" é reservado para intenção real de criar conta: todo botão marcado com
+  // data-nf-cta="signup" (herói, seções, preços, chamada final e o "Criar conta"
+  // do topo). O resto que leva ao app ("Entrar", rodapé, manual) conta como
+  // "ClickApp" — é navegação de quem já tem conta. Misturar os dois infla o Lead
+  // e faz a campanha otimizar pela métrica errada.
   function track(ev){ if(window.fbq && window.__nfPixelLoaded){ fbq('track',ev); } }
 
-  var leads=document.querySelectorAll('[data-nf-cta="trial"]');
+  var leads=document.querySelectorAll('[data-nf-cta="signup"]');
   for(var i=0;i<leads.length;i++){
     leads[i].addEventListener('click',function(){ track('Lead'); });
   }
 
-  var outbound=document.querySelectorAll('a[href*="app.northfinances.com.br"]:not([data-nf-cta="trial"])');
+  var outbound=document.querySelectorAll('a[href*="app.northfinances.com.br"]:not([data-nf-cta="signup"])');
   for(var j=0;j<outbound.length;j++){
     outbound[j].addEventListener('click',function(){ track('ClickApp'); });
   }

@@ -85,7 +85,7 @@
           "name": "É necessário conectar minha conta bancária?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Não, e essa é uma escolha deliberada. O North não solicita senhas bancárias. Você registra as movimentações ou importa o extrato (OFX ou CSV) fornecido pelo próprio banco. O acesso à sua conta bancária permanece exclusivamente com você."
+            "text": "Não, e essa é uma escolha deliberada. O North não solicita senhas bancárias. Você registra as movimentações ou importa o extrato (OFX, CSV ou PDF) fornecido pelo próprio banco. O acesso à sua conta bancária permanece exclusivamente com você."
           }
         },
         {
@@ -133,7 +133,7 @@
           "name": "Existe uma versão para o meu negócio?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sim. O North Empresarial é uma conta separada da pessoal, para MEI e pequenos negócios, com painel de faturamento, custos e lucro, lembrete do DAS, teto do MEI e relatório mensal para o contador. O aplicativo para Windows é exclusivo dessa conta."
+            "text": "Sim. O North Empresarial é uma conta separada da pessoal, para MEI e pequenos negócios, com painel de faturamento, custos e lucro, lembrete do DAS, teto do MEI e relatório mensal para o contador. Novos cadastros no aplicativo para Windows são exclusivos da conta Empresarial."
           }
         },
         {
@@ -635,6 +635,33 @@
     .rev,.mock{opacity:1;transform:none}
     .float{opacity:1}
   }
+
+  /* Caminhos de entrada e recursos recentes. */
+  :focus-visible{outline:2px solid var(--gold-soft);outline-offset:5px}
+  .start-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;list-style:none;counter-reset:passo}
+  .start-step{padding:28px 0;border-top:1px solid var(--line);counter-increment:passo}
+  .start-step::before{content:'0' counter(passo);display:block;font-family:var(--ff-display);font-size:2.7rem;color:var(--gold-soft);margin-bottom:14px}
+  .start-step h3,.new-card h3{font-size:1.12rem;margin-bottom:10px}
+  .start-step p,.new-card p{color:var(--muted);font-size:.94rem}
+  .new-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .new-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card)}
+  .new-copy{padding:28px}
+  .new-copy .kick{display:block;margin-bottom:12px}
+  .new-shot{background:#0d0d0d;border-top:1px solid var(--line);padding:16px 16px 0}
+  .new-shot img{display:block;width:100%;height:auto;border-radius:10px 10px 0 0}
+  .new-small{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .new-small article{padding:24px;border:1px solid var(--line);border-radius:16px}
+  .new-small h3{font-size:1rem;margin-bottom:9px}
+  .new-small p{color:var(--muted);font-size:.9rem}
+  .business-band{padding:60px 0;border-block:1px solid rgba(200,144,58,.25);background:linear-gradient(115deg,rgba(200,144,58,.11),transparent 65%)}
+  .business-inner{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .business-band h2{font-family:var(--ff-display);font-size:clamp(2.1rem,4vw,3rem);line-height:1.15;margin:8px 0 18px}
+  .business-band p{color:var(--muted);margin-bottom:24px}
+  .business-band img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 50px #0005}
+  .billing-note{max-width:740px;margin:30px auto 0;padding:18px 22px;border:1px solid rgba(200,144,58,.3);border-radius:14px;color:#c9c4bd;text-align:center;font-size:.9rem}
+  .billing-note strong{color:var(--gold-soft)}
+  .plans-more{text-align:center;margin-top:25px}
+  @media(max-width:760px){.start-steps,.new-grid,.new-small,.business-inner{grid-template-columns:1fr}.start-steps{gap:0}.start-step{padding:22px 0}.new-copy{padding:24px}.business-inner{gap:28px}.new-small{gap:16px}}
 </style>
 </head>
 <body>
@@ -648,7 +675,7 @@
       <div class="nav-links" id="nav-links">
         <a class="link" href="#recursos">Recursos</a>
         <a class="link" href="#seguranca">Segurança</a>
-        <a class="link" href="#preco">Planos</a>
+        <a class="link" href="/precos">Planos</a>
         <a class="link" href="/empresarial">Empresarial</a>
         <span class="nav-actions">
           <a class="btn btn-ghost" href="https://app.northfinances.com.br">Entrar</a>
@@ -733,6 +760,18 @@
   </div>
 </div>
 
+<!-- COMO FUNCIONA -->
+<section class="block" id="como-funciona" aria-labelledby="como-titulo">
+  <div class="wrap">
+    <div class="sec-head rev"><h2 id="como-titulo">Como funciona em <span class="metal-gold">3 passos</span></h2><p>Comece com o que você já tem: o extrato do banco e seus objetivos.</p></div>
+    <ol class="start-steps">
+      <li class="start-step rev"><h3>Crie sua conta</h3><p>Escolha Pessoal, cadastre e-mail e senha e guarde sua chave de recuperação. Sem cartão de crédito.</p></li>
+      <li class="start-step rev"><h3>Traga suas movimentações</h3><p>Importe o extrato em OFX, CSV ou PDF, leia um comprovante ou registre na mão. Confira os valores antes de salvar.</p></li>
+      <li class="start-step rev"><h3>Acompanhe o mês</h3><p>Veja receitas e despesas por categoria, defina o orçamento e acompanhe suas metas no navegador ou no celular.</p></li>
+    </ol>
+  </div>
+</section>
+
 <!-- RECURSOS -->
 <section class="block" id="recursos">
   <div class="wrap">
@@ -749,7 +788,7 @@
       <div class="feat rev" style="--d:.08s">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 17v3h16v-3"/></svg></div>
         <h3>Importação de extratos</h3>
-        <p>Importe arquivos OFX ou CSV do seu banco. As transações são organizadas automaticamente, sem duplicidade.</p>
+        <p>Importe arquivos OFX, CSV ou PDF do seu banco. As transações são organizadas automaticamente, sem duplicidade.</p>
       </div>
       <div class="feat rev" style="--d:.16s">
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
@@ -762,6 +801,23 @@
         <p>Acesse pelo navegador ou adicione à tela inicial do celular. Os dados são sincronizados. Tem um negócio? Conheça o <a class="inl" href="/empresarial">North Empresarial</a>.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- NOVIDADES -->
+<section class="block" id="novidades" aria-labelledby="novidades-titulo">
+  <div class="wrap">
+    <div class="sec-head rev"><h2 id="novidades-titulo">Mais clareza, <span class="metal-gold">menos trabalho manual</span></h2><p>Novidades que já estão no North. As telas abaixo usam dados de demonstração.</p></div>
+    <div class="new-grid">
+      <article class="new-card rev"><div class="new-copy"><span class="kick">Quem me deve · Free</span><h3>Cada valor, com nome e data</h3><p>Registre empréstimos, vendas e divisões de conta por pessoa. Acompanhe o que falta receber e dê baixa quando o pagamento chegar.</p></div><div class="new-shot"><img src="img/devedores-1.png" loading="lazy" alt="Tela Quem me deve do North, com valores por pessoa e datas combinadas."></div></article>
+      <article class="new-card rev"><div class="new-copy"><span class="kick">Orçamento por IA · Pro</span><h3>Uma sugestão para os seus limites</h3><p>Peça uma recomendação com base nos totais do orçamento. Você confere o resumo enviado à Anthropic e decide se quer aplicar os limites.</p></div><div class="new-shot"><img src="img/ia-1.png" loading="lazy" alt="Tela de recomendação do orçamento por IA, com a explicação do resumo enviado e confirmação do usuário."></div></article>
+    </div>
+    <div class="new-small">
+      <article class="rev"><h3>Do comprovante ao lançamento</h3><p>Leia uma imagem ou PDF, confira o valor e salve. Ao importar extratos, o North aprende as categorias que você usa para cada loja.</p></article>
+      <article class="rev"><h3>Confira a fatura do cartão</h3><p>Compare o arquivo do banco com seus lançamentos e encontre o que falta ou tem um valor diferente.</p></article>
+      <article class="rev"><h3>Seu jeito de usar</h3><p>Desbloqueio pelo aparelho, com Face ID, digital ou Windows Hello quando disponível, e uma opção de cores para daltonismo.</p></article>
+    </div>
+    <p class="plans-more rev"><a class="inl" href="https://app.northfinances.com.br/manual.html">Ver como usar no manual</a></p>
   </div>
 </section>
 
@@ -912,6 +968,14 @@
   </div>
 </section>
 
+<!-- NORTH EMPRESARIAL -->
+<section class="business-band" aria-labelledby="empresa-titulo">
+  <div class="wrap business-inner">
+    <div class="rev"><span class="kick">Tem CNPJ?</span><h2 id="empresa-titulo">Um North para <span class="metal-gold">o seu negócio</span></h2><p>Faturamento, custos, lucro e retiradas do dono em uma conta Empresarial separada da pessoal. Para MEI e pequenos negócios, com relatório mensal para o contador.</p><a class="btn btn-gold" href="/empresarial">Conhecer o North Empresarial</a></div>
+    <img class="rev" src="img/emp-painel-1.png" width="1440" height="735" loading="lazy" alt="Painel do North Empresarial com faturamento, custos, lucro, lembrete do DAS e teto do MEI. Dados de demonstração.">
+  </div>
+</section>
+
 <!-- PREÇO -->
 <section class="block" id="preco">
   <div class="wrap">
@@ -928,7 +992,7 @@
         <ul>
           <li>Lançamentos e transações ilimitados</li>
           <li>Orçamento por categoria e metas</li>
-          <li>Importação de extratos (OFX e CSV)</li>
+          <li>Importação de extratos (OFX, CSV e PDF)</li>
           <li>Criptografia de ponta a ponta e 2FA</li>
           <li>Exportação dos seus dados</li>
           <li>Uma conta financeira</li>
@@ -949,14 +1013,16 @@
             <li>Contas a pagar e receber</li>
             <li>Múltiplas contas, com saldo consolidado</li>
             <li>Importação de extratos por conta</li>
-            <li class="soon">Em breve: lançamentos por WhatsApp</li>
+            <li>Recomendação do orçamento por IA</li>
           </ul>
-          <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br" style="width:100%;padding:16px">Assinar o Pro</a>
-          <div class="fineprint">Pagamento processado pelo Stripe.</div>
+          <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br" style="width:100%;padding:16px">Criar conta gratuita</a>
+          <div class="fineprint">Assinaturas pagas temporariamente indisponíveis.</div>
         </div>
       </div>
 
     </div>
+    <p class="billing-note rev"><strong>Pagamentos pausados.</strong> Novas assinaturas pagas estão temporariamente indisponíveis. Você pode criar sua conta sem cartão. O preço de referência do Pro é R$ 19,90 por mês.</p>
+    <p class="plans-more rev"><a class="inl" href="/precos">Comparar os planos Pessoal e Empresarial</a></p>
   </div>
 </section>
 
@@ -982,7 +1048,7 @@
       </details>
       <details>
         <summary>É necessário conectar minha conta bancária? <span class="pl">+</span></summary>
-        <div class="ans"><b>Não, e essa é uma escolha deliberada.</b> O North não solicita senhas bancárias. Você registra as movimentações ou importa o extrato (OFX ou CSV) fornecido pelo próprio banco. O acesso à sua conta bancária permanece exclusivamente com você.</div>
+        <div class="ans"><b>Não, e essa é uma escolha deliberada.</b> O North não solicita senhas bancárias. Você registra as movimentações ou importa o extrato (OFX, CSV ou PDF) fornecido pelo próprio banco. O acesso à sua conta bancária permanece exclusivamente com você.</div>
       </details>
       <details>
         <summary>A North tem acesso aos meus dados financeiros? <span class="pl">+</span></summary>
@@ -1006,7 +1072,7 @@
       </details>
       <details>
         <summary>Existe uma versão para o meu negócio? <span class="pl">+</span></summary>
-        <div class="ans"><b>Sim.</b> O <a class="inl" href="/empresarial">North Empresarial</a> é uma conta separada da pessoal, para MEI e pequenos negócios, com painel de faturamento, custos e lucro, lembrete do DAS, teto do MEI e relatório mensal para o contador. O aplicativo para Windows é exclusivo dessa conta.</div>
+        <div class="ans"><b>Sim.</b> O <a class="inl" href="/empresarial">North Empresarial</a> é uma conta separada da pessoal, para MEI e pequenos negócios, com painel de faturamento, custos e lucro, lembrete do DAS, teto do MEI e relatório mensal para o contador. Novos cadastros no aplicativo para Windows são exclusivos da conta Empresarial.</div>
       </details>
       <details>
         <summary>Como entro em contato com o suporte? <span class="pl">+</span></summary>
@@ -1042,7 +1108,7 @@
           <a href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Código no GitHub</a>
           <a href="#recursos">Recursos</a>
           <a href="https://app.northfinances.com.br/manual.html" target="_blank" rel="noopener">Manual do usuário</a>
-          <a href="#preco">Planos</a>
+          <a href="/precos">Planos</a>
           <a href="#faq">Perguntas frequentes</a>
         </div>
         <div class="foot-col">

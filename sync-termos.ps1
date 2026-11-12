@@ -55,12 +55,13 @@ if (Test-Path $appFile) {
   # comidas por uma camada de escape no caminho. O regex casou com nada, o teste
   # passou em silencio e o verificador nasceu morto. Classe de caractere explicita
   # nao tem como ser destruida assim.
-  $mData = [regex]::Match($termosTxt, 'atualiza[^:]*: *([0-9]{1,2}) +de +([^ ]+) +de +([0-9]{4})')
-  $mCons = [regex]::Match($appTxt,    "TERMOS_VERSAO *= *'([0-9-]+)'")
+  $mData = [regex]::Match($termosTxt, 'atualiza[^:]*: *([0-9]{1,2}) +de +([^ ]+) +de +([0-9]{4})(?:[^<]*revis[^0-9<]*([0-9]+))?')
+  $mCons = [regex]::Match($appTxt,    "TERMOS_VERSAO *= *'([0-9.-]+)'")
   if ($mData.Success -and $mCons.Success) {
     $chave = $mData.Groups[2].Value.Substring(0,3).ToLower()
     if ($meses.ContainsKey($chave)) {
       $esperado = '{0}-{1}-{2:D2}' -f $mData.Groups[3].Value, $meses[$chave], [int]$mData.Groups[1].Value
+      if ($mData.Groups[4].Success) { $esperado += '.' + $mData.Groups[4].Value }
       $atual    = $mCons.Groups[1].Value
       if ($esperado -ne $atual) {
         $drift = $true

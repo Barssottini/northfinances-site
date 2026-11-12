@@ -4,7 +4,10 @@
   "installCommand": "",
   "buildCommand": "",
   "outputDirectory": ".",
-  "rewrites": [{ "source": "/empresarial", "destination": "/empresarial.html" }],
+  "rewrites": [
+    { "source": "/empresarial", "destination": "/empresarial.html" },
+    { "source": "/precos", "destination": "/precos.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

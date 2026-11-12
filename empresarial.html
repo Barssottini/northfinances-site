@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North Empresarial — para MEI e pequenos negócios</title>
+<meta name="description" content="Controle financeiro para MEI e pequenos negócios: faturamento, custos e lucro no painel, lembrete do DAS, teto do MEI acompanhado, contas a receber e relatório mensal para o contador. Com criptografia de ponta a ponta.">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<meta property="og:title" content="North Empresarial — para MEI e pequenos negócios">
+<meta property="og:description" content="Faturamento, custos e lucro no painel, lembrete do DAS, teto do MEI e relatório mensal para o contador.">
+<meta property="og:image" content="https://northfinances.com.br/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://northfinances.com.br/empresarial">
+<meta property="og:site_name" content="North Finances">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://northfinances.com.br/empresarial">
+<link rel="apple-touch-icon" href="logo-192.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "É necessário informar o CNPJ para criar a conta Empresarial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. O cadastro exige apenas e-mail e senha. O North não solicita documentos nem se conecta à conta bancária da empresa." }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso usar o mesmo e-mail da minha conta pessoal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. A conta Pessoal e a conta Empresarial são separadas, cada uma com o seu e-mail e a sua senha. Quem usa Gmail pode criar a segunda conta com um endereço como nome+empresa@gmail.com: as mensagens chegam à mesma caixa de entrada." }
+    },
+    {
+      "@type": "Question",
+      "name": "Já tenho uma conta pessoal. Posso transformá-la em Empresarial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. O tipo da conta é escolhido no cadastro e não muda depois. Para o negócio, crie uma conta Empresarial e importe o extrato da conta bancária da empresa." }
+    },
+    {
+      "@type": "Question",
+      "name": "O North Empresarial atende quem não é MEI?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. No cadastro você informa o regime: MEI, Simples Nacional ou Lucro Presumido ou Real. O lembrete do DAS vale para MEI e Simples Nacional; o acompanhamento do teto de faturamento, apenas para MEI. O painel de faturamento, custos e lucro vale para todos." }
+    },
+    {
+      "@type": "Question",
+      "name": "O North emite nota fiscal ou a guia do DAS?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. O North é uma ferramenta de controle financeiro. A guia do DAS é emitida e paga nos canais oficiais; depois de pagar, você registra o lançamento em Impostos e o painel marca o mês como pago." }
+    },
+    {
+      "@type": "Question",
+      "name": "O relatório mensal substitui o contador?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. O relatório reúne faturamento, custos por categoria, retiradas e os lançamentos do mês, como apoio ao trabalho do contador. Ele não substitui a escrituração contábil." }
+    },
+    {
+      "@type": "Question",
+      "name": "O Windows exibiu um aviso ao instalar o aplicativo. É normal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. Trata-se do SmartScreen, aviso padrão do Windows para aplicativos de desenvolvedores independentes. Selecione \"Mais informações\" e, em seguida, \"Executar assim mesmo\". O instalador é o aplicativo oficial da North Finances." }
+    },
+    {
+      "@type": "Question",
+      "name": "A North tem acesso aos dados financeiros da minha empresa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. Os dados são criptografados no seu próprio dispositivo antes de serem enviados à nuvem; em nossos servidores permanece apenas conteúdo cifrado. Há uma exceção, opcional: no plano Pro, ao solicitar a recomendação do orçamento por IA, um resumo com os totais de cada categoria é enviado à Anthropic. O aplicativo exibe antes o que será enviado." }
+    }
+  ]
+}
+</script>
+<style>
+  /* Mesma identidade da página inicial (index.html): cores, tipografia e componentes
+     vêm de lá. Ao mudar um componente compartilhado, mude nas duas páginas. */
+  :root{
+    --ink:#0d0d0d; --ink2:#141414; --card:#181816; --line:#2a2926;
+    --gold:#c8903a; --gold-soft:#e0b878; --paper:#faf9f7; --muted:#9b958e;
+    --green:#7dc98f; --red:#e07d6d;
+    --radius:16px; --maxw:1120px;
+    --ff-display:'Playfair Display',Georgia,'Times New Roman',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--paper);
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:120;pointer-events:none;opacity:.028;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  ::selection{background:rgba(200,144,58,.35);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .metal-gold{
+    background:linear-gradient(100deg,#a06e22 0%,#e4bd70 18%,#fff2d4 32%,#e6bd6e 46%,#c8903a 60%,#fbe6b4 78%,#c8903a 100%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation:sheen 6s linear infinite}
+  @keyframes sheen{to{background-position:220% 0}}
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:100;
+    background:linear-gradient(90deg,#a06e22,#e4bd70,#c8903a);box-shadow:0 0 12px rgba(200,144,58,.6)}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;padding:14px 0 0;background:transparent}
+  nav{position:relative;max-width:1040px;margin:0 auto;display:flex;align-items:center;height:62px;padding:0 9px 0 20px;
+    background:rgba(18,18,16,.74);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.08);border-radius:100px;box-shadow:0 10px 40px rgba(0,0,0,.35);
+    transition:background .3s,border-color .3s,box-shadow .3s}
+  header.scrolled nav{background:rgba(18,18,16,.92);border-color:rgba(200,144,58,.24);box-shadow:0 14px 44px rgba(0,0,0,.55)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;letter-spacing:-.01em;flex:none}
+  .brand img{width:32px;height:32px;border-radius:8px}
+  .brand b{font-weight:inherit;white-space:nowrap}
+  .brand b span{margin-left:4px}
+  .brand span{background:linear-gradient(177deg,#fde7bd 0%,#e6bd6e 22%,#c8903a 48%,#a06e22 60%,#e4bd70 82%,#fbe6b4 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .nav-links{flex:1;display:flex;align-items:center;gap:24px}
+  .nav-links a.link:first-child{margin-left:auto}
+  .nav-links a.link{color:var(--muted);font-size:.93rem;font-weight:500;transition:color .2s;position:relative}
+  .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--gold);transition:width .25s ease}
+  .nav-links a.link:hover{color:var(--paper)}
+  .nav-links a.link:hover::after{width:100%}
+  .nav-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+  .nav-actions .btn{padding:10px 19px;font-size:.9rem}
+  .btn{position:relative;display:inline-block;padding:11px 22px;border-radius:100px;font-weight:600;font-size:.95rem;
+    transition:transform .15s ease,box-shadow .2s ease,background .2s,border-color .2s,color .2s;
+    cursor:pointer;border:none;white-space:nowrap;overflow:hidden}
+  .btn-gold{background:linear-gradient(180deg,#f4d488 0%,#dcae54 44%,#c8903a 54%,#b17d2c 100%);color:#2a1c05;
+    box-shadow:0 4px 20px rgba(200,144,58,.34),inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.18)}
+  .btn-gold:hover{transform:translateY(-2px);
+    background:linear-gradient(180deg,#fbe3a2 0%,#e6b95f 44%,#d29a40 54%,#bd872f 100%);
+    box-shadow:0 10px 32px rgba(200,144,58,.52),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(0,0,0,.18)}
+  .btn-ghost{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,.14)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
+  .menu-btn{display:none;background:transparent;border:1px solid var(--line);border-radius:50%;width:42px;height:42px;
+    cursor:pointer;padding:0;flex:none;margin-left:auto;align-items:center;justify-content:center;gap:4px;flex-direction:column}
+  .menu-btn:hover{border-color:var(--gold)}
+  .menu-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .menu-btn i{display:block;width:17px;height:1.5px;background:var(--paper);border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+  .menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  @media(max-width:920px){
+    nav{padding:0 9px 0 18px}
+    .menu-btn{display:flex}
+    .nav-links{position:absolute;left:0;right:0;top:calc(100% + 8px);flex-direction:column;align-items:stretch;gap:0;
+      background:#141412;border:1px solid rgba(255,255,255,.08);border-radius:22px;box-shadow:0 24px 50px rgba(0,0,0,.6);
+      padding:8px 18px 18px;opacity:0;visibility:hidden;transform:translateY(-8px);
+      transition:opacity .22s ease,transform .22s ease,visibility .22s}
+    .nav-links.open{opacity:1;visibility:visible;transform:none}
+    .nav-links a.link,.nav-links a.link:first-child{padding:13px 2px;font-size:1rem;border-bottom:1px solid var(--line);margin-left:0}
+    .nav-links a.link::after{display:none}
+    .nav-actions{margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .nav-actions .btn{text-align:center;padding:12px 10px}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:74px 0 0;text-align:center;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;
+    background:radial-gradient(760px 480px at 50% -10%,rgba(200,144,58,.20),transparent 70%)}
+  .hero .wrap{position:relative;z-index:1}
+  .selo{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-soft);border:1px solid rgba(200,144,58,.42);background:rgba(200,144,58,.08);border-radius:100px;padding:7px 16px;margin-bottom:26px}
+  .selo i{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .selo span{color:var(--muted);letter-spacing:.06em;text-transform:none;font-weight:500;font-size:.82rem}
+  h1{font-family:var(--ff-display);font-size:clamp(2.45rem,6vw,4.3rem);line-height:1.04;letter-spacing:-.025em;
+    font-weight:600;max-width:880px;margin:0 auto 22px;text-wrap:balance}
+  .hero p.sub{font-size:clamp(1.05rem,2.3vw,1.2rem);color:var(--muted);max-width:660px;margin:0 auto 32px;text-wrap:pretty}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cta-row .btn{padding:16px 34px;font-size:1.04rem}
+  .cta-note{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  .hero .up{opacity:0;transform:translateY(22px);animation:rise .8s cubic-bezier(.22,.8,.3,1) forwards}
+  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.17s}.hero .d3{animation-delay:.29s}.hero .d4{animation-delay:.4s}.hero .d5{animation-delay:.55s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .hero-shot{position:relative;max-width:1060px;margin:58px auto 0}
+  .hero-shot::before{content:"";position:absolute;left:10%;right:10%;top:-30px;height:70%;z-index:0;pointer-events:none;
+    background:radial-gradient(50% 50% at 50% 40%,rgba(200,144,58,.24),transparent 70%);filter:blur(34px)}
+
+  /* ---------- TELA REAL DO APP ---------- */
+  /* janela de navegador com o endereço do app, como manda o manual de marca */
+  .shot{position:relative;z-index:1;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0f0e0d;text-align:left;
+    box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.03),0 20px 60px rgba(200,144,58,.07)}
+  .shot-bar{display:flex;align-items:center;gap:7px;height:36px;padding:0 14px;background:#171614;border-bottom:1px solid var(--line)}
+  .shot-bar i{width:9px;height:9px;border-radius:50%;background:#35322d;flex:none}
+  .shot-bar span{margin:0 auto;font-size:.72rem;color:var(--muted);background:#100f0e;border:1px solid var(--line);border-radius:100px;padding:2px 16px;transform:translateX(-17px)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.papel{background:#fff;border-color:#3a3631}
+  /* a mesma tela no celular, em moldura de aparelho */
+  .fone{position:relative;z-index:1;width:min(330px,100%);margin:0 auto;background:#0a0a09;border-radius:44px;padding:9px;
+    border:1px solid rgba(200,144,58,.30);
+    box-shadow:0 0 0 2px #1c1a17,0 50px 100px rgba(0,0,0,.65),0 20px 60px rgba(200,144,58,.10),inset 0 0 0 1px rgba(255,255,255,.05)}
+  .fone img{display:block;width:100%;height:auto;border-radius:36px}
+  /* recorte de uma tela: mostra só a janela de atalhos */
+  .recorte{overflow:hidden;aspect-ratio:560/520}
+  .recorte img{display:block;max-width:none;width:calc(1440/560*100%);margin-left:calc(440/560*-100%);margin-top:calc(108/560*-100%)}
+  .so-cel{display:none}
+  @media(max-width:700px){.so-pc{display:none}.so-cel{display:block}}
+
+  /* ---------- FAIXA DE NÚMEROS ---------- */
+  .stats-strip{padding:64px 0 8px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+  @media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:28px 12px}}
+  .stat .n{font-family:var(--ff-display);font-size:clamp(1.6rem,3.1vw,2.3rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .stat .t{color:var(--muted);font-size:.88rem;margin-top:2px;max-width:220px;margin-left:auto;margin-right:auto}
+
+  /* ---------- SEÇÕES ---------- */
+  section.block{padding:88px 0;border-top:1px solid var(--line)}
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 54px}
+  .sec-head h2{font-family:var(--ff-display);font-size:clamp(1.9rem,4.2vw,2.65rem);letter-spacing:-.015em;font-weight:600;margin-bottom:14px;text-wrap:balance}
+  .sec-head p{color:var(--muted);font-size:1.06rem}
+  .rev{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.8,.3,1) var(--d,0s),transform .7s cubic-bezier(.22,.8,.3,1) var(--d,0s)}
+  .rev.in{opacity:1;transform:none}
+
+  .alt{padding:96px 0;border-top:1px solid var(--line)}
+  .alt-row{display:grid;grid-template-columns:1fr 1.08fr;gap:64px;align-items:center}
+  .alt.flip .alt-txt{order:2}
+  .alt.estreito .alt-row{grid-template-columns:1.1fr .9fr}
+  @media(max-width:860px){
+    .alt{padding:72px 0}
+    .alt-row,.alt.estreito .alt-row{grid-template-columns:1fr;gap:38px}
+    .alt.flip .alt-txt{order:0}
+  }
+  .kick{display:inline-flex;align-items:center;gap:10px;font-size:.76rem;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .kick::before{content:"";width:22px;height:1.5px;background:var(--gold);flex:none}
+  .alt-txt h2{font-family:var(--ff-display);font-size:clamp(1.95rem,4vw,2.85rem);line-height:1.08;letter-spacing:-.02em;
+    font-weight:600;margin-bottom:18px;text-wrap:balance}
+  .alt-txt p{color:var(--muted);font-size:1.06rem;max-width:500px;margin-bottom:22px;text-wrap:pretty}
+  .alt-txt .btn{padding:14px 30px}
+  .pro-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:3px 9px;border-radius:100px;
+    background:rgba(200,144,58,.16);border:1px solid rgba(200,144,58,.42);color:var(--gold-soft);line-height:1.4}
+  /* lista de fatos: número ou termo em destaque, explicação ao lado */
+  .fatos{list-style:none;display:grid;gap:0;margin:0 0 30px;max-width:500px}
+  .fatos li{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--line);font-size:.95rem;color:var(--muted);align-items:baseline}
+  .fatos li:last-child{border-bottom:1px solid var(--line)}
+  .fatos b{color:var(--paper);font-weight:700;font-variant-numeric:tabular-nums}
+  @media(max-width:480px){.fatos li{grid-template-columns:1fr;gap:2px}}
+  .teclas{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 0 26px;max-width:500px;font-size:.9rem;color:var(--muted)}
+  .teclas span{display:inline-flex;align-items:center;gap:7px}
+  kbd{display:inline-block;min-width:26px;text-align:center;font-family:inherit;font-size:.78rem;font-weight:700;color:var(--paper);
+    background:#1c1a17;border:1px solid #35322d;border-bottom-width:2px;border-radius:7px;padding:3px 8px}
+  .nota{font-size:.84rem;color:var(--muted);opacity:.85;max-width:500px;margin-top:16px}
+  a.inl{color:var(--gold-soft);font-weight:600;border-bottom:1px solid rgba(200,144,58,.35)}
+  a.inl:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* ---------- 3 PASSOS ---------- */
+  .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.steps3{grid-template-columns:1fr}}
+  .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px 28px;transition:border-color .25s,transform .2s}
+  .step:hover{border-color:rgba(200,144,58,.45);transform:translateY(-3px)}
+  .step .n{font-family:var(--ff-display);font-size:2.7rem;font-weight:600;line-height:1;margin-bottom:18px;display:inline-block}
+  .step h3{font-size:1.14rem;margin-bottom:8px;letter-spacing:-.01em}
+  .step p{color:var(--muted);font-size:.96rem}
+
+  /* ---------- SEGURANÇA ---------- */
+  .sec-security{background:var(--ink2)}
+  .sec4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:980px){.sec4{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.sec4{grid-template-columns:1fr}}
+  .sec4 .it{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:border-color .25s,transform .2s}
+  .sec4 .it:hover{border-color:rgba(200,144,58,.45);transform:translateY(-3px)}
+  .sec4 .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(200,144,58,.12);margin-bottom:16px}
+  .sec4 .ic svg{width:22px;height:22px;fill:none;stroke:var(--gold-soft);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .sec4 h3{font-size:1.06rem;margin-bottom:8px;letter-spacing:-.01em}
+  .sec4 p{color:var(--muted);font-size:.93rem}
+  .sec-honest{text-align:center;margin:30px auto 0;font-size:.86rem;color:var(--muted);opacity:.82;max-width:660px}
+
+  /* ---------- PLANOS (provisório: o plano próprio do Empresarial ainda será definido) ---------- */
+  .planos{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:880px;margin:0 auto}
+  @media(max-width:760px){.planos{grid-template-columns:1fr}}
+  .plano{background:linear-gradient(180deg,var(--card),#121210);border:1px solid var(--line);border-radius:24px;padding:38px 34px}
+  .plano.destaque{border-color:rgba(200,144,58,.5);box-shadow:0 24px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)}
+  .plano .nome{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#b5afa9;margin-bottom:12px}
+  .plano.destaque .nome{color:var(--gold)}
+  .plano .valor{font-family:var(--ff-display);font-size:3rem;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .plano .valor small{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:var(--muted);font-weight:500;letter-spacing:0}
+  .plano .obs{color:var(--muted);font-size:.92rem;margin-top:4px}
+  .plano ul{list-style:none;margin:24px 0 28px}
+  .plano li{padding:7px 0;color:var(--muted);display:flex;gap:10px;font-size:.96rem}
+  .plano li::before{content:"✓";color:var(--gold);font-weight:700}
+  .plano .btn{width:100%;text-align:center;padding:14px}
+  .planos-nota{text-align:center;color:var(--muted);font-size:.86rem;margin:26px auto 0;max-width:620px}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:720px;margin:0 auto}
+  .faq details{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden;transition:border-color .25s}
+  .faq details[open]{border-color:rgba(200,144,58,.45)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-weight:600;font-size:1rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{color:var(--gold);font-size:1.3rem;font-weight:400;transition:transform .3s ease;flex-shrink:0;line-height:1}
+  .faq details[open] summary .pl{transform:rotate(45deg)}
+  .faq .ans{padding:0 22px 20px;color:var(--muted);font-size:.94rem}
+  .faq .ans b{color:var(--paper);font-weight:600}
+
+  /* ---------- CHAMADA FINAL + RODAPÉ ---------- */
+  .final{position:relative;padding:112px 0 104px;text-align:center;border-top:1px solid var(--line);overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(640px 360px at 50% 100%,rgba(200,144,58,.16),transparent 70%)}
+  .final .wrap{position:relative}
+  .final h2{font-family:var(--ff-display);font-size:clamp(2.2rem,5.2vw,3.6rem);line-height:1.05;letter-spacing:-.02em;font-weight:600;margin-bottom:16px;text-wrap:balance}
+  .final p{color:var(--muted);font-size:1.12rem;margin:0 auto 32px;max-width:540px}
+  .final .btn{padding:16px 36px;font-size:1.04rem}
+  footer{border-top:1px solid var(--line);padding:52px 0 40px;color:var(--muted)}
+  .foot-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:34px}
+  .foot-brand{max-width:300px}
+  .foot-brand .brand{margin-bottom:12px;color:var(--paper)}
+  .foot-brand p{font-size:.9rem}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap}
+  .foot-col h5{color:var(--paper);font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .foot-col a{display:block;font-size:.94rem;margin-bottom:9px;color:var(--muted);transition:color .2s}
+  .foot-col a:hover{color:var(--gold-soft)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;font-size:.84rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .metal-gold{animation:none}
+    .rev,.hero .up{opacity:1;transform:none}
+  }
+
+  /* ---------- AVISO DE COOKIES ---------- */
+  .nf-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;background:rgba(20,20,18,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.5);padding:16px 18px;max-width:720px;margin:0 auto}
+  .nf-cookie-in{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .nf-cookie-txt{flex:1;min-width:240px;font-size:.9rem;line-height:1.5;color:#c9c4bd}
+  .nf-cookie-txt strong{display:block;color:var(--paper);font-weight:700;margin-bottom:2px}
+  .nf-cookie-btns{display:flex;gap:10px;flex-shrink:0}
+  .nf-cookie-btn{border:0;border-radius:10px;padding:10px 20px;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:filter .2s,background .2s,border-color .2s,color .2s}
+  .nf-cookie-btn.gold{background:var(--gold);color:var(--ink)}
+  .nf-cookie-btn.gold:hover{filter:brightness(1.08)}
+  .nf-cookie-btn.ghost{background:transparent;color:#c9c4bd;border:1px solid var(--line)}
+  .nf-cookie-btn.ghost:hover{border-color:var(--muted);color:var(--paper)}
+  .nf-cookie-btn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+  @media(max-width:520px){.nf-cookie-btns{width:100%}.nf-cookie-btn{flex:1}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="hdr">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/empresarial"><img src="logo.png" alt=""><b>North <span>Empresarial</span></b></a>
+      <div class="nav-links" id="nav-links">
+        <a class="link" href="#painel">Painel</a>
+        <a class="link" href="#contador">Contador</a>
+        <a class="link" href="#windows">Windows</a>
+        <a class="link" href="#planos">Planos</a>
+        <a class="link" href="/">North Pessoal</a>
+        <span class="nav-actions">
+          <a class="btn btn-ghost" href="https://app.northfinances.com.br">Entrar</a>
+          <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Criar conta</a>
+        </span>
+      </div>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+        <i></i><i></i><i></i>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="selo up d1">North Empresarial <i></i> <span>para MEI e pequenos negócios</span></div>
+    <h1 class="up d2">O lucro do seu negócio, <span class="metal-gold">à vista todos os dias</span></h1>
+    <p class="sub up d3">Faturamento, custos e lucro em um painel. Lembrete do DAS, teto do MEI acompanhado e relatório mensal para o contador. Os dados são criptografados no seu dispositivo, sem acesso à conta bancária da empresa.</p>
+    <div class="cta-row up d4">
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Criar conta Empresarial</a>
+      <a class="btn btn-ghost" href="#painel">Conhecer o painel</a>
+    </div>
+    <div class="cta-note up d4">Conta gratuita, sem cartão de crédito · separada da sua conta pessoal</div>
+
+    <div class="hero-shot up d5">
+      <div class="shot so-pc">
+        <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.northfinances.com.br</span></div>
+        <img src="img/emp-painel-1.png" width="1440" height="735" alt="Painel do North Empresarial em novembro de 2026: lucro do período de R$ 9.066,00 com margem de 78%, faturamento de R$ 11.600,00, custos e despesas de R$ 2.534,00, lembrete do DAS, teto do MEI em 88% e retiradas do dono.">
+      </div>
+      <div class="fone so-cel">
+        <img src="img/emp-painel-cel-1.png" width="500" height="1040" alt="Painel do North Empresarial no celular: lucro do período, faturamento, custos, lembrete do DAS, teto do MEI e retiradas do dono.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<div class="stats-strip">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rev"><div class="n"><span class="metal-gold">Dia 20</span></div><div class="t">vencimento do DAS, com lembrete no painel</div></div>
+      <div class="stat rev" style="--d:.1s"><div class="n"><span class="metal-gold">R$ 81 mil</span></div><div class="t">teto do MEI em 2026, acompanhado mês a mês</div></div>
+      <div class="stat rev" style="--d:.2s"><div class="n"><span class="metal-gold">1 folha</span></div><div class="t">relatório mensal para o contador, em PDF</div></div>
+      <div class="stat rev" style="--d:.3s"><div class="n"><span class="metal-gold">3 formatos</span></div><div class="t">de extrato na importação: OFX, CSV e PDF</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. PAINEL -->
+<section class="alt estreito" id="painel">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">Painel</span>
+      <h2>Faturamento, custos e lucro, <span class="metal-gold">sem planilha</span></h2>
+      <p>As categorias já são as de um negócio: vendas, serviços, fornecedores, impostos, folha, aluguel, marketing. O painel soma o mês e apresenta o resultado.</p>
+      <ul class="fatos">
+        <li><b>Lucro e margem</b><span>Faturamento menos custos, com a margem do período em porcentagem.</span></li>
+        <li><b>Retiradas</b><span>O que sai para o dono fica fora dos custos e é comparado com o lucro: o painel indica quanto ainda é possível retirar.</span></li>
+        <li><b>DAS</b><span>Contagem de dias até o vencimento, no dia 20 ou no dia útil seguinte. Ao registrar o pagamento, o mês fica marcado como pago.</span></li>
+        <li><b>Teto do MEI</b><span>Faturamento do ano contra o limite, com alerta a partir de 80%.</span></li>
+      </ul>
+      <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Criar conta Empresarial</a>
+    </div>
+    <div class="rev so-pc" style="--d:.1s">
+      <div class="fone">
+        <img src="img/emp-painel-cel-1.png" width="500" height="1040" loading="lazy" alt="Painel no celular com o lembrete Faltam 12 dias para o DAS, o aviso Perto do teto do MEI com R$ 71.600,00 de R$ 81.000,00 faturados em 2026 e as retiradas do dono comparadas com o lucro.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TETO DO MEI -->
+<section class="block" id="teto">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>O teto do MEI, <span class="metal-gold">com o valor de cada ano</span></h2>
+      <p>O limite anual de faturamento do MEI muda em 2027 e em 2028 (Lei Complementar nº 238/2026). O North aplica o valor do ano corrente e soma todas as entradas registradas.</p>
+    </div>
+    <div class="steps3">
+      <div class="step rev"><span class="n metal-gold">R$ 81 mil</span><h3>Em 2026</h3><p>Limite em vigor até 31 de dezembro de 2026.</p></div>
+      <div class="step rev" style="--d:.08s"><span class="n metal-gold">R$ 110 mil</span><h3>Em 2027</h3><p>Limite do ano-calendário de 2027.</p></div>
+      <div class="step rev" style="--d:.16s"><span class="n metal-gold">R$ 140 mil</span><h3>A partir de 2028</h3><p>Limite anual a partir de 1º de janeiro de 2028.</p></div>
+    </div>
+    <p class="sec-honest rev">No ano de abertura da empresa, o limite legal é proporcional aos meses de atividade. O North considera o ano completo: nesse caso, confirme o valor com o seu contador.</p>
+  </div>
+</section>
+
+<!-- 3. CONTAS A RECEBER -->
+<section class="alt flip" id="receber">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">Contas a receber <span class="pro-tag">PRO</span></span>
+      <h2>Saiba o que entra <span class="metal-gold">e quando entra</span></h2>
+      <p>Cadastre os recebimentos recorrentes de cada cliente. O painel avisa quando a data se aproxima ou quando um recebimento está atrasado; ao marcar como recebido, a receita é lançada nas transações.</p>
+      <ul class="fatos">
+        <li><b>Total do mês</b><span>Quanto já foi recebido e quanto ainda está em aberto.</span></li>
+        <li><b>A pagar</b><span>Na mesma tela, em outra aba: aluguel, assinaturas e fornecedores recorrentes.</span></li>
+      </ul>
+    </div>
+    <div class="rev" style="--d:.1s">
+      <div class="fone">
+        <img src="img/emp-receber-cel-1.png" width="500" height="820" loading="lazy" alt="Tela Contas a Receber: total do mês de R$ 7.400,00, R$ 1.800,00 recebidos e R$ 5.600,00 a receber, com três recebimentos de clientes.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CONTADOR -->
+<section class="alt estreito" id="contador">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">Relatório para o contador</span>
+      <h2>O mês da empresa <span class="metal-gold">em uma folha</span></h2>
+      <p>Escolha o mês e gere o relatório em PDF, no próprio aplicativo. O arquivo é montado no seu dispositivo, sem passar pelos nossos servidores.</p>
+      <ul class="fatos">
+        <li><b>Resumo</b><span>Faturamento, custos e despesas, lucro com margem e retiradas do dono.</span></li>
+        <li><b>Por categoria</b><span>Faturamento e custos somados por categoria.</span></li>
+        <li><b>Lançamentos</b><span>Todos os lançamentos do mês, com data, descrição, categoria e valor.</span></li>
+      </ul>
+      <p class="nota">O relatório apoia o trabalho do contador e não substitui a escrituração contábil. A planilha em CSV e a cópia completa em JSON continuam disponíveis, em qualquer plano.</p>
+    </div>
+    <div class="rev" style="--d:.1s">
+      <div class="shot papel">
+        <img src="img/emp-relatorio-1.png" width="900" height="1040" loading="lazy" alt="Relatório mensal de novembro de 2026 do North Empresarial: faturamento de R$ 11.600,00, custos e despesas de R$ 2.534,00, lucro de R$ 9.066,00 com margem de 78%, retiradas do dono de R$ 3.000,00, totais por categoria e a lista de lançamentos.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. IMPORTAÇÃO -->
+<section class="alt flip" id="importar">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">Importação de extratos</span>
+      <h2>O extrato da conta PJ, <span class="metal-gold">revisado antes de entrar</span></h2>
+      <p>Importe o arquivo OFX, CSV ou PDF fornecido pelo banco. O North sugere a categoria de cada lançamento, sinaliza possíveis duplicidades e aguarda a sua confirmação.</p>
+      <ul class="fatos">
+        <li><b>Sem conexão</b><span>O North não solicita senhas bancárias nem se conecta à conta da empresa.</span></li>
+        <li><b>No dispositivo</b><span>A leitura do arquivo acontece no seu aparelho.</span></li>
+        <li><b>Aprende</b><span>A categoria escolhida para um fornecedor passa a ser sugerida nas próximas importações.</span></li>
+      </ul>
+    </div>
+    <div class="rev" style="--d:.1s">
+      <div class="fone">
+        <img src="img/emp-importar-cel-1.png" width="500" height="900" loading="lazy" alt="Revisão da importação de um extrato em CSV: três lançamentos encontrados, com entradas de R$ 350,00 e saídas de R$ 130,40, cada um com a categoria sugerida.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. WINDOWS -->
+<section class="alt estreito" id="windows">
+  <div class="wrap alt-row">
+    <div class="alt-txt rev">
+      <span class="kick">Aplicativo para Windows</span>
+      <h2>No computador da empresa, <span class="metal-gold">em uma janela própria</span></h2>
+      <p>O aplicativo para Windows é exclusivo do North Empresarial. A conta é a mesma do navegador e do celular, e os dados permanecem sincronizados.</p>
+      <ul class="fatos">
+        <li><b>Arrastar</b><span>Solte o extrato do banco em qualquer ponto da janela para abrir a importação.</span></li>
+        <li><b>Avisos</b><span>Ao abrir o aplicativo, o Windows avisa do DAS a 3 dias ou menos do vencimento e dos recebimentos previstos para o dia.</span></li>
+        <li><b>Atalhos</b><span>Um lançamento novo a uma tecla de distância.</span></li>
+      </ul>
+      <div class="teclas" aria-label="Atalhos de teclado">
+        <span><kbd>N</kbd> novo gasto</span><span><kbd>R</kbd> nova receita</span><span><kbd>I</kbd> importar</span><span><kbd>/</kbd> buscar</span><span><kbd>?</kbd> todos os atalhos</span>
+      </div>
+      <a class="btn btn-gold" href="https://github.com/Barssottini/controle-financeiro/releases/download/v1.5.2/North-Setup-1.5.2.exe">Baixar para Windows</a>
+      <p class="nota">Windows 10 ou superior. Ao instalar, o Windows exibe o aviso do SmartScreen: selecione "Mais informações" e "Executar assim mesmo". Contas pessoais utilizam o North pelo navegador e pelo celular.</p>
+    </div>
+    <div class="rev" style="--d:.1s">
+      <div class="shot">
+        <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>North Empresarial</span></div>
+        <div class="recorte"><img src="img/emp-atalhos-1.png" width="1440" height="735" loading="lazy" alt="Janela Atalhos de teclado do North: N para novo gasto, R para nova receita, I para importar extrato, barra para buscar nas transações, D para o painel, T para transações, O para orçamento, C para contas a pagar e receber."></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO COMEÇAR -->
+<section class="block" id="comecar">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Como começar, <span class="metal-gold">em três passos</span></h2>
+      <p>Do cadastro ao primeiro mês organizado.</p>
+    </div>
+    <div class="steps3">
+      <div class="step rev"><span class="n metal-gold">1</span><h3>Crie a conta Empresarial</h3><p>Escolha "Empresarial" no cadastro. A conta é separada da pessoal, com e-mail e senha próprios, e não exige cartão de crédito.</p></div>
+      <div class="step rev" style="--d:.08s"><span class="n metal-gold">2</span><h3>Informe o regime e importe o extrato</h3><p>MEI, Simples Nacional ou outro regime. Em seguida, importe o extrato da conta bancária da empresa em OFX, CSV ou PDF.</p></div>
+      <div class="step rev" style="--d:.16s"><span class="n metal-gold">3</span><h3>Acompanhe o lucro, o DAS e o teto</h3><p>O painel passa a apresentar o resultado do mês, o prazo do DAS e, para MEI, o faturamento do ano contra o limite.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGURANÇA -->
+<section class="block sec-security" id="seguranca">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Os números da empresa, <span class="metal-gold">somente com você</span></h2>
+      <p>A mesma proteção do North Pessoal: os dados são criptografados no seu dispositivo antes de serem enviados à nuvem.</p>
+    </div>
+    <div class="sec4">
+      <div class="it rev">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Criptografia no dispositivo</h3>
+        <p>Sem a sua senha ou a sua chave de recuperação, os dados não podem ser lidos — inclusive pela North.</p>
+      </div>
+      <div class="it rev" style="--d:.08s">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 10h18M12 3 3 8h18zM5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></div>
+        <h3>Sem acesso ao banco</h3>
+        <p>Você importa apenas os extratos que desejar. Nenhuma senha bancária é solicitada.</p>
+      </div>
+      <div class="it rev" style="--d:.16s">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></div>
+        <h3>Código aberto</h3>
+        <p>O código-fonte é público no GitHub e pode ser auditado por qualquer pessoa.</p>
+      </div>
+      <div class="it rev" style="--d:.24s">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 11v6M9 14l3 3 3-3"/></svg></div>
+        <h3>Seus dados, com você</h3>
+        <p>Exportação completa em JSON ou planilha a qualquer momento, em qualquer plano.</p>
+      </div>
+    </div>
+    <p class="sec-honest rev"><b>Uma exceção, opcional.</b> No plano Pro, a recomendação do orçamento por IA envia à Anthropic um resumo com os totais de cada categoria, somente quando você solicita. O aplicativo exibe antes o que será enviado. <a class="inl" href="/termos.html">Seção 5.2 dos termos</a>.</p>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<!-- PENDENTE (decisão C do Pedro): preço e conteúdo do plano próprio do Empresarial.
+     Enquanto isso, esta seção descreve o que vale hoje: a conta Empresarial usa os planos Free e Pro. -->
+<section class="block" id="planos">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Planos do <span class="metal-gold">North Empresarial</span></h2>
+      <p>A conta Empresarial é gratuita, sem limite de lançamentos e sem prazo de expiração. O Pro acrescenta os recursos de acompanhamento.</p>
+    </div>
+    <div class="planos rev">
+      <div class="plano">
+        <div class="nome">Free</div>
+        <div class="valor">R$ 0<small>/mês</small></div>
+        <div class="obs">sem prazo de expiração</div>
+        <ul>
+          <li>Painel de faturamento, custos e lucro</li>
+          <li>Lembrete do DAS e teto do MEI</li>
+          <li>Retiradas do dono e metas da empresa</li>
+          <li>Importação de extratos (OFX, CSV e PDF)</li>
+          <li>Relatório mensal para o contador</li>
+          <li>Aplicativo para Windows</li>
+        </ul>
+        <a class="btn btn-ghost" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Criar conta Empresarial</a>
+      </div>
+      <div class="plano destaque">
+        <div class="nome">Pro</div>
+        <div class="valor">R$ 19,90<small>/mês</small></div>
+        <div class="obs">7 dias de teste em toda conta nova</div>
+        <ul>
+          <li>Todos os recursos do plano Free</li>
+          <li>Contas a receber e a pagar</li>
+          <li>Múltiplas contas bancárias, com saldo consolidado</li>
+          <li>Investimentos do caixa da empresa</li>
+          <li>Recomendação do orçamento por IA</li>
+        </ul>
+        <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Começar pelo teste do Pro</a>
+      </div>
+    </div>
+    <p class="planos-nota rev">Cancelamento a qualquer momento, no próprio aplicativo. Sem pagamento, a conta retorna ao plano Free com todos os dados preservados.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <h2>Perguntas frequentes</h2>
+      <p>Dúvidas comuns de quem vai organizar as finanças do negócio.</p>
+    </div>
+    <div class="faq rev">
+      <details>
+        <summary>É necessário informar o CNPJ para criar a conta Empresarial? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> O cadastro exige apenas e-mail e senha. O North não solicita documentos nem se conecta à conta bancária da empresa.</div>
+      </details>
+      <details>
+        <summary>Posso usar o mesmo e-mail da minha conta pessoal? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> A conta Pessoal e a conta Empresarial são separadas, cada uma com o seu e-mail e a sua senha. Quem usa Gmail pode criar a segunda conta com um endereço como <b>nome+empresa@gmail.com</b>: as mensagens chegam à mesma caixa de entrada.</div>
+      </details>
+      <details>
+        <summary>Já tenho uma conta pessoal. Posso transformá-la em Empresarial? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> O tipo da conta é escolhido no cadastro e não muda depois. Para o negócio, crie uma conta Empresarial e importe o extrato da conta bancária da empresa. A conta pessoal continua como está.</div>
+      </details>
+      <details>
+        <summary>O North Empresarial atende quem não é MEI? <span class="pl">+</span></summary>
+        <div class="ans"><b>Sim.</b> No cadastro você informa o regime: MEI, Simples Nacional ou Lucro Presumido ou Real. O lembrete do DAS vale para MEI e Simples Nacional; o acompanhamento do teto de faturamento, apenas para MEI. O painel de faturamento, custos e lucro vale para todos.</div>
+      </details>
+      <details>
+        <summary>O North emite nota fiscal ou a guia do DAS? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> O North é uma ferramenta de controle financeiro. A guia do DAS é emitida e paga nos canais oficiais; depois de pagar, você registra o lançamento em Impostos e o painel marca o mês como pago.</div>
+      </details>
+      <details>
+        <summary>O relatório mensal substitui o contador? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> O relatório reúne faturamento, custos por categoria, retiradas e os lançamentos do mês, como apoio ao trabalho do contador. Ele não substitui a escrituração contábil.</div>
+      </details>
+      <details>
+        <summary>O North Empresarial funciona no celular? <span class="pl">+</span></summary>
+        <div class="ans">Sim. Basta acessar <b>app.northfinances.com.br</b> pelo navegador do celular e selecionar <b>"Adicionar à tela inicial"</b>. A conta é a mesma do computador.</div>
+      </details>
+      <details>
+        <summary>O Windows exibiu um aviso ao instalar o aplicativo. É normal? <span class="pl">+</span></summary>
+        <div class="ans">Sim. Trata-se do <b>SmartScreen</b>, aviso padrão do Windows para aplicativos de desenvolvedores independentes. Selecione <b>"Mais informações"</b> e, em seguida, <b>"Executar assim mesmo"</b>. O instalador é o aplicativo oficial da North Finances.</div>
+      </details>
+      <details>
+        <summary>A North tem acesso aos dados financeiros da minha empresa? <span class="pl">+</span></summary>
+        <div class="ans"><b>Não.</b> Os dados são <b>criptografados no seu próprio dispositivo</b> antes de serem enviados à nuvem; em nossos servidores permanece apenas conteúdo cifrado.<br><br>Há uma exceção, opcional: no plano Pro, ao solicitar a <b>recomendação do orçamento por IA</b>, um resumo com os totais de cada categoria é enviado à Anthropic. O aplicativo exibe antes o que será enviado.</div>
+      </details>
+      <details>
+        <summary>Como entro em contato com o suporte? <span class="pl">+</span></summary>
+        <div class="ans">Envie um e-mail para <b><a href="mailto:suporte@northfinances.com.br" style="color:var(--gold)">suporte@northfinances.com.br</a></b>.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CHAMADA FINAL -->
+<section class="final">
+  <div class="wrap rev">
+    <h2>Dê um norte <span class="metal-gold">ao caixa da empresa</span></h2>
+    <p>Crie a conta Empresarial gratuitamente, sem cartão de crédito.</p>
+    <a class="btn btn-gold" data-nf-cta="signup" href="https://app.northfinances.com.br/?conta=empresarial">Criar conta Empresarial</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="logo.png" alt=""><b>North <span>Finances</span></b></a>
+        <p>Controle financeiro pessoal e para pequenos negócios. Feito no Brasil.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Produto</h5>
+          <a href="/">North Pessoal</a>
+          <a href="/empresarial">North Empresarial</a>
+          <a href="https://app.northfinances.com.br">Acessar o app</a>
+          <a href="https://app.northfinances.com.br/manual.html" target="_blank" rel="noopener">Manual do usuário</a>
+          <a href="https://github.com/Barssottini/controle-financeiro" target="_blank" rel="noopener">Código no GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Empresa</h5>
+          <a href="/termos.html">Termos &amp; Privacidade</a>
+          <a href="#" id="nf-cookie-prefs">Preferências de cookies</a>
+          <a href="mailto:suporte@northfinances.com.br">Suporte</a>
+          <a href="https://instagram.com/north.finances">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61592066423454">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 North Finances. Todos os direitos reservados.</span>
+      <span>northfinances.com.br</span>
+    </div>
+  </div>
+</footer>
+
+<div id="nf-cookie" class="nf-cookie" hidden role="dialog" aria-label="Aviso de cookies">
+  <div class="nf-cookie-in">
+    <div class="nf-cookie-txt">
+      <strong>Privacidade em primeiro lugar.</strong>
+      Utilizamos cookies de medição (Meta) apenas nas páginas deste site, para identificar a origem dos visitantes e aprimorar os anúncios. Seus dados financeiros não passam por aqui — permanecem criptografados no aplicativo.
+      <a href="/termos.html#cookies" target="_blank" rel="noopener" style="color:var(--gold-soft);font-weight:600;white-space:nowrap">Saiba mais</a>
+    </div>
+    <div class="nf-cookie-btns">
+      <button id="nf-cookie-reject" class="nf-cookie-btn ghost" type="button">Recusar</button>
+      <button id="nf-cookie-accept" class="nf-cookie-btn gold" type="button">Aceitar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Mesma lógica da página inicial: menu, barra de progresso, revelação no scroll,
+   aviso de cookies e medição (só depois do aceite). */
+(function(){
+'use strict';
+var mbtn=document.getElementById('menu-btn'),nav=document.getElementById('nav-links');
+function closeMenu(){nav.classList.remove('open');mbtn.setAttribute('aria-expanded','false');mbtn.setAttribute('aria-label','Abrir menu');}
+mbtn.addEventListener('click',function(){
+  var open=nav.classList.toggle('open');
+  mbtn.setAttribute('aria-expanded',open?'true':'false');
+  mbtn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+});
+nav.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu();});
+addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){closeMenu();mbtn.focus();}});
+addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&!mbtn.contains(e.target))closeMenu();});
+
+var hdr=document.getElementById('hdr'),prog=document.getElementById('progress');
+function onScroll(){
+  hdr.classList.toggle('scrolled',scrollY>8);
+  var max=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(max>0?(scrollY/max*100):0)+'%';
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(function(el){io.observe(el);});
+
+/* ── cookies + Meta Pixel (só com aceite) ── */
+var KEY='nf_cookie_consent',banner=document.getElementById('nf-cookie'),saved=null;
+try{saved=localStorage.getItem(KEY);}catch(e){}
+window.nfLoadPixel=function(){
+  if(window.__nfPixelLoaded)return;
+  window.__nfPixelLoaded=true;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','2612957169101239');
+  fbq('track','PageView');
+};
+function hide(){banner.hidden=true;banner.style.display='none';}
+function show(){banner.style.display='';banner.hidden=false;}
+document.getElementById('nf-cookie-accept').addEventListener('click',function(){try{localStorage.setItem(KEY,'accepted');}catch(e){}hide();window.nfLoadPixel();});
+document.getElementById('nf-cookie-reject').addEventListener('click',function(){try{localStorage.setItem(KEY,'rejected');}catch(e){}hide();});
+document.getElementById('nf-cookie-prefs').addEventListener('click',function(ev){
+  ev.preventDefault();try{localStorage.removeItem(KEY);}catch(e){}show();banner.scrollIntoView({block:'nearest'});
+});
+if(saved==='accepted'){hide();window.nfLoadPixel();}
+else if(saved==='rejected')hide();
+else banner.hidden=false;
+
+function track(ev){if(window.fbq&&window.__nfPixelLoaded)fbq('track',ev);}
+function nfCookie(name){var m=document.cookie.match('(^|;)\\s*'+name+'\\s*=\\s*([^;]+)');return m?m.pop():'';}
+function nfAttribution(a){
+  var fbc=nfCookie('_fbc'),fbp=nfCookie('_fbp');
+  if(!fbc&&!fbp)return;
+  try{var u=new URL(a.href);if(fbc)u.searchParams.set('nfbc',fbc);if(fbp)u.searchParams.set('nfbp',fbp);a.href=u.toString();}catch(e){}
+}
+document.querySelectorAll('a[href*="app.northfinances.com.br"]').forEach(function(a){
+  var lead=a.getAttribute('data-nf-cta')==='signup';
+  a.addEventListener('click',function(){track(lead?'Lead':'ClickApp');nfAttribution(a);});
+  a.addEventListener('mousedown',function(){nfAttribution(a);});
+});
+})();
+</script>
+
+</body>
+</html>

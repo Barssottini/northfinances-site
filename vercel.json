@@ -4,6 +4,7 @@
   "installCommand": "",
   "buildCommand": "",
   "outputDirectory": ".",
+  "rewrites": [{ "source": "/empresarial", "destination": "/empresarial.html" }],
   "headers": [
     {
       "source": "/(.*)",

@@ -264,20 +264,30 @@
   .sec4 p{color:var(--muted);font-size:.93rem}
   .sec-honest{text-align:center;margin:30px auto 0;font-size:.86rem;color:var(--muted);opacity:.82;max-width:660px}
 
-  /* ---------- PLANOS (provisório: o plano próprio do Empresarial ainda será definido) ---------- */
-  .planos{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:880px;margin:0 auto}
-  @media(max-width:760px){.planos{grid-template-columns:1fr}}
-  .plano{background:linear-gradient(180deg,var(--card),#121210);border:1px solid var(--line);border-radius:24px;padding:38px 34px}
-  .plano.destaque{border-color:rgba(200,144,58,.5);box-shadow:0 24px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)}
+  /* ---------- PLANOS ---------- */
+  /* Mesmas proporções dos cards Pessoal: coluna, espaçamento e preço maiores no Pro. */
+  .planos{display:grid;grid-template-columns:1fr 1.16fr;gap:26px;align-items:center;max-width:1080px;margin:0 auto}
+  .plano{background:linear-gradient(180deg,var(--card),#121210);border:1px solid var(--line);border-radius:24px;padding:40px 34px;min-width:0}
+  .plano:not(.destaque){margin:20px 0}
+  .plano.destaque{align-self:stretch;padding:60px 46px;border-color:rgba(200,144,58,.5);box-shadow:0 24px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)}
   .plano .nome{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#b5afa9;margin-bottom:12px}
   .plano.destaque .nome{color:var(--gold)}
   .plano .valor{font-family:var(--ff-display);font-size:3rem;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .plano.destaque .valor{font-size:4.3rem}
   .plano .valor small{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:var(--muted);font-weight:500;letter-spacing:0}
   .plano .obs{color:var(--muted);font-size:.92rem;margin-top:4px}
   .plano ul{list-style:none;margin:24px 0 28px}
   .plano li{padding:7px 0;color:var(--muted);display:flex;gap:10px;font-size:.96rem}
   .plano li::before{content:"✓";color:var(--gold);font-weight:700}
   .plano .btn{width:100%;text-align:center;padding:14px}
+  @media(max-width:860px){
+    .planos{grid-template-columns:1fr;max-width:524px;gap:24px}
+    .plano{padding:34px 26px}
+    .plano:not(.destaque){margin:0}
+    .plano.destaque{padding:44px 30px;order:-1}
+    .plano.destaque .valor{font-size:3.6rem}
+  }
+  @media(max-width:380px){.plano.destaque .valor{font-size:2.75rem}}
   .planos-nota{text-align:center;color:var(--muted);font-size:.86rem;margin:26px auto 0;max-width:620px}
 
   /* ---------- FAQ ---------- */
@@ -446,7 +456,7 @@
     </div>
     <div class="rev" style="--d:.1s">
       <div class="fone">
-        <img src="img/emp-receber-cel-1.png" width="500" height="820" loading="lazy" alt="Tela Contas a Receber: total do mês de R$ 7.400,00, R$ 1.800,00 recebidos e R$ 5.600,00 a receber, com três recebimentos de clientes.">
+        <img src="img/emp-receber-cel-2.png" width="500" height="1040" loading="lazy" alt="Tela Contas a Receber: total do mês de R$ 7.400,00, R$ 1.800,00 recebidos e R$ 5.600,00 a receber, com três recebimentos de clientes.">
       </div>
     </div>
   </div>
